@@ -1,0 +1,614 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kirizukon - Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg:      '#1c1917',
+            bg2:     '#242220',
+            bg3:     '#2c2927',
+            bg4:     '#343130',
+            line:    '#3a3632',
+            hi:      '#fafaf9',
+            mid:     '#a8a29e',
+            lo:      '#57534e',
+            vio:     '#a855f7',
+            vioDim:  '#7c3aed',
+            vioGlow: '#c084fc',
+            amber:   '#f59e0b',
+            teal:    '#2dd4bf',
+            rose:    '#fb7185',
+          },
+          fontFamily: {
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono:  ['"JetBrains Mono"', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-bg font-mono text-mid antialiased">
+
+<nav class="fixed top-0 inset-x-0 z-50 bg-bg/90 backdrop-blur-md border-b border-line">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+    <span class="nav-logo">CORRET <span class="nav-logo-name">Bryan</span></span>
+
+    <!-- hamburger -->
+    <button id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul id="nav-menu" class="flex gap-7 list-none">
+      <li><a href="#Compétences" class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Compétences</a></li>
+      <li><a href="#EXP PRO"     class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Expériences</a></li>
+      <li><a href="#formations"  class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Formations</a></li>
+      <li><a href="#projects"    class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Projets</a></li>
+      <li><a href="#writeups"    class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Writeups</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="relative min-h-[100svh] flex items-center pt-20 border-b border-line overflow-hidden">
+  <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:1"></canvas>
+  <div class="orb orb-breathe w-[37.5em] h-[37.5em] top-[-9.375em] right-[-9.375em]" style="background:radial-gradient(circle,rgba(var(--vio-rgb),.09),transparent 65%)"></div>
+  <div class="orb w-[21.875em] h-[21.875em] bottom-[-5em] left-0" style="background:radial-gradient(circle,rgba(45,212,191,.055),transparent 65%)"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6 w-full py-16 md:py-28" style="z-index:2">
+    <div class="grid md:grid-cols-[2fr_3fr] gap-10 items-center">
+
+      <!-- left -->
+      <div>
+        <p class="text-[10px] text-lo tracking-widest uppercase mb-7 flex items-center gap-2">
+          <span class="text-vio glow-v">▶</span> portfolio · kirizukon
+        </p>
+
+        <div class="hero-title">
+          <h1 class="font-serif leading-[.88] text-hi mb-7" style="font-size:clamp(3.75em,9vw,6em);text-transform:uppercase">
+            Bryan<br>
+            <em class="glitch text-vio glow-v" style="text-transform:uppercase">Corret</em>
+          </h1>
+        </div>
+
+        <p class="text-sm text-mid leading-relaxed mb-8 max-w-xs">
+          Mastère <span class="text-hi">Expert Cybersécurité</span><br>
+          Alternance DevSecOps · <span class="text-vio">Sept. 2026</span> · France
+        </p>
+
+        <div class="flex flex-wrap gap-2 mb-9">
+          <span class="pill pill-v text-vio  border-vio/30  bg-vio/8">DevSecOps</span>
+          <span class="pill pill-t text-teal border-teal/30 bg-teal/8">Blue Team</span>
+          <span class="pill       text-mid  border-line    bg-bg3">Bidule</span>
+        </div>
+
+        <div class="flex gap-7">
+          <a href="https://github.com/Kirizukon" target="_blank" class="nav-a text-xs text-lo hover:text-vio transition-colors">↗ GitHub</a>
+          <a href="https://www.root-me.org/Kirizukon" target="_blank" class="nav-a text-xs text-lo hover:text-vio transition-colors">↗ Root-Me</a>
+          <a href="#writeups" class="nav-a text-xs text-lo hover:text-vio transition-colors">↗ Writeups</a>
+        </div>
+      </div>
+
+      <!-- terminal -->
+      <div class="reveal">
+        <div class="term-glow border border-line rounded overflow-hidden shadow-2xl" style="background:#141210">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-line" style="background:#1e1b18">
+            <span class="w-3 h-3 rounded-full bg-rose/70"></span>
+            <span class="w-3 h-3 rounded-full bg-amber/70"></span>
+            <span class="w-3 h-3 rounded-full bg-teal/70"></span>
+            <span class="text-[11px] text-lo ml-3">whoami.sh</span>
+          </div>
+          <div class="p-5 space-y-1.5">
+            <p class="text-sm text-teal glow-t">$ <span class="text-mid">whoami</span></p>
+            <p class="text-sm text-mid pl-3">→ Bryan CORRET · <span class="text-amber glow-a">Kirizukon</span></p>
+            <p class="text-sm text-teal glow-t pt-2">$ <span class="text-mid">cat status.txt</span></p>
+            <p class="text-sm text-mid pl-3">→ Apprenti S&R <span class="text-vio">@</span> SDIS28</p>
+            <p class="text-sm text-teal glow-t pt-2">$ <span class="text-mid">cat target.txt</span></p>
+            <p class="text-sm text-mid pl-3">→ Alternance <span class="text-vio glow-v">DevSecOps</span>, <span class="text-teal glow-t">Analyste SOC</span>, <span class="text-teal glow-t">Analyste Forensics</span></p>
+            <p class="text-sm text-mid pl-3">→ Dispo : <span class="text-amber glow-a">Septembre 2026</span></p>
+            <p class="text-sm text-mid pl-3">→ 1 sem école / 3 sem entreprise</p>
+            <p class="text-sm text-teal glow-t pt-2">$ <span class="cursor text-mid"></span></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="Compétences" class="py-16 md:py-24 border-b border-line">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="sec-head reveal">
+      <span class="num">01 / Compétences</span>
+      <div class="bar"></div>
+    </div>
+
+    <div class="reveal term-glow border border-line rounded-sm overflow-hidden" style="background:#141210">
+      <div class="flex items-center gap-2 px-4 py-3 border-b border-line" style="background:#1e1b18">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose/65"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-amber/65"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-teal/65"></span>
+        <span class="text-[11px] text-lo ml-2">skills.sh</span>
+        <span class="ml-auto text-[10px] text-mid/60">kiri@nixos ~ $</span>
+      </div>
+      <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+
+        <!-- Développement -->
+        <div>
+          <p class="text-[10px] text-vio tracking-widest uppercase mb-4 flex items-center gap-2">
+            <span>▸</span> Développement
+          </p>
+          <ul class="space-y-2">
+            <li class="text-xs text-hi">Python · Django · Flask</li>
+            <li class="text-xs text-mid">Crypto · C</li>
+            <li class="text-xs text-mid">ReactJS · Svelte</li>
+            <li class="text-xs text-mid">Java · JavaFX</li>
+            <li class="text-xs text-mid">Docker · Kotlin</li>
+          </ul>
+        </div>
+
+        <!-- Administration -->
+        <div>
+          <p class="text-[10px] text-teal tracking-widest uppercase mb-4 flex items-center gap-2">
+            <span>▸</span> Administration
+          </p>
+          <ul class="space-y-2">
+            <li class="text-xs text-hi">Linux · Windows Server</li>
+            <li class="text-xs text-mid">Active Directory · DNS</li>
+            <li class="text-xs text-mid">PKI · CFSSL / OpenSSL</li>
+            <li class="text-xs text-mid">Web · Nginx Apacha2</li>
+            <li class="text-xs text-mid">Bash · PowerShell</li>
+
+          </ul>
+        </div>
+
+        <!-- Bases de données -->
+        <div>
+          <p class="text-[10px] text-amber tracking-widest uppercase mb-4 flex items-center gap-2">
+            <span>▸</span> Bases de données
+          </p>
+          <ul class="space-y-2">
+            <li class="text-xs text-mid">MySQL</li>
+            <li class="text-xs text-mid">MariaDB</li>
+            <li class="text-xs text-mid">Oracle</li>
+            <li class="text-xs text-mid">PL/SQL</li>
+            <li class="text-xs text-mid">Talend ETL</li>
+          </ul>
+        </div>
+
+        <!-- Langues -->
+        <div>
+          <p class="text-[10px] text-lo tracking-widest uppercase mb-4 flex items-center gap-2">
+            <span>▸</span> Langues
+          </p>
+          <ul class="space-y-2">
+            <li class="text-xs text-hi">Anglais</li>
+            <li class="text-[10px] text-lo">B2 · Lu, écrit, parlé</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="EXP PRO" class="py-16 md:py-24 border-b border-line">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="sec-head reveal">
+      <span class="num">02 / Expériences Pro</span>
+      <div class="bar"></div>
+    </div>
+
+    <div class="space-y-5">
+
+      <div class="card reveal s1 bg-bg2 border border-line rounded-sm overflow-hidden">
+        <div class="h-[0.125em] bg-gradient-to-r from-vio to-transparent line-v"></div>
+        <div class="p-5 md:p-7">
+          <div class="flex justify-between items-start flex-wrap gap-4 mb-5">
+            <div>
+              <h3 class="font-serif text-xl text-hi">Apprenti Systèmes & Réseaux</h3>
+              <p class="text-xs text-vio mt-1" style="text-shadow:0 0 0.5em rgba(var(--vio-rgb),.5)">SDIS 28 · Chartres</p>
+            </div>
+            <span class="pill badge-live pill-v text-vio border-vio/30 bg-vio/8">● Actuel · 09/2024</span>
+          </div>
+          <ul class="space-y-2">
+            <li class="text-xs text-mid flex gap-3"><span class="text-vio flex-shrink-0">▸</span>Sensibilisation cybersécurité · Phishing (Gophish), politique mots de passe</li>
+            <li class="text-xs text-mid flex gap-3"><span class="text-vio flex-shrink-0">▸</span>Sécurisation d'infrastructures administratives & opérationnelles (le 18)</li>
+            <li class="text-xs text-lo   flex gap-3 pl-5"><span class="flex-shrink-0">⚬</span>Active Directory · migration, refonte comptes admins, gestion des droits</li>
+            <li class="text-xs text-lo   flex gap-3 pl-5"><span class="flex-shrink-0">⚬</span>Migration sites IIS → Apache2</li>
+            <li class="text-xs text-mid flex gap-3"><span class="text-vio flex-shrink-0">▸</span>Analyse d'incidents EDR</li>
+            <li class="text-xs text-mid flex gap-3"><span class="text-vio flex-shrink-0">▸</span>Support technique Niveau 1, 2 & 3</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card reveal s2 bg-bg2 border border-line rounded-sm overflow-hidden">
+        <div class="h-[0.125em] bg-gradient-to-r from-line to-transparent"></div>
+        <div class="p-5 md:p-7">
+          <div class="flex justify-between items-start flex-wrap gap-4 mb-5">
+            <div>
+              <h3 class="font-serif text-xl text-hi">Apprenti Développeur Talend</h3>
+              <p class="text-xs text-lo mt-1">GFPTECH · Chartres</p>
+            </div>
+            <span class="pill text-lo border-line bg-bg3">09/2022 — 08/2024</span>
+          </div>
+          <ul class="space-y-2">
+            <li class="text-xs text-mid flex gap-3"><span class="text-lo flex-shrink-0">▸</span>Insertion / Extraction de données (ETL)</li>
+            <li class="text-xs text-mid flex gap-3"><span class="text-lo flex-shrink-0">▸</span>Conception et optimisation de jobs Talend</li>
+            <li class="text-xs text-mid flex gap-3"><span class="text-lo flex-shrink-0">▸</span>Création d'applications décisionnelles (BI)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="formations" class="py-16 md:py-24 border-b border-line">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="sec-head reveal">
+      <span class="num">03 / Formations</span>
+      <div class="bar"></div>
+    </div>
+
+    <div class="relative pl-8 border-l border-line space-y-5">
+
+      <div class="tl-dot relative reveal s1">
+        <div class="card bg-bg2 border border-line p-5 md:p-6 rounded-sm">
+          <div class="flex justify-between items-start flex-wrap gap-3 mb-3">
+            <div>
+              <p class="text-[10px] text-vio tracking-widest uppercase mb-1">2024 — 2027</p>
+              <h3 class="font-serif text-xl text-hi">Mastère Expert en Cybersécurité</h3>
+              <p class="text-xs text-lo mt-0.5">Oteria · Gennevilliers</p>
+            </div>
+            <span class="pill badge-live pill-v text-vio border-vio/30 bg-vio/8">En cours</span>
+          </div>
+          <p class="text-xs text-lo leading-relaxed mb-2">RNCP39999 · B3 · M1 · M2</p><p class="text-xs text-lo leading-relaxed mb-4">Alternance DevSecOps · 1 semaine école / 3 semaines entreprise (dès sept. 2026)</p>
+          <button onclick="openProgram('mastere')" class="text-[10px] text-vio hover:text-vioGlow transition-colors flex items-center gap-1.5">
+            <span>▸</span> Voir programme
+          </button>
+        </div>
+      </div>
+
+      <div class="tl-dot relative reveal s2">
+        <div class="card bg-bg2 border border-line p-5 md:p-6 rounded-sm">
+          <div class="flex justify-between items-start flex-wrap gap-3 mb-3">
+            <div>
+              <p class="text-[10px] text-lo tracking-widest uppercase mb-1">2021 — 2024</p>
+              <h3 class="font-serif text-xl text-hi">BUT Informatique</h3>
+              <p class="text-xs text-lo mt-0.5">IUT d'Orléans</p>
+            </div>
+            <span class="pill text-mid border-line bg-bg3">Bac +3</span>
+          </div>
+          <p class="text-xs text-lo leading-relaxed mb-4">Développement, réseaux, bases de données, conception logicielle.</p>
+          <button onclick="openProgram('but')" class="text-[10px] text-vio hover:text-vioGlow transition-colors flex items-center gap-1.5">
+            <span>▸</span> Voir programme
+          </button>
+        </div>
+      </div>
+
+      <div class="tl-dot relative reveal s3">
+        <div class="card bg-bg2 border border-line p-5 md:p-6 rounded-sm">
+          <div class="flex justify-between items-start flex-wrap gap-3 mb-3">
+            <div>
+              <p class="text-[10px] text-lo tracking-widest uppercase mb-1">2019 — 2021</p>
+              <h3 class="font-serif text-xl text-hi">Bac STI2D · Option SIN</h3>
+              <p class="text-xs text-lo mt-0.5">Lycée Émile Zola · Châteaudun</p>
+            </div>
+            <span class="pill pill-t text-teal border-teal/25 bg-teal/8">Mention AB</span>
+          </div>
+          <p class="text-xs text-lo leading-relaxed mb-4">Systèmes d'Information et Numérique · Mention Assez Bien.</p>
+          <button onclick="openProgram('bac')" class="text-[10px] text-vio hover:text-vioGlow transition-colors flex items-center gap-1.5">
+            <span>▸</span> Voir programme
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="py-16 md:py-24 border-b border-line">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="sec-head reveal">
+      <span class="num">04 / Projets</span>
+      <div class="bar"></div>
+    </div>
+
+    <div class="reveal border border-line rounded-sm overflow-hidden shadow-xl" style="background:#141210">
+      <div class="flex items-center gap-2 px-5 py-3 border-b border-line" style="background:#1e1b18">
+        <span class="w-3 h-3 rounded-full bg-rose/60"></span>
+        <span class="w-3 h-3 rounded-full bg-amber/60"></span>
+        <span class="w-3 h-3 rounded-full bg-teal/60"></span>
+        <span class="text-xs text-lo ml-2">~/projects/<span class="text-hi">kirizukon</span></span>
+      </div>
+      <div class="flex flex-col md:flex-row">
+        <div class="md:w-44 flex md:flex-col border-b md:border-b-0 md:border-r border-line overflow-x-auto">
+          <button onclick="sp('exegoat')"  data-p="exegoat"  class="proj-tab active text-vio text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 ExeGOAT</button>
+          <button onclick="sp('flipper')"  data-p="flipper"  class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 FlipperDroid</button>
+          <button onclick="sp('nids')"     data-p="nids"     class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 NIDS</button>
+        </div>
+        <div class="flex-1 p-6 md:p-8 bg-bg2">
+
+          <div id="proj-exegoat" class="proj-content">
+            <div class="flex items-center gap-4 mb-5">
+              <div>
+                <h3 class="font-serif text-xl text-hi">ExeGOAT</h3>
+                <p class="text-xs text-lo">Python · Docker</p>
+              </div>
+            </div>
+            <p class="text-xs text-mid leading-relaxed border-l-2 border-vio/50 pl-4 mb-5">
+              Projet en binôme. Wrapper d'outils offensifs inspiré d'Exegol : fuzzer maison + intégration d'outils pentest (Impacket, Caido…) dans un environnement Python/Docker. Architecture modulaire, orientée Red Team.
+            </p>
+            <div class="flex gap-5 flex-wrap">
+              <a href="https://github.com/Kirizukon" target="_blank" class="nav-a text-xs text-vio" style="text-shadow:0 0 0.5em rgba(var(--vio-rgb),.5)">↗ GitHub</a>
+            </div>
+          </div>
+
+          <div id="proj-flipper" class="proj-content hidden">
+            <div class="flex items-center gap-4 mb-5">
+              <div>
+                <h3 class="font-serif text-xl text-hi">FlipperDroid</h3>
+                <p class="text-xs text-lo">Kotlin</p>
+              </div>
+            </div>
+            <p class="text-xs text-mid leading-relaxed border-l-2 border-rose/50 pl-4 mb-5">
+              Application Android en Kotlin pour exploiter les capacités offensives Red Team sans dispositif physique. Inspiré du Flipper Zero.
+            </p>
+            <div class="flex gap-5 flex-wrap">
+              <a href="https://github.com/Kirizukon" target="_blank" class="nav-a text-xs text-rose">↗ GitHub</a>
+            </div>
+          </div>
+
+          <div id="proj-nids" class="proj-content hidden">
+            <h3 class="font-serif text-xl text-hi mb-1">NIDS · Network IDS</h3>
+            <p class="text-xs text-lo mb-5">Python</p>
+            <p class="text-xs text-mid leading-relaxed border-l-2 border-teal/50 pl-4 mb-5">
+              Système de détection d'intrusion réseau en Python. Analyse du trafic en temps réel, détection de patterns suspects et génération d'alertes.
+            </p>
+            <div class="flex gap-5 flex-wrap">
+              <a href="https://github.com/Kirizukon/NIDS-python" target="_blank" class="nav-a text-xs text-teal glow-t">↗ GitHub</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="writeups" class="py-16 md:py-24 border-b border-line">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="sec-head reveal">
+      <span class="num">05 / Writeups</span>
+      <div class="bar"></div>
+    </div>
+
+    <div class="reveal flex flex-wrap gap-8 mb-12 p-5 bg-bg2 border border-line rounded-sm">
+      <div class="w-px bg-line"></div>
+      <div class="flex flex-col justify-center">
+        <a href="https://www.root-me.org/Kirizukon" target="_blank" class="nav-a text-xs text-vio glow-v">↗ Profil Root-Me · Kirizukon</a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <a href="#" class="wu-card block bg-bg2 border border-dashed border-line rounded-sm p-5 opacity-50">
+        <div class="flex justify-between items-start mb-3">
+          <span class="wu-tag text-lo border-line">???</span>
+          <span class="wu-tag text-lo border-line">???</span>
+        </div>
+        <h3 class="font-serif text-base text-lo mb-1 leading-snug italic">Prochain writeup</h3>
+        <p class="text-[11px] text-lo/50 mb-3">En cours de rédaction…</p>
+        <div class="flex flex-wrap gap-1.5 mb-4">
+          <span class="wu-tag text-lo/40 border-line/40">Soon</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-[10px] text-lo/40">— · — pts</span>
+          <span class="text-[10px] text-lo/40">Soon →</span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="py-10 border-t border-line">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-xs text-lo">© 2026 · <span class="text-hi">Bryan Corret</span></p>
+    <div class="flex gap-6">
+      <a href="https://github.com/Kirizukon" target="_blank" class="nav-a text-xs text-lo hover:text-vio transition-colors">GitHub</a>
+      <a href="https://www.root-me.org/Kirizukon" target="_blank" class="nav-a text-xs text-lo hover:text-vio transition-colors">Root-Me</a>
+      <a href="#writeups" class="nav-a text-xs text-lo hover:text-vio transition-colors">Writeups</a>
+    </div>
+  </div>
+</footer>
+
+<div id="prog-overlay" class="prog-overlay" onclick="closeProgram()"></div>
+<aside id="prog-panel" class="prog-panel">
+  <div class="flex justify-between items-center mb-7 pb-5 border-b border-line">
+    <p class="text-[10px] text-lo tracking-widest uppercase">Programme</p>
+    <button onclick="closeProgram()" class="text-lo hover:text-hi transition-colors text-base leading-none">✕</button>
+  </div>
+
+  <!-- Mastère -->
+  <div id="prog-mastere" class="prog-panel-content">
+    <div class="mb-6">
+      <h3 class="font-serif text-xl text-hi mb-0.5">Mastère Expert en Cybersécurité</h3>
+      <p class="text-xs text-vio">Oteria · 2024 — 2027</p>
+    </div>
+    <div class="mb-7">
+      <div class="flex items-center gap-3 mb-4">
+        <p class="text-[10px] text-teal tracking-widest uppercase font-mono">B3</p>
+        <div class="flex-1 h-px bg-teal/20"></div>
+        <span class="text-[10px] text-teal font-mono border border-teal/30 bg-teal/8 px-2 py-0.5 rounded-sm">Validé · 2024 — 2025</span>
+      </div>
+      <div class="space-y-2">
+        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Python</p>
+        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Bases de données</p>
+        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Réseaux</p>
+        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Architecture réseau</p>
+        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Virtualisation</p>
+        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Administration Linux</p>
+        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Programmation en C</p>
+      </div>
+    </div>
+    <div class="mb-7">
+      <div class="flex items-center gap-3 mb-4">
+        <p class="text-[10px] text-vio tracking-widest uppercase font-mono">M1</p>
+        <div class="flex-1 h-px bg-vio/20"></div>
+        <span class="text-[10px] text-vio font-mono border border-vio/30 bg-vio/8 px-2 py-0.5 rounded-sm">En cours</span>
+      </div>
+      <div class="space-y-2">
+        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Pentest Web <span class="text-lo font-mono">40h</span></p>
+        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Cryptographie <span class="text-lo font-mono">40h</span></p>
+        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Networks monitoring & SOC <span class="text-lo font-mono">40h</span></p>
+        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Sécurité Windows <span class="text-lo font-mono">40h</span></p>
+        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Analyse de risque <span class="text-lo font-mono">30h</span></p>
+        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">RGPD & protection des données <span class="text-lo font-mono">20h</span></p>
+        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Forensic <span class="text-lo font-mono">35h</span></p>
+        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Python for Ethical Hacking <span class="text-lo font-mono">35h</span></p>
+      </div>
+    </div>
+    <div>
+      <div class="flex items-center gap-3 mb-4">
+        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">M2</p>
+        <div class="flex-1 h-px bg-line"></div>
+        <span class="text-[10px] text-lo font-mono border border-line bg-bg3 px-2 py-0.5 rounded-sm">Blue Team</span>
+      </div>
+      <div class="space-y-2">
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Cybersécurité offensive <span class="text-lo font-mono">30h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">SOC avancé & collecte de logs <span class="text-lo font-mono">35h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Threat Intelligence & Hunting <span class="text-lo font-mono">30h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Analyse forensique <span class="text-lo font-mono">30h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Analyse de malware <span class="text-lo font-mono">20h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Détection avancée <span class="text-lo font-mono">30h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Réponse à incident & gestion de crise <span class="text-lo font-mono">35h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Durcissement & défense proactive <span class="text-lo font-mono">30h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Purple Team <span class="text-lo font-mono">15h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Management de crise <span class="text-lo font-mono">10h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">IA & cyberdéfense <span class="text-lo font-mono">30h</span></p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Masterclass <span class="text-lo font-mono">15h</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUT -->
+  <div id="prog-but" class="prog-panel-content hidden">
+    <div class="mb-6">
+      <h3 class="font-serif text-xl text-hi mb-0.5">BUT Informatique</h3>
+      <p class="text-xs text-lo">IUT d'Orléans · 2021 — 2024</p>
+    </div>
+    <div class="mb-6">
+      <div class="flex items-center gap-3 mb-3">
+        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Année 1</p>
+        <div class="flex-1 h-px bg-line"></div>
+        
+      </div>
+      <div class="space-y-2">
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Initiation au développement</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement interfaces web</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement orienté objets</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement d'application avec IHM</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Architecture des ordinateurs</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Systèmes d'exploitation</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Introduction aux services réseaux</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Bases de données & SQL</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Mathématiques discrètes & graphes</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Gestion de projet</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Droit du numérique</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Anglais technique</p>
+      </div>
+    </div>
+    <div class="mb-6">
+      <div class="flex items-center gap-3 mb-3">
+        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Année 2</p>
+        <div class="flex-1 h-px bg-line"></div>
+        
+      </div>
+      <div class="space-y-2">
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement web avancé</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Architecture logicielle</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement mobile</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">SQL dans un langage de programmation</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Cryptographie & sécurité</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Architecture des réseaux</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Programmation système</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Virtualisation</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Probabilités & méthodes d'optimisation</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Automates & langages</p>
+      </div>
+    </div>
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Année 3</p>
+        <div class="flex-1 h-px bg-line"></div>
+      </div>
+      <div class="space-y-2">
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Qualité algorithmique</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Programmation avancée</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Automatisation de la chaîne de production</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Qualité de développement</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Virtualisation avancée</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Nouveaux paradigmes de base de données</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Méthodes d'optimisation pour l'aide à la décision</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Modélisations mathématiques</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Initiation au management d'une équipe de projet</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Politique de communication</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Économie durable et numérique</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Anglais</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement avancé</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Maintenance applicative</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Initiation à l'entrepreneuriat</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Droit du numérique & de la propriété intellectuelle</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Communication : organisation et diffusion de l'information</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bac -->
+  <div id="prog-bac" class="prog-panel-content hidden">
+    <div class="mb-6">
+      <h3 class="font-serif text-xl text-hi mb-0.5">Bac STI2D · Option SIN</h3>
+      <p class="text-xs text-lo">Lycée Émile Zola · Châteaudun · 2019 — 2021</p>
+    </div>
+    <div class="mb-6">
+      <div class="flex items-center gap-3 mb-3">
+        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Première</p>
+        <div class="flex-1 h-px bg-line"></div>
+        <span class="text-[10px] text-lo font-mono border border-line bg-bg3 px-2 py-0.5 rounded-sm">3 spécialités</span>
+      </div>
+      <div class="space-y-2">
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Innovation technologique</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">I2D · Ingénierie & Développement Durable</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Physique-chimie & Mathématiques</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Français · Anglais · Histoire-géo · EPS</p>
+      </div>
+    </div>
+    <div>
+      <div class="flex items-center gap-3 mb-3">
+        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Terminale</p>
+        <div class="flex-1 h-px bg-line"></div>
+        <span class="text-[10px] text-teal font-mono border border-teal/30 bg-teal/8 px-2 py-0.5 rounded-sm">SIN</span>
+      </div>
+      <div class="space-y-2">
+        <p class="text-xs text-hi border-l-2 border-teal/40 pl-3">2I2D · Systèmes d'Information et Numérique</p>
+        <p class="text-xs text-hi border-l-2 border-teal/40 pl-3">Programmation & réseaux</p>
+        <p class="text-xs text-hi border-l-2 border-teal/40 pl-3">Architecture numérique & électronique</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Physique-chimie & Mathématiques</p>
+        <p class="text-xs text-hi border-l-2 border-line pl-3">Philosophie · Anglais · Histoire-géo · EPS</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script src="main.js" defer></script>
+</body>
+</html>

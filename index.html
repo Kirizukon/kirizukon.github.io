@@ -332,6 +332,7 @@
       <div class="flex flex-col md:flex-row">
         <div class="md:w-44 flex md:flex-col border-b md:border-b-0 md:border-r border-line overflow-x-auto">
           <button onclick="sp('exegoat')"  data-p="exegoat"  class="proj-tab active text-vio text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 ExeGOAT</button>
+          <button onclick="sp('adlab')"    data-p="adlab"    class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 AD Hardening Lab</button>
           <button onclick="sp('flipper')"  data-p="flipper"  class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 FlipperDroid</button>
           <button onclick="sp('nids')"     data-p="nids"     class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 NIDS</button>
         </div>
@@ -347,8 +348,35 @@
             <p class="text-xs text-mid leading-relaxed border-l-2 border-vio/50 pl-4 mb-5">
               Projet en binôme. Wrapper d'outils offensifs inspiré d'Exegol : fuzzer maison + intégration d'outils pentest (Impacket, Caido…) dans un environnement Python/Docker. Architecture modulaire, orientée Red Team.
             </p>
+            <div class="flex items-start gap-2.5 mb-5 p-3 rounded-sm bg-amber/8 border border-amber/25">
+              <span class="text-amber text-xs flex-shrink-0 mt-px">⚠</span>
+              <p class="text-[11px] text-amber/90 leading-relaxed">
+                <span class="font-medium uppercase tracking-wider">Educational Only</span> | Outil destiné à un usage pédagogique et à des tests autorisés (labs, CTF). Toute utilisation illégale relève de la seule responsabilité de l'utilisateur.
+              </p>
+            </div>
             <div class="flex gap-5 flex-wrap">
-              <a href="https://github.com/Kirizukon" target="_blank" class="nav-a text-xs text-vio" style="text-shadow:0 0 0.5em rgba(var(--vio-rgb),.5)">↗ GitHub</a>
+              <a href="https://github.com/Jeremiznoo/Exegoat" target="_blank" class="nav-a text-xs text-vio" style="text-shadow:0 0 0.5em rgba(var(--vio-rgb),.5)">↗ GitHub</a>
+            </div>
+          </div>
+
+          <div id="proj-adlab" class="proj-content hidden">
+            <div class="flex items-center gap-4 mb-5">
+              <div>
+                <h3 class="font-serif text-xl text-hi">AD Hardening Lab</h3>
+                <p class="text-xs text-lo">Windows Server · Active Directory · PowerShell · GPO · LAPS</p>
+              </div>
+            </div>
+            <p class="text-xs text-mid leading-relaxed border-l-2 border-amber/50 pl-4 mb-5">
+              Conception d'une infrastructure Active Directory sécurisée (structure AGDLP, GPO, LAPS, Credential Guard, protection ransomware via FSRM & File Screening). Démonstration d'attaques (LLMNR/NetBIOS poisoning avec Responder, MitM IPv6 + relais NTLM, MitM RDP, extraction de secrets via Mimikatz, cartographie BloodHound) puis remédiation et durcissement, audit PingCastle à l'appui.
+            </p>
+            <div class="flex items-start gap-2.5 mb-5 p-3 rounded-sm bg-amber/8 border border-amber/25">
+              <span class="text-amber text-xs flex-shrink-0 mt-px">⚠</span>
+              <p class="text-[11px] text-amber/90 leading-relaxed">
+                <span class="font-medium uppercase tracking-wider">Educational Only</span> | Lab et techniques fournis à des fins strictement pédagogiques, sur un environnement isolé et de votre propriété.Toute utilisation illégale relève de la seule responsabilité de l'utilisateur.
+              </p>
+            </div>
+            <div class="flex gap-5 flex-wrap">
+              <a href="Rapport.pdf" target="_blank" class="nav-a text-xs text-amber glow-a">↗ Rapport PDF</a>
             </div>
           </div>
 
@@ -363,7 +391,7 @@
               Application Android en Kotlin pour exploiter les capacités offensives Red Team sans dispositif physique. Inspiré du Flipper Zero.
             </p>
             <div class="flex gap-5 flex-wrap">
-              <a href="https://github.com/Kirizukon" target="_blank" class="nav-a text-xs text-rose">↗ GitHub</a>
+              <a href="https://github.com/Jeremiznoo/Flipperdroid" target="_blank" class="nav-a text-xs text-rose">↗ GitHub</a>
             </div>
           </div>
 

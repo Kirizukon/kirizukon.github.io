@@ -331,14 +331,30 @@
       </div>
       <div class="flex flex-col md:flex-row">
         <div class="md:w-44 flex md:flex-col border-b md:border-b-0 md:border-r border-line overflow-x-auto">
-          <button onclick="sp('exegoat')"  data-p="exegoat"  class="proj-tab active text-vio text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 ExeGOAT</button>
+          <button onclick="sp('tracr')"    data-p="tracr"    class="proj-tab active text-vio text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 Tracr</button>
+          <button onclick="sp('exegoat')"  data-p="exegoat"  class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 ExeGOAT</button>
           <button onclick="sp('adlab')"    data-p="adlab"    class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 AD Hardening Lab</button>
           <button onclick="sp('flipper')"  data-p="flipper"  class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 FlipperDroid</button>
           <button onclick="sp('nids')"     data-p="nids"     class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 NIDS</button>
         </div>
         <div class="flex-1 p-6 md:p-8 bg-bg2">
 
-          <div id="proj-exegoat" class="proj-content">
+          <div id="proj-tracr" class="proj-content">
+            <div class="flex items-center gap-4 mb-5">
+              <div>
+                <h3 class="font-serif text-xl text-hi">Tracr</h3>
+                <p class="text-xs text-lo">React 19 · TypeScript · FastAPI · PostgreSQL · Yjs · Docker</p>
+              </div>
+            </div>
+            <p class="text-xs text-mid leading-relaxed border-l-2 border-teal/50 pl-4 mb-5">
+              Application full-stack de gestion d'enquêtes collaboratives. Édition de documents en temps réel (TipTap + Yjs), Gestion de templates , commentaires et historique de versions. CRUD utilisateur, auth JWT + bcrypt et système de rôles. Chaîne DevSecOps intégrée à la CI GitHub Actions Semgrep (SAST), Trivy (SCA, IaC, images Docker), Gitleaks (secrets), OWASP ZAP (DAST) et hooks pre-commit.
+            </p>
+            <div class="flex gap-5 flex-wrap">
+              <a href="https://github.com/Tracr-Investigation/Tracr" target="_blank" class="nav-a text-xs text-teal glow-t">↗ GitHub</a>
+            </div>
+          </div>
+
+          <div id="proj-exegoat" class="proj-content hidden">
             <div class="flex items-center gap-4 mb-5">
               <div>
                 <h3 class="font-serif text-xl text-hi">ExeGOAT</h3>

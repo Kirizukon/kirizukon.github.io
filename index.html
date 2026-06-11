@@ -332,6 +332,7 @@
       <div class="flex flex-col md:flex-row">
         <div class="md:w-44 flex md:flex-col border-b md:border-b-0 md:border-r border-line overflow-x-auto">
           <button onclick="sp('tracr')"    data-p="tracr"    class="proj-tab active text-vio text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 Tracr</button>
+          <button onclick="sp('soc')"      data-p="soc"      class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 Projet SOC</button>
           <button onclick="sp('exegoat')"  data-p="exegoat"  class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 ExeGOAT</button>
           <button onclick="sp('adlab')"    data-p="adlab"    class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 AD Hardening Lab</button>
           <button onclick="sp('flipper')"  data-p="flipper"  class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 FlipperDroid</button>
@@ -351,6 +352,22 @@
             </p>
             <div class="flex gap-5 flex-wrap">
               <a href="https://github.com/Tracr-Investigation/Tracr" target="_blank" class="nav-a text-xs text-teal glow-t">↗ GitHub</a>
+            </div>
+          </div>
+
+          <div id="proj-soc" class="proj-content hidden">
+            <div class="flex items-center gap-4 mb-5">
+              <div>
+                <h3 class="font-serif text-xl text-hi">Projet SOC · SL1PCONNECT</h3>
+                <p class="text-xs text-lo">Wazuh · OPNsense · ModSecurity · Suricata · DFIR-IRIS · CloudStack · Docker</p>
+              </div>
+            </div>
+            <p class="text-xs text-mid leading-relaxed border-l-2 border-teal/50 pl-4 mb-5">
+              POC SOC Blue Team sur hyperviseur CloudStack. Défense en profondeur : OPNsense (firewall) → WAF Nginx + ModSecurity → cibles Docker vulnérables. SIEM Wazuh alimenté par Suricata, WAF, firewall et conteneurs. Règles de détection custom corrélées et mappées MITRE ATT&CK (brute-force, SQLi, scan de ports). Intégration Wazuh → DFIR-IRIS pour la création automatique d'incidents.
+            </p>
+            <div class="flex gap-5 flex-wrap">
+              <span class="nav-a text-xs text-lo">↗ GitHub (sujet + rapport) — à venir</span>
+              <span class="nav-a text-xs text-lo">⚙ Config &amp; screenshots — à venir</span>
             </div>
           </div>
 

@@ -1,0 +1,92 @@
+site_name: Notes Kirizukon
+site_url: https://kirizukon.xyz/notes/
+site_description: Notes techniques cyber
+site_author: Bryan Corret
+copyright: © 2026 Bryan Corret
+
+site_dir: ../notes
+docs_dir: docs
+
+theme:
+  name: material
+  language: fr
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Passer en mode sombre
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Passer en mode clair
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+    admonition:
+      note: octicons/info-16
+      tip: octicons/light-bulb-16
+      warning: octicons/alert-16
+      danger: octicons/stop-16
+      bug: octicons/bug-16
+      success: octicons/check-circle-16
+
+extra:
+  social:
+    - icon: fontawesome/solid/house
+      link: https://kirizukon.xyz
+      name: Portfolio
+    - icon: fontawesome/brands/github
+      link: https://github.com/Kirizukon
+  generator: false
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: "#"
+      toc_depth: 3
+
+plugins:
+  - search
+
+nav:
+  - Accueil: index.md
+  - Projets:
+    - projets/index.md
+    - SOC SL1PCONNECT: projets/soc-sl1pconnect.md

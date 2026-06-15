@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="description"
-          content="Architecture SOC complète (Wazuh + OPNsense + WAF + Suricata + DFIR-IRIS) sur CloudStack">
+          content="Architecture SOC (Wazuh + OPNsense + WAF + Suricata + DFIR-IRIS) sur CloudStack">
     <meta name="author" content="Bryan Corret">
     <link rel="canonical"
           href="https://kirizukon.xyz/notes/projets/soc-sl1pconnect/">
@@ -39,8 +39,7 @@
            autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
-      <a href="#cheatsheet-final-poc-soc-sl1pconnect-blue-team"
-         class="md-skip">Aller au contenu</a>
+      <a href="#cheatsheet-poc-soc-sl1pconnect" class="md-skip">Aller au contenu</a>
     </div>
     <div data-md-component="announce"></div>
     <header class="md-header md-header--shadow" data-md-component="header">
@@ -227,24 +226,19 @@
                               </label>
                               <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
                                 <li class="md-nav__item">
-                                  <a href="#1-cartographie-acces" class="md-nav__link">
-                                    <span class="md-ellipsis">1. Cartographie &amp; accès</span>
+                                  <a href="#1-cartographie" class="md-nav__link">
+                                    <span class="md-ellipsis">1. Cartographie</span>
                                   </a>
                                 </li>
                                 <li class="md-nav__item">
-                                  <a href="#2-flux-reseau-qui-detecte-quoi" class="md-nav__link">
-                                    <span class="md-ellipsis">2. Flux réseau, qui détecte quoi</span>
+                                  <a href="#2-wazuh-manager" class="md-nav__link">
+                                    <span class="md-ellipsis">2. Wazuh manager</span>
                                   </a>
-                                </li>
-                                <li class="md-nav__item">
-                                  <a href="#3-wazuh-manager-debian-wazuh" class="md-nav__link">
-                                    <span class="md-ellipsis">3. Wazuh manager (debian-wazuh)</span>
-                                  </a>
-                                  <nav class="md-nav" aria-label="3. Wazuh manager (debian-wazuh)">
+                                  <nav class="md-nav" aria-label="2. Wazuh manager">
                                     <ul class="md-nav__list">
                                       <li class="md-nav__item">
-                                        <a href="#services-sante" class="md-nav__link">
-                                          <span class="md-ellipsis">Services &amp; santé</span>
+                                        <a href="#services" class="md-nav__link">
+                                          <span class="md-ellipsis">Services</span>
                                         </a>
                                       </li>
                                       <li class="md-nav__item">
@@ -258,9 +252,8 @@
                                         </a>
                                       </li>
                                       <li class="md-nav__item">
-                                        <a href="#tester-une-regle-interactif-coller-une-ligne-de-log"
-                                           class="md-nav__link">
-                                          <span class="md-ellipsis">Tester une règle (interactif, coller une ligne de log)</span>
+                                        <a href="#tester-une-regle-interactif" class="md-nav__link">
+                                          <span class="md-ellipsis">Tester une règle (interactif)</span>
                                         </a>
                                       </li>
                                       <li class="md-nav__item">
@@ -278,36 +271,51 @@
                                   <nav class="md-nav" aria-label="4. Agents Wazuh">
                                     <ul class="md-nav__list">
                                       <li class="md-nav__item">
-                                        <a href="#installer-debian" class="md-nav__link">
-                                          <span class="md-ellipsis">Installer (Debian)</span>
-                                        </a>
-                                      </li>
-                                      <li class="md-nav__item">
-                                        <a href="#changer-lip-manager" class="md-nav__link">
-                                          <span class="md-ellipsis">Changer l'IP manager</span>
-                                        </a>
-                                      </li>
-                                      <li class="md-nav__item">
-                                        <a href="#agent-opnsense-freebsd-via-plugin-web" class="md-nav__link">
-                                          <span class="md-ellipsis">Agent OPNsense (FreeBSD) → via plugin web</span>
+                                        <a href="#installer-debian-13" class="md-nav__link">
+                                          <span class="md-ellipsis">Installer (Debian 13)</span>
                                         </a>
                                       </li>
                                     </ul>
                                   </nav>
                                 </li>
                                 <li class="md-nav__item">
-                                  <a href="#5-conteneurs-cibles-debian-docker-docker" class="md-nav__link">
-                                    <span class="md-ellipsis">5. Conteneurs cibles (debian-docker, ~/docker)</span>
+                                  <a href="#5-conteneurs-cibles-debian-docker" class="md-nav__link">
+                                    <span class="md-ellipsis">5. Conteneurs cibles (debian-docker)</span>
                                   </a>
                                 </li>
                                 <li class="md-nav__item">
                                   <a href="#6-waf-nginx-modsecurity-crs-owasp-debian-waf"
                                      class="md-nav__link">
-                                    <span class="md-ellipsis">6. WAF, Nginx + ModSecurity + CRS OWASP (debian-waf)</span>
+                                    <span class="md-ellipsis">6. WAF Nginx + ModSecurity + CRS OWASP (debian-waf)</span>
                                   </a>
                                   <nav class="md-nav"
-                                       aria-label="6. WAF, Nginx + ModSecurity + CRS OWASP (debian-waf)">
+                                       aria-label="6. WAF Nginx + ModSecurity + CRS OWASP (debian-waf)">
                                     <ul class="md-nav__list">
+                                      <li class="md-nav__item">
+                                        <a href="#dependances" class="md-nav__link">
+                                          <span class="md-ellipsis">Dépendances</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#compiler-modsecurity-a-tester" class="md-nav__link">
+                                          <span class="md-ellipsis">Compiler ModSecurity (à tester)</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#compiler-le-connecteur-modsecurity-nginx" class="md-nav__link">
+                                          <span class="md-ellipsis">Compiler le connecteur ModSecurity-Nginx</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#charger-le-module-dans-nginx" class="md-nav__link">
+                                          <span class="md-ellipsis">Charger le module dans Nginx</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#config-modsecurity-crs-owasp" class="md-nav__link">
+                                          <span class="md-ellipsis">Config ModSecurity + CRS OWASP</span>
+                                        </a>
+                                      </li>
                                       <li class="md-nav__item">
                                         <a href="#fichiers" class="md-nav__link">
                                           <span class="md-ellipsis">Fichiers</span>
@@ -324,8 +332,8 @@
                                         </a>
                                       </li>
                                       <li class="md-nav__item">
-                                        <a href="#test-sqli-doit-donner-403" class="md-nav__link">
-                                          <span class="md-ellipsis">Test SQLi (doit donner 403)</span>
+                                        <a href="#test-firewall-doit-donner-403" class="md-nav__link">
+                                          <span class="md-ellipsis">Test firewall (doit donner 403)</span>
                                         </a>
                                       </li>
                                     </ul>
@@ -333,36 +341,27 @@
                                 </li>
                                 <li class="md-nav__item">
                                   <a href="#7-opnsense-firewall" class="md-nav__link">
-                                    <span class="md-ellipsis">7. OPNsense, Firewall</span>
+                                    <span class="md-ellipsis">7. OPNsense Firewall</span>
                                   </a>
-                                  <nav class="md-nav" aria-label="7. OPNsense, Firewall">
+                                  <nav class="md-nav" aria-label="7. OPNsense Firewall">
                                     <ul class="md-nav__list">
                                       <li class="md-nav__item">
-                                        <a href="#port-forwarding-firewall-nat-destination-nat"
-                                           class="md-nav__link">
-                                          <span class="md-ellipsis">Port forwarding : Firewall → NAT → Destination NAT</span>
-                                        </a>
-                                      </li>
-                                      <li class="md-nav__item">
-                                        <a href="#console-cloudstack-option-8-shell" class="md-nav__link">
-                                          <span class="md-ellipsis">Console (CloudStack) : option 8 = Shell</span>
+                                        <a href="#port-forwarding" class="md-nav__link">
+                                          <span class="md-ellipsis">Port forwarding</span>
                                         </a>
                                       </li>
                                     </ul>
                                   </nav>
                                 </li>
                                 <li class="md-nav__item">
-                                  <a href="#8-suricata-ids-debian-docker-sur-la-debian-pas-dans-docker"
-                                     class="md-nav__link">
-                                    <span class="md-ellipsis">8. Suricata, IDS (debian-docker, sur la Debian, PAS dans Docker)</span>
+                                  <a href="#8-suricata-ids" class="md-nav__link">
+                                    <span class="md-ellipsis">8. Suricata IDS</span>
                                   </a>
-                                  <nav class="md-nav"
-                                       aria-label="8. Suricata, IDS (debian-docker, sur la Debian, PAS dans Docker)">
+                                  <nav class="md-nav" aria-label="8. Suricata IDS">
                                     <ul class="md-nav__list">
                                       <li class="md-nav__item">
-                                        <a href="#branchement-a-wazuh-varossecetcossecconf-agent"
-                                           class="md-nav__link">
-                                          <span class="md-ellipsis">Branchement à Wazuh, /var/ossec/etc/ossec.conf (agent)</span>
+                                        <a href="#branchement-a-wazuh" class="md-nav__link">
+                                          <span class="md-ellipsis">Branchement à Wazuh</span>
                                         </a>
                                       </li>
                                       <li class="md-nav__item">
@@ -373,29 +372,6 @@
                                       <li class="md-nav__item">
                                         <a href="#filtre-wazuh" class="md-nav__link">
                                           <span class="md-ellipsis">Filtre Wazuh</span>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </nav>
-                                </li>
-                                <li class="md-nav__item">
-                                  <a href="#9-dfir-iris-ticketing-debian-docker-iris-web"
-                                     class="md-nav__link">
-                                    <span class="md-ellipsis">9. DFIR-IRIS, Ticketing (debian-docker, ~/iris-web)</span>
-                                  </a>
-                                  <nav class="md-nav"
-                                       aria-label="9. DFIR-IRIS, Ticketing (debian-docker, ~/iris-web)">
-                                    <ul class="md-nav__list">
-                                      <li class="md-nav__item">
-                                        <a href="#commandes-depuis-iris-web-naffecte-que-iris"
-                                           class="md-nav__link">
-                                          <span class="md-ellipsis">Commandes (depuis ~/iris-web, n'affecte QUE IRIS)</span>
-                                        </a>
-                                      </li>
-                                      <li class="md-nav__item">
-                                        <a href="#acces-https1921681145-administrator-sl1pc0nn3ct_soc_2026"
-                                           class="md-nav__link">
-                                          <span class="md-ellipsis">Accès : https://192.168.1.145, administrator / Sl1pC0nn3ct_SOC_2026!</span>
                                         </a>
                                       </li>
                                     </ul>
@@ -414,8 +390,13 @@
                                         </a>
                                       </li>
                                       <li class="md-nav__item">
-                                        <a href="#declaration-varossecetcossecconf" class="md-nav__link">
-                                          <span class="md-ellipsis">Déclaration, /var/ossec/etc/ossec.conf</span>
+                                        <a href="#mapping-severite-iris" class="md-nav__link">
+                                          <span class="md-ellipsis">Mapping sévérité IRIS</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#declaration-dans-varossecetcossecconf" class="md-nav__link">
+                                          <span class="md-ellipsis">Déclaration dans /var/ossec/etc/ossec.conf</span>
                                         </a>
                                       </li>
                                       <li class="md-nav__item">
@@ -458,54 +439,48 @@
                                   </a>
                                 </li>
                                 <li class="md-nav__item">
-                                  <a href="#13-tailscale" class="md-nav__link">
-                                    <span class="md-ellipsis">13. Tailscale</span>
-                                  </a>
-                                  <nav class="md-nav" aria-label="13. Tailscale">
-                                    <ul class="md-nav__list">
-                                      <li class="md-nav__item">
-                                        <a href="#subnet-router-debian-wazuh" class="md-nav__link">
-                                          <span class="md-ellipsis">Subnet router (debian-wazuh)</span>
-                                        </a>
-                                      </li>
-                                      <li class="md-nav__item">
-                                        <a href="#poste-perso" class="md-nav__link">
-                                          <span class="md-ellipsis">Poste perso</span>
-                                        </a>
-                                      </li>
-                                    </ul>
-                                  </nav>
-                                </li>
-                                <li class="md-nav__item">
                                   <a href="#14-demo-dattaque-kali-ip_wan-opnsense" class="md-nav__link">
                                     <span class="md-ellipsis">14. Démo d'attaque (Kali → IP_WAN OPNsense)</span>
                                   </a>
                                 </li>
                                 <li class="md-nav__item">
-                                  <a href="#15-dashboard-wazuh-4145-filtres" class="md-nav__link">
-                                    <span class="md-ellipsis">15. Dashboard Wazuh (4.14.5) &amp; filtres</span>
+                                  <a href="#15-ports-de-reference" class="md-nav__link">
+                                    <span class="md-ellipsis">15. Ports de référence</span>
                                   </a>
-                                  <nav class="md-nav"
-                                       aria-label="15. Dashboard Wazuh (4.14.5) &amp; filtres">
+                                </li>
+                                <li class="md-nav__item">
+                                  <a href="#16-configurations" class="md-nav__link">
+                                    <span class="md-ellipsis">16. Configurations</span>
+                                  </a>
+                                  <nav class="md-nav" aria-label="16. Configurations">
                                     <ul class="md-nav__list">
                                       <li class="md-nav__item">
-                                        <a href="#filtres-demo" class="md-nav__link">
-                                          <span class="md-ellipsis">Filtres démo</span>
+                                        <a href="#waf-nginx" class="md-nav__link">
+                                          <span class="md-ellipsis">WAF (Nginx)</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#agent-wazuh-waf-ossecconf" class="md-nav__link">
+                                          <span class="md-ellipsis">Agent Wazuh WAF (ossec.conf)</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#integration-wazuh-iris" class="md-nav__link">
+                                          <span class="md-ellipsis">Intégration Wazuh → IRIS</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#docker-cibles" class="md-nav__link">
+                                          <span class="md-ellipsis">Docker (cibles)</span>
+                                        </a>
+                                      </li>
+                                      <li class="md-nav__item">
+                                        <a href="#agent-wazuh-docker-ossecconf" class="md-nav__link">
+                                          <span class="md-ellipsis">Agent Wazuh Docker (ossec.conf)</span>
                                         </a>
                                       </li>
                                     </ul>
                                   </nav>
-                                </li>
-                                <li class="md-nav__item">
-                                  <a href="#16-pieges-ce-qui-nous-a-bloques-a-connaitre-pour-le-jury-le-futur"
-                                     class="md-nav__link">
-                                    <span class="md-ellipsis">16. PIÈGES, ce qui nous a bloqués (à connaître pour le jury / le futur)</span>
-                                  </a>
-                                </li>
-                                <li class="md-nav__item">
-                                  <a href="#17-ports-de-reference" class="md-nav__link">
-                                    <span class="md-ellipsis">17. Ports de référence</span>
-                                  </a>
                                 </li>
                               </ul>
                             </nav>
@@ -530,24 +505,19 @@
                   </label>
                   <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
                     <li class="md-nav__item">
-                      <a href="#1-cartographie-acces" class="md-nav__link">
-                        <span class="md-ellipsis">1. Cartographie &amp; accès</span>
+                      <a href="#1-cartographie" class="md-nav__link">
+                        <span class="md-ellipsis">1. Cartographie</span>
                       </a>
                     </li>
                     <li class="md-nav__item">
-                      <a href="#2-flux-reseau-qui-detecte-quoi" class="md-nav__link">
-                        <span class="md-ellipsis">2. Flux réseau, qui détecte quoi</span>
+                      <a href="#2-wazuh-manager" class="md-nav__link">
+                        <span class="md-ellipsis">2. Wazuh manager</span>
                       </a>
-                    </li>
-                    <li class="md-nav__item">
-                      <a href="#3-wazuh-manager-debian-wazuh" class="md-nav__link">
-                        <span class="md-ellipsis">3. Wazuh manager (debian-wazuh)</span>
-                      </a>
-                      <nav class="md-nav" aria-label="3. Wazuh manager (debian-wazuh)">
+                      <nav class="md-nav" aria-label="2. Wazuh manager">
                         <ul class="md-nav__list">
                           <li class="md-nav__item">
-                            <a href="#services-sante" class="md-nav__link">
-                              <span class="md-ellipsis">Services &amp; santé</span>
+                            <a href="#services" class="md-nav__link">
+                              <span class="md-ellipsis">Services</span>
                             </a>
                           </li>
                           <li class="md-nav__item">
@@ -561,9 +531,8 @@
                             </a>
                           </li>
                           <li class="md-nav__item">
-                            <a href="#tester-une-regle-interactif-coller-une-ligne-de-log"
-                               class="md-nav__link">
-                              <span class="md-ellipsis">Tester une règle (interactif, coller une ligne de log)</span>
+                            <a href="#tester-une-regle-interactif" class="md-nav__link">
+                              <span class="md-ellipsis">Tester une règle (interactif)</span>
                             </a>
                           </li>
                           <li class="md-nav__item">
@@ -581,36 +550,51 @@
                       <nav class="md-nav" aria-label="4. Agents Wazuh">
                         <ul class="md-nav__list">
                           <li class="md-nav__item">
-                            <a href="#installer-debian" class="md-nav__link">
-                              <span class="md-ellipsis">Installer (Debian)</span>
-                            </a>
-                          </li>
-                          <li class="md-nav__item">
-                            <a href="#changer-lip-manager" class="md-nav__link">
-                              <span class="md-ellipsis">Changer l'IP manager</span>
-                            </a>
-                          </li>
-                          <li class="md-nav__item">
-                            <a href="#agent-opnsense-freebsd-via-plugin-web" class="md-nav__link">
-                              <span class="md-ellipsis">Agent OPNsense (FreeBSD) → via plugin web</span>
+                            <a href="#installer-debian-13" class="md-nav__link">
+                              <span class="md-ellipsis">Installer (Debian 13)</span>
                             </a>
                           </li>
                         </ul>
                       </nav>
                     </li>
                     <li class="md-nav__item">
-                      <a href="#5-conteneurs-cibles-debian-docker-docker" class="md-nav__link">
-                        <span class="md-ellipsis">5. Conteneurs cibles (debian-docker, ~/docker)</span>
+                      <a href="#5-conteneurs-cibles-debian-docker" class="md-nav__link">
+                        <span class="md-ellipsis">5. Conteneurs cibles (debian-docker)</span>
                       </a>
                     </li>
                     <li class="md-nav__item">
                       <a href="#6-waf-nginx-modsecurity-crs-owasp-debian-waf"
                          class="md-nav__link">
-                        <span class="md-ellipsis">6. WAF, Nginx + ModSecurity + CRS OWASP (debian-waf)</span>
+                        <span class="md-ellipsis">6. WAF Nginx + ModSecurity + CRS OWASP (debian-waf)</span>
                       </a>
                       <nav class="md-nav"
-                           aria-label="6. WAF, Nginx + ModSecurity + CRS OWASP (debian-waf)">
+                           aria-label="6. WAF Nginx + ModSecurity + CRS OWASP (debian-waf)">
                         <ul class="md-nav__list">
+                          <li class="md-nav__item">
+                            <a href="#dependances" class="md-nav__link">
+                              <span class="md-ellipsis">Dépendances</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#compiler-modsecurity-a-tester" class="md-nav__link">
+                              <span class="md-ellipsis">Compiler ModSecurity (à tester)</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#compiler-le-connecteur-modsecurity-nginx" class="md-nav__link">
+                              <span class="md-ellipsis">Compiler le connecteur ModSecurity-Nginx</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#charger-le-module-dans-nginx" class="md-nav__link">
+                              <span class="md-ellipsis">Charger le module dans Nginx</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#config-modsecurity-crs-owasp" class="md-nav__link">
+                              <span class="md-ellipsis">Config ModSecurity + CRS OWASP</span>
+                            </a>
+                          </li>
                           <li class="md-nav__item">
                             <a href="#fichiers" class="md-nav__link">
                               <span class="md-ellipsis">Fichiers</span>
@@ -627,8 +611,8 @@
                             </a>
                           </li>
                           <li class="md-nav__item">
-                            <a href="#test-sqli-doit-donner-403" class="md-nav__link">
-                              <span class="md-ellipsis">Test SQLi (doit donner 403)</span>
+                            <a href="#test-firewall-doit-donner-403" class="md-nav__link">
+                              <span class="md-ellipsis">Test firewall (doit donner 403)</span>
                             </a>
                           </li>
                         </ul>
@@ -636,36 +620,27 @@
                     </li>
                     <li class="md-nav__item">
                       <a href="#7-opnsense-firewall" class="md-nav__link">
-                        <span class="md-ellipsis">7. OPNsense, Firewall</span>
+                        <span class="md-ellipsis">7. OPNsense Firewall</span>
                       </a>
-                      <nav class="md-nav" aria-label="7. OPNsense, Firewall">
+                      <nav class="md-nav" aria-label="7. OPNsense Firewall">
                         <ul class="md-nav__list">
                           <li class="md-nav__item">
-                            <a href="#port-forwarding-firewall-nat-destination-nat"
-                               class="md-nav__link">
-                              <span class="md-ellipsis">Port forwarding : Firewall → NAT → Destination NAT</span>
-                            </a>
-                          </li>
-                          <li class="md-nav__item">
-                            <a href="#console-cloudstack-option-8-shell" class="md-nav__link">
-                              <span class="md-ellipsis">Console (CloudStack) : option 8 = Shell</span>
+                            <a href="#port-forwarding" class="md-nav__link">
+                              <span class="md-ellipsis">Port forwarding</span>
                             </a>
                           </li>
                         </ul>
                       </nav>
                     </li>
                     <li class="md-nav__item">
-                      <a href="#8-suricata-ids-debian-docker-sur-la-debian-pas-dans-docker"
-                         class="md-nav__link">
-                        <span class="md-ellipsis">8. Suricata, IDS (debian-docker, sur la Debian, PAS dans Docker)</span>
+                      <a href="#8-suricata-ids" class="md-nav__link">
+                        <span class="md-ellipsis">8. Suricata IDS</span>
                       </a>
-                      <nav class="md-nav"
-                           aria-label="8. Suricata, IDS (debian-docker, sur la Debian, PAS dans Docker)">
+                      <nav class="md-nav" aria-label="8. Suricata IDS">
                         <ul class="md-nav__list">
                           <li class="md-nav__item">
-                            <a href="#branchement-a-wazuh-varossecetcossecconf-agent"
-                               class="md-nav__link">
-                              <span class="md-ellipsis">Branchement à Wazuh, /var/ossec/etc/ossec.conf (agent)</span>
+                            <a href="#branchement-a-wazuh" class="md-nav__link">
+                              <span class="md-ellipsis">Branchement à Wazuh</span>
                             </a>
                           </li>
                           <li class="md-nav__item">
@@ -676,29 +651,6 @@
                           <li class="md-nav__item">
                             <a href="#filtre-wazuh" class="md-nav__link">
                               <span class="md-ellipsis">Filtre Wazuh</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </li>
-                    <li class="md-nav__item">
-                      <a href="#9-dfir-iris-ticketing-debian-docker-iris-web"
-                         class="md-nav__link">
-                        <span class="md-ellipsis">9. DFIR-IRIS, Ticketing (debian-docker, ~/iris-web)</span>
-                      </a>
-                      <nav class="md-nav"
-                           aria-label="9. DFIR-IRIS, Ticketing (debian-docker, ~/iris-web)">
-                        <ul class="md-nav__list">
-                          <li class="md-nav__item">
-                            <a href="#commandes-depuis-iris-web-naffecte-que-iris"
-                               class="md-nav__link">
-                              <span class="md-ellipsis">Commandes (depuis ~/iris-web, n'affecte QUE IRIS)</span>
-                            </a>
-                          </li>
-                          <li class="md-nav__item">
-                            <a href="#acces-https1921681145-administrator-sl1pc0nn3ct_soc_2026"
-                               class="md-nav__link">
-                              <span class="md-ellipsis">Accès : https://192.168.1.145, administrator / Sl1pC0nn3ct_SOC_2026!</span>
                             </a>
                           </li>
                         </ul>
@@ -717,8 +669,13 @@
                             </a>
                           </li>
                           <li class="md-nav__item">
-                            <a href="#declaration-varossecetcossecconf" class="md-nav__link">
-                              <span class="md-ellipsis">Déclaration, /var/ossec/etc/ossec.conf</span>
+                            <a href="#mapping-severite-iris" class="md-nav__link">
+                              <span class="md-ellipsis">Mapping sévérité IRIS</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#declaration-dans-varossecetcossecconf" class="md-nav__link">
+                              <span class="md-ellipsis">Déclaration dans /var/ossec/etc/ossec.conf</span>
                             </a>
                           </li>
                           <li class="md-nav__item">
@@ -761,54 +718,48 @@
                       </a>
                     </li>
                     <li class="md-nav__item">
-                      <a href="#13-tailscale" class="md-nav__link">
-                        <span class="md-ellipsis">13. Tailscale</span>
-                      </a>
-                      <nav class="md-nav" aria-label="13. Tailscale">
-                        <ul class="md-nav__list">
-                          <li class="md-nav__item">
-                            <a href="#subnet-router-debian-wazuh" class="md-nav__link">
-                              <span class="md-ellipsis">Subnet router (debian-wazuh)</span>
-                            </a>
-                          </li>
-                          <li class="md-nav__item">
-                            <a href="#poste-perso" class="md-nav__link">
-                              <span class="md-ellipsis">Poste perso</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </li>
-                    <li class="md-nav__item">
                       <a href="#14-demo-dattaque-kali-ip_wan-opnsense" class="md-nav__link">
                         <span class="md-ellipsis">14. Démo d'attaque (Kali → IP_WAN OPNsense)</span>
                       </a>
                     </li>
                     <li class="md-nav__item">
-                      <a href="#15-dashboard-wazuh-4145-filtres" class="md-nav__link">
-                        <span class="md-ellipsis">15. Dashboard Wazuh (4.14.5) &amp; filtres</span>
+                      <a href="#15-ports-de-reference" class="md-nav__link">
+                        <span class="md-ellipsis">15. Ports de référence</span>
                       </a>
-                      <nav class="md-nav"
-                           aria-label="15. Dashboard Wazuh (4.14.5) &amp; filtres">
+                    </li>
+                    <li class="md-nav__item">
+                      <a href="#16-configurations" class="md-nav__link">
+                        <span class="md-ellipsis">16. Configurations</span>
+                      </a>
+                      <nav class="md-nav" aria-label="16. Configurations">
                         <ul class="md-nav__list">
                           <li class="md-nav__item">
-                            <a href="#filtres-demo" class="md-nav__link">
-                              <span class="md-ellipsis">Filtres démo</span>
+                            <a href="#waf-nginx" class="md-nav__link">
+                              <span class="md-ellipsis">WAF (Nginx)</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#agent-wazuh-waf-ossecconf" class="md-nav__link">
+                              <span class="md-ellipsis">Agent Wazuh WAF (ossec.conf)</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#integration-wazuh-iris" class="md-nav__link">
+                              <span class="md-ellipsis">Intégration Wazuh → IRIS</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#docker-cibles" class="md-nav__link">
+                              <span class="md-ellipsis">Docker (cibles)</span>
+                            </a>
+                          </li>
+                          <li class="md-nav__item">
+                            <a href="#agent-wazuh-docker-ossecconf" class="md-nav__link">
+                              <span class="md-ellipsis">Agent Wazuh Docker (ossec.conf)</span>
                             </a>
                           </li>
                         </ul>
                       </nav>
-                    </li>
-                    <li class="md-nav__item">
-                      <a href="#16-pieges-ce-qui-nous-a-bloques-a-connaitre-pour-le-jury-le-futur"
-                         class="md-nav__link">
-                        <span class="md-ellipsis">16. PIÈGES, ce qui nous a bloqués (à connaître pour le jury / le futur)</span>
-                      </a>
-                    </li>
-                    <li class="md-nav__item">
-                      <a href="#17-ports-de-reference" class="md-nav__link">
-                        <span class="md-ellipsis">17. Ports de référence</span>
-                      </a>
                     </li>
                   </ul>
                 </nav>
@@ -817,8 +768,8 @@
           </div>
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
-              <h1 id="cheatsheet-final-poc-soc-sl1pconnect-blue-team">CHEATSHEET FINAL, POC SOC SL1PCONNECT (Blue Team)<a class="headerlink"
-   href="#cheatsheet-final-poc-soc-sl1pconnect-blue-team"
+              <h1 id="cheatsheet-poc-soc-sl1pconnect">CHEATSHEET POC SOC SL1PCONNECT<a class="headerlink"
+   href="#cheatsheet-poc-soc-sl1pconnect"
    title="Permanent link">#</a></h1>
               <div class="admonition abstract">
                 <p class="admonition-title">Architecture complète</p>
@@ -829,18 +780,14 @@
                 </p>
               </div>
               <hr />
-              <h2 id="1-cartographie-acces">1. Cartographie &amp; accès<a class="headerlink"
-   href="#1-cartographie-acces"
-   title="Permanent link">#</a></h2>
+              <h2 id="1-cartographie">1. Cartographie<a class="headerlink" href="#1-cartographie" title="Permanent link">#</a></h2>
               <table>
                 <thead>
                   <tr>
                     <th>VM</th>
                     <th>Rôle</th>
                     <th>IP LAN</th>
-                    <th>Tailscale</th>
                     <th>OS</th>
-                    <th>Agent</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -848,151 +795,104 @@
                     <td>debian-wazuh</td>
                     <td>SIEM (manager+indexer+dashboard)</td>
                     <td>192.168.1.142</td>
-                    <td>100.68.75.4</td>
                     <td>Debian 13</td>
-                    <td>000</td>
                   </tr>
                   <tr>
                     <td>debian-waf</td>
                     <td>WAF Nginx+ModSecurity+CRS</td>
                     <td>192.168.1.185</td>
-                    <td></td>
                     <td>Debian 13</td>
-                    <td>003</td>
                   </tr>
                   <tr>
                     <td>debian-docker</td>
                     <td>Docker cibles + Suricata + IRIS</td>
                     <td>192.168.1.145</td>
-                    <td></td>
                     <td>Debian 13</td>
-                    <td>001</td>
                   </tr>
                   <tr>
                     <td>OPNsense</td>
                     <td>Firewall</td>
-                    <td>LAN 192.168.1.1 / WAN 10.201.221.59</td>
-                    <td></td>
-                    <td>OPNsense 26.1 (UFS)</td>
-                    <td>004</td>
+                    <td>192.168.1.1 / 10.201.221.68</td>
+                    <td>OPNsense 26.1</td>
                   </tr>
                   <tr>
                     <td>Kali</td>
                     <td>Attaquant (Red Team)</td>
-                    <td>10.201.221.68 (voit QUE le WAN)</td>
-                    <td></td>
+                    <td>10.201.221.68</td>
                     <td>Kali</td>
-                    <td></td>
                   </tr>
                 </tbody>
               </table>
-              <p><strong>Accès web (via Tailscale) :</strong></p>
-              <ul>
-                <li>Wazuh dashboard : <code>https://192.168.1.142</code></li>
-                <li>OPNsense : <code>https://192.168.1.1</code></li>
-                <li>IRIS : <code>https://192.168.1.145</code></li>
-              </ul>
-              <p><strong>Identifiants :</strong></p>
-              <ul>
-                <li>IRIS : <code>administrator</code> / <code>Sl1pC0nn3ct_SOC_2026!</code></li>
-                <li>IRIS API key : <code>B8BA5D730210B50F41C06941582D7965D57319D5685440587F98DFDC45A01594</code></li>
-              </ul>
-              <p><strong>Versions :</strong> Wazuh <strong>4.14.5</strong> partout (agent ≤ manager OBLIGATOIRE). Hyperviseur : CloudStack.</p>
+              <p>Pas de segmentation réseau, CloudStack instable, port forwarding impossible.</p>
               <hr />
-              <h2 id="2-flux-reseau-qui-detecte-quoi">2. Flux réseau, qui détecte quoi<a class="headerlink"
-   href="#2-flux-reseau-qui-detecte-quoi"
-   title="Permanent link">#</a></h2>
-              <div class="language-text highlight">
-                <pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Kali (10.201.221.68)
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   │ ne voit QUE l&#39;IP WAN d&#39;OPNsense
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   ▼
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>OPNsense WAN (10.201.221.59)  ──► détecte le SCAN DE PORTS (règle 87702)
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   │ NAT : port 80 → WAF, port 9090 → Grafana
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   ▼
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>WAF (192.168.1.185:80)  ──► détecte SQLi / attaques web (ModSecurity 31333/31101)
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   │ reverse proxy
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>   ▼
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>Docker (192.168.1.145)  ──► Suricata voit le trafic relayé ; Docker logs → règles custom
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   ├─ BRIEF 8081  ├─ BOXER 8080  ├─ SENSOR 8082  ├─ WATCH 9090  └─ PGSQL 5432
-</span></code></pre>
-              </div>
-              <div class="admonition tip">
-                <p class="admonition-title">Règle d'or à retenir</p>
-                <p>Comme Kali ne voit que le WAN, <strong>le scan de ports est vu par OPNsense, PAS par Suricata</strong>. Suricata sert de détection complémentaire sur le trafic applicatif relayé. C'est l'argument « défense en profondeur ».</p>
-              </div>
-              <hr />
-              <h2 id="3-wazuh-manager-debian-wazuh">3. Wazuh manager (debian-wazuh)<a class="headerlink"
-   href="#3-wazuh-manager-debian-wazuh"
-   title="Permanent link">#</a></h2>
-              <h3 id="services-sante">Services &amp; santé<a class="headerlink" href="#services-sante" title="Permanent link">#</a></h3>
+              <h2 id="2-wazuh-manager">2. Wazuh manager<a class="headerlink" href="#2-wazuh-manager" title="Permanent link">#</a></h2>
+              <h3 id="services">Services<a class="headerlink" href="#services" title="Permanent link">#</a></h3>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>wazuh-manager<span class="w"> </span>wazuh-indexer<span class="w"> </span>wazuh-dashboard<span class="w"> </span>--no-pager
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>wazuh-manager
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>ss<span class="w"> </span>-tulpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;1514|1515|9200|55000|443&#39;</span><span class="w">   </span><span class="c1"># vérifier les ports d&#39;écoute</span>
+                <pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>wazuh-manager<span class="w"> </span>wazuh-indexer<span class="w"> </span>wazuh-dashboard
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>wazuh-manager
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>ss<span class="w"> </span>-tulpn<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;1514|1515|9200|55000|443&#39;</span>
 </span></code></pre>
               </div>
               <h3 id="agents">Agents<a class="headerlink" href="#agents" title="Permanent link">#</a></h3>
+              <p>Lister :</p>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>/var/ossec/bin/agent_control<span class="w"> </span>-l<span class="w">        </span><span class="c1"># lister</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>/var/ossec/bin/agent_control<span class="w"> </span>-i<span class="w"> </span>&lt;ID&gt;<span class="w">   </span><span class="c1"># détail</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>/var/ossec/bin/manage_agents<span class="w"> </span>-r<span class="w"> </span>&lt;ID&gt;<span class="w">   </span><span class="c1"># supprimer</span>
+                <pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>/var/ossec/bin/agent_control<span class="w"> </span>-l
+</span></code></pre>
+              </div>
+              <p>Supprimer un agent :</p>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>/var/ossec/bin/manage_agents<span class="w"> </span>-r<span class="w"> </span>&lt;ID&gt;
+</span></code></pre>
+              </div>
+              <p>Détails :</p>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>/var/ossec/bin/agent_control<span class="w"> </span>-i<span class="w"> </span>&lt;ID&gt;
 </span></code></pre>
               </div>
               <h3 id="logs-essentiels">Logs essentiels<a class="headerlink" href="#logs-essentiels" title="Permanent link">#</a></h3>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/ossec/logs/alerts/alerts.json<span class="w">       </span><span class="c1"># alertes (la mine d&#39;or)</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/ossec/logs/integrations.log<span class="w">         </span><span class="c1"># intégrations IRIS/Discord</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/ossec/logs/ossec.log<span class="w">                </span><span class="c1"># log moteur (debug)</span>
+                <pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/ossec/logs/alerts/alerts.json
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/ossec/logs/integrations.log
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/ossec/logs/ossec.log
 </span></code></pre>
               </div>
-              <h3 id="tester-une-regle-interactif-coller-une-ligne-de-log">Tester une règle (interactif, coller une ligne de log)<a class="headerlink"
-   href="#tester-une-regle-interactif-coller-une-ligne-de-log"
+              <h3 id="tester-une-regle-interactif">Tester une règle (interactif)<a class="headerlink"
+   href="#tester-une-regle-interactif"
    title="Permanent link">#</a></h3>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>/var/ossec/bin/wazuh-logtest
+                <pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>/var/ossec/bin/wazuh-logtest
 </span></code></pre>
               </div>
               <h3 id="fichiers-cles">Fichiers clés<a class="headerlink" href="#fichiers-cles" title="Permanent link">#</a></h3>
               <ul>
                 <li>Config manager : <code>/var/ossec/etc/ossec.conf</code></li>
                 <li>Règles custom : <code>/var/ossec/etc/rules/local_rules.xml</code></li>
-                <li>Décodeurs custom : <code>/var/ossec/etc/decoders/local_decoder.xml</code></li>
                 <li>Scripts intégration : <code>/var/ossec/integrations/</code></li>
               </ul>
-              <div class="admonition warning">
-                <p class="admonition-title">Config dashboard (correctifs post-upgrade)</p>
-                <p><code>/etc/wazuh-dashboard/opensearch_dashboards.yml</code></p>
-                <div class="language-yaml highlight">
-                  <pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">opensearch.hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://127.0.0.1:9200</span><span class="w">      </span><span class="c1"># 127.0.0.1 PAS localhost (sinon échec IPv6 ::1)</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">opensearch.ssl.verificationMode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w">          </span><span class="c1"># POC uniquement</span>
-</span></code></pre>
-                </div>
-              </div>
               <hr />
               <h2 id="4-agents-wazuh">4. Agents Wazuh<a class="headerlink" href="#4-agents-wazuh" title="Permanent link">#</a></h2>
-              <h3 id="installer-debian">Installer (Debian)<a class="headerlink" href="#installer-debian" title="Permanent link">#</a></h3>
+              <h3 id="installer-debian-13">Installer (Debian 13)<a class="headerlink" href="#installer-debian-13" title="Permanent link">#</a></h3>
+              <p>Récupérer et installer la clé GPG du dépôt Wazuh :</p>
               <div class="language-bash highlight">
                 <pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>https://packages.wazuh.com/key/GPG-KEY-WAZUH<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/wazuh.gpg
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/wazuh.list
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>sudo<span class="w"> </span><span class="nv">WAZUH_MANAGER</span><span class="o">=</span><span class="s2">&quot;192.168.1.142&quot;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wazuh-agent<span class="o">=</span><span class="m">4</span>.14.5-1<span class="w"> </span>-y
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>sudo<span class="w"> </span>apt-mark<span class="w"> </span>hold<span class="w"> </span>wazuh-agent<span class="w">          </span><span class="c1"># FIGER la version (évite upgrade &gt; manager)</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>wazuh-agent
 </span></code></pre>
               </div>
-              <h3 id="changer-lip-manager">Changer l'IP manager<a class="headerlink" href="#changer-lip-manager" title="Permanent link">#</a></h3>
+              <p>Créer le fichier de dépôt :</p>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s|&lt;address&gt;OLD&lt;/address&gt;|&lt;address&gt;192.168.1.142&lt;/address&gt;|&#39;</span><span class="w"> </span>/var/ossec/etc/ossec.conf
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>wazuh-agent
+                <pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;deb [signed-by=/usr/share/keyrings/wazuh.gpg] https://packages.wazuh.com/4.x/apt/ stable main&#39;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>install<span class="w"> </span>/dev/stdin<span class="w"> </span>/etc/apt/sources.list.d/wazuh.list
 </span></code></pre>
               </div>
-              <h3 id="agent-opnsense-freebsd-via-plugin-web">Agent OPNsense (FreeBSD) → via plugin web<a class="headerlink"
-   href="#agent-opnsense-freebsd-via-plugin-web"
-   title="Permanent link">#</a></h3>
-              <p><strong>Services → Wazuh Agent</strong> : Manager=192.168.1.142, Applications=Select All, Active Response=OFF</p>
+              <p>Mettre à jour la base apt et installer le paquet :</p>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>update
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span><span class="nv">WAZUH_MANAGER</span><span class="o">=</span><span class="s2">&quot;192.168.1.142&quot;</span><span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wazuh-agent<span class="o">=</span><span class="m">4</span>.14.5-1<span class="w"> </span>-y
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>wazuh-agent
+</span></code></pre>
+              </div>
               <hr />
-              <h2 id="5-conteneurs-cibles-debian-docker-docker">5. Conteneurs cibles (debian-docker, <code>~/docker</code>)<a class="headerlink"
-   href="#5-conteneurs-cibles-debian-docker-docker"
+              <h2 id="5-conteneurs-cibles-debian-docker">5. Conteneurs cibles (debian-docker)<a class="headerlink"
+   href="#5-conteneurs-cibles-debian-docker"
    title="Permanent link">#</a></h2>
               <table>
                 <thead>
@@ -1036,18 +936,94 @@
                   </tr>
                 </tbody>
               </table>
-              <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>~/docker
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>ps
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>brief
-</span></code></pre>
-              </div>
               <p>Comptes DB : <code>admin/Sl1p2024</code>, <code>denis/password123</code>, <code>bob/bob</code></p>
               <hr />
-              <h2 id="6-waf-nginx-modsecurity-crs-owasp-debian-waf">6. WAF, Nginx + ModSecurity + CRS OWASP (debian-waf)<a class="headerlink"
+              <h2 id="6-waf-nginx-modsecurity-crs-owasp-debian-waf">6. WAF Nginx + ModSecurity + CRS OWASP (debian-waf)<a class="headerlink"
    href="#6-waf-nginx-modsecurity-crs-owasp-debian-waf"
    title="Permanent link">#</a></h2>
+              <h3 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">#</a></h3>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx<span class="w"> </span>git<span class="w"> </span>build-essential<span class="w"> </span>libpcre2-dev<span class="w"> </span>libxml2-dev<span class="w"> </span>libyajl-dev<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>libgeoip-dev<span class="w"> </span>liblmdb-dev<span class="w"> </span>libcurl4-openssl-dev<span class="w"> </span>automake<span class="w"> </span>libtool<span class="w"> </span>pkg-config<span class="w"> </span>zlib1g-dev
+</span></code></pre>
+              </div>
+              <p>Debian 13 : pas de moteur ModSecurity dispo en paquet, il faut compiler.</p>
+              <h3 id="compiler-modsecurity-a-tester">Compiler ModSecurity (à tester)<a class="headerlink"
+   href="#compiler-modsecurity-a-tester"
+   title="Permanent link">#</a></h3>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">cd</span><span class="w"> </span>/opt
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>https://github.com/owasp-modsecurity/ModSecurity.git
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nb">cd</span><span class="w"> </span>/opt/ModSecurity
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>sudo<span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--add<span class="w"> </span>safe.directory<span class="w"> </span>/opt/ModSecurity
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>sudo<span class="w"> </span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>sudo<span class="w"> </span>./build.sh
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>sudo<span class="w"> </span>./configure
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>sudo<span class="w"> </span>make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>sudo<span class="w"> </span>make<span class="w"> </span>install
+</span></code></pre>
+              </div>
+              <h3 id="compiler-le-connecteur-modsecurity-nginx">Compiler le connecteur ModSecurity-Nginx<a class="headerlink"
+   href="#compiler-le-connecteur-modsecurity-nginx"
+   title="Permanent link">#</a></h3>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>/opt
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>sudo<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>https://github.com/owasp-modsecurity/ModSecurity-nginx.git
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Sources Nginx de TA version exacte (ici 1.26.3)</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>sudo<span class="w"> </span>wget<span class="w"> </span>http://nginx.org/download/nginx-1.26.3.tar.gz
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>sudo<span class="w"> </span>tar<span class="w"> </span>zxvf<span class="w"> </span>nginx-1.26.3.tar.gz
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="nb">cd</span><span class="w"> </span>/opt/nginx-1.26.3
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="c1"># Compiler UNIQUEMENT le module dynamique (chemin ABSOLU vers le connecteur)</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>sudo<span class="w"> </span>./configure<span class="w"> </span>--with-compat<span class="w"> </span>--add-dynamic-module<span class="o">=</span>/opt/ModSecurity-nginx
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>sudo<span class="w"> </span>make<span class="w"> </span>modules
+</span></code></pre>
+              </div>
+              <p>Copier le module au bon endroit :</p>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/share/nginx/modules
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>sudo<span class="w"> </span>cp<span class="w"> </span>objs/ngx_http_modsecurity_module.so<span class="w"> </span>/usr/share/nginx/modules/
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>ls<span class="w"> </span>-la<span class="w"> </span>/usr/share/nginx/modules/ngx_http_modsecurity_module.so
+</span></code></pre>
+              </div>
+              <h3 id="charger-le-module-dans-nginx">Charger le module dans Nginx<a class="headerlink"
+   href="#charger-le-module-dans-nginx"
+   title="Permanent link">#</a></h3>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/nginx.conf
+</span></code></pre>
+              </div>
+              <p>Tout en haut (avant <code>events {</code>) :</p>
+              <div class="language-nginx highlight">
+                <pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">load_module</span><span class="w"> </span><span class="s">modules/ngx_http_modsecurity_module.so</span><span class="p">;</span>
+</span></code></pre>
+              </div>
+              <h3 id="config-modsecurity-crs-owasp">Config ModSecurity + CRS OWASP<a class="headerlink"
+   href="#config-modsecurity-crs-owasp"
+   title="Permanent link">#</a></h3>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Config de base</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/nginx/modsec
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/opt/ModSecurity/modsecurity.conf-recommended<span class="w"> </span>/etc/nginx/modsec/modsecurity.conf
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/opt/ModSecurity/unicode.mapping<span class="w"> </span>/etc/nginx/modsec/
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1"># Mode bloquant</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>sudo<span class="w"> </span>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/SecRuleEngine DetectionOnly/SecRuleEngine On/&#39;</span><span class="w"> </span>/etc/nginx/modsec/modsecurity.conf
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1"># CRS OWASP</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="nb">cd</span><span class="w"> </span>/opt
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>sudo<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/coreruleset/coreruleset.git
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/opt/coreruleset/crs-setup.conf.example<span class="w"> </span>/opt/coreruleset/crs-setup.conf
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="c1"># Fichier qui assemble tout</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/nginx/modsec/main.conf<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="s">&lt;&lt; &#39;CONF&#39;</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="s">Include /etc/nginx/modsec/modsecurity.conf</span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="s">Include /opt/coreruleset/crs-setup.conf</span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="s">Include /opt/coreruleset/rules/*.conf</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="s">CONF</span>
+</span></code></pre>
+              </div>
               <h3 id="fichiers">Fichiers<a class="headerlink" href="#fichiers" title="Permanent link">#</a></h3>
               <ul>
                 <li>Module : <code>/usr/share/nginx/modules/ngx_http_modsecurity_module.so</code></li>
@@ -1059,40 +1035,33 @@
               </ul>
               <h3 id="reverse-proxy">Reverse proxy<a class="headerlink" href="#reverse-proxy" title="Permanent link">#</a></h3>
               <div class="language-nginx highlight">
-                <pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">location</span><span class="w"> </span><span class="s">/</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8081</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1"># BRIEF</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">location</span><span class="w"> </span><span class="s">/api/</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8080</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1"># BOXER</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">location</span><span class="w"> </span><span class="s">/sensor/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8082</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1"># SENSOR</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Grafana NON proxifié (supervision interne, exposée en direct pour la démo)</span>
+                <pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">location</span><span class="w"> </span><span class="s">/</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8081</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1"># BRIEF</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">location</span><span class="w"> </span><span class="s">/api/</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8080</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1"># BOXER</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">location</span><span class="w"> </span><span class="s">/sensor/</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8082</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1"># SENSOR</span>
 </span></code></pre>
               </div>
               <h3 id="commandes">Commandes<a class="headerlink" href="#commandes" title="Permanent link">#</a></h3>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>sudo<span class="w"> </span>nginx<span class="w"> </span>-t<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/modsec_audit.log
+                <pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>sudo<span class="w"> </span>nginx<span class="w"> </span>-t<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>nginx
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/modsec_audit.log
 </span></code></pre>
               </div>
-              <h3 id="test-sqli-doit-donner-403">Test SQLi (doit donner 403)<a class="headerlink"
-   href="#test-sqli-doit-donner-403"
+              <h3 id="test-firewall-doit-donner-403">Test firewall (doit donner 403)<a class="headerlink"
+   href="#test-firewall-doit-donner-403"
    title="Permanent link">#</a></h3>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>curl<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;http://localhost/?id=1&#39; OR &#39;1&#39;=&#39;1&quot;</span>
+                <pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>curl<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;http://localhost/?id=1&#39; OR &#39;1&#39;=&#39;1&quot;</span>
 </span></code></pre>
               </div>
               <hr />
-              <h2 id="7-opnsense-firewall">7. OPNsense, Firewall<a class="headerlink" href="#7-opnsense-firewall" title="Permanent link">#</a></h2>
-              <div class="admonition danger">
-                <p class="admonition-title">Règle VITALE : WAN en IP privée</p>
-                <p><strong>Interfaces → [WAN]</strong> → DÉCOCHER <strong>Block private networks</strong> + <strong>Block bogon networks</strong> (sinon tout le trafic entrant est bloqué car WAN en 10.201.221.x = privé)</p>
-              </div>
-              <h3 id="port-forwarding-firewall-nat-destination-nat">Port forwarding : Firewall → NAT → <strong>Destination NAT</strong><a class="headerlink"
-   href="#port-forwarding-firewall-nat-destination-nat"
-   title="Permanent link">#</a></h3>
+              <h2 id="7-opnsense-firewall">7. OPNsense Firewall<a class="headerlink" href="#7-opnsense-firewall" title="Permanent link">#</a></h2>
+              <h3 id="port-forwarding">Port forwarding<a class="headerlink" href="#port-forwarding" title="Permanent link">#</a></h3>
               <table>
                 <thead>
                   <tr>
                     <th>Règle</th>
                     <th>Dest port</th>
-                    <th>→ Redirect</th>
+                    <th>Redirect</th>
                     <th>Firewall rule</th>
                   </tr>
                 </thead>
@@ -1111,63 +1080,55 @@
                   </tr>
                 </tbody>
               </table>
-              <h3 id="console-cloudstack-option-8-shell">Console (CloudStack) : option 8 = Shell<a class="headerlink"
-   href="#console-cloudstack-option-8-shell"
-   title="Permanent link">#</a></h3>
-              <ul>
-                <li>Assigner interfaces : option 1 (vtnet1=WAN, vtnet0=LAN)</li>
-                <li>Forcer DHCP WAN : <code>dhclient vtnet1</code></li>
-                <li>Logs firewall décodés par Wazuh : decoder <code>pf</code>, règle 87702</li>
-              </ul>
+              <p>Grafana exposé pour le POC, conforme au sujet.</p>
               <hr />
-              <h2 id="8-suricata-ids-debian-docker-sur-la-debian-pas-dans-docker">8. Suricata, IDS (debian-docker, sur la Debian, PAS dans Docker)<a class="headerlink"
-   href="#8-suricata-ids-debian-docker-sur-la-debian-pas-dans-docker"
-   title="Permanent link">#</a></h2>
-              <h3 id="branchement-a-wazuh-varossecetcossecconf-agent">Branchement à Wazuh, <code>/var/ossec/etc/ossec.conf</code> (agent)<a class="headerlink"
-   href="#branchement-a-wazuh-varossecetcossecconf-agent"
-   title="Permanent link">#</a></h3>
+              <h2 id="8-suricata-ids">8. Suricata IDS<a class="headerlink" href="#8-suricata-ids" title="Permanent link">#</a></h2>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>suricata
+</span></code></pre>
+              </div>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ip<span class="w"> </span>-br<span class="w"> </span>a
+</span></code></pre>
+              </div>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sudo<span class="w"> </span>nvim<span class="w"> </span>/etc/suricata/suricata.yaml
+</span></code></pre>
+              </div>
+              <p>Remplacer <code>eth0</code> par l'interface et configurer le <code>HOME_NET</code>.</p>
+              <p>Définir l'interface dans le service :</p>
+              <div class="language-text highlight">
+                <pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>IFACE=enp3s0
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>LISTENMODE=af-packet
+</span></code></pre>
+              </div>
+              <p>Récupérer les règles et mettre à jour :</p>
+              <div class="language-bash highlight">
+                <pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sudo<span class="w"> </span>suricata-update<span class="w"> </span>enable-source<span class="w"> </span>et/open
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>sudo<span class="w"> </span>suricata-update
+</span></code></pre>
+              </div>
+              <h3 id="branchement-a-wazuh">Branchement à Wazuh<a class="headerlink" href="#branchement-a-wazuh" title="Permanent link">#</a></h3>
+              <p><code>/var/ossec/etc/ossec.conf</code> :</p>
               <div class="language-xml highlight">
-                <pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">&lt;localfile&gt;</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">  </span><span class="nt">&lt;log_format&gt;</span>json<span class="nt">&lt;/log_format&gt;</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">  </span><span class="nt">&lt;location&gt;</span>/var/log/suricata/eve.json<span class="nt">&lt;/location&gt;</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="nt">&lt;/localfile&gt;</span>
+                <pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">  </span><span class="nt">&lt;log_format&gt;</span>json<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="nt">&lt;location&gt;</span>/var/log/suricata/eve.json<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nt">&lt;/localfile&gt;</span>
 </span></code></pre>
               </div>
               <h3 id="commandes_1">Commandes<a class="headerlink" href="#commandes_1" title="Permanent link">#</a></h3>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>suricata<span class="w"> </span>--no-pager
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/suricata/eve.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>signature
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>sudo<span class="w"> </span>suricata-update<span class="w">                 </span><span class="c1"># MAJ règles ET OPEN</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>sudo<span class="w"> </span>suricata<span class="w"> </span>-T<span class="w"> </span>-c<span class="w"> </span>/etc/suricata/suricata.yaml<span class="w">   </span><span class="c1"># tester la config</span>
+                <pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>suricata
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>sudo<span class="w"> </span>tail<span class="w"> </span>-f<span class="w"> </span>/var/log/suricata/eve.json
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>sudo<span class="w"> </span>suricata-update<span class="w">                              </span><span class="c1"># MAJ règles ET OPEN</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>sudo<span class="w"> </span>suricata<span class="w"> </span>-T<span class="w"> </span>-c<span class="w"> </span>/etc/suricata/suricata.yaml<span class="w">   </span><span class="c1"># tester la config</span>
 </span></code></pre>
               </div>
               <h3 id="filtre-wazuh">Filtre Wazuh<a class="headerlink" href="#filtre-wazuh" title="Permanent link">#</a></h3>
               <div class="language-text highlight">
-                <pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>rule.groups: suricata
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>data.alert.signature: *SCAN* OR data.alert.category: &quot;Attempted Information Leak&quot;
+                <pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>rule.groups: suricata
 </span></code></pre>
-              </div>
-              <hr />
-              <h2 id="9-dfir-iris-ticketing-debian-docker-iris-web">9. DFIR-IRIS, Ticketing (debian-docker, <code>~/iris-web</code>)<a class="headerlink"
-   href="#9-dfir-iris-ticketing-debian-docker-iris-web"
-   title="Permanent link">#</a></h2>
-              <h3 id="commandes-depuis-iris-web-naffecte-que-iris">Commandes (depuis <code>~/iris-web</code>, n'affecte QUE IRIS)<a class="headerlink"
-   href="#commandes-depuis-iris-web-naffecte-que-iris"
-   title="Permanent link">#</a></h3>
-              <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">cd</span><span class="w"> </span>~/iris-web
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>-v<span class="w">       </span><span class="c1"># -v = efface la DB IRIS (repart propre)</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>app
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>sudo<span class="w"> </span>docker<span class="w"> </span>compose<span class="w"> </span>ps
-</span></code></pre>
-              </div>
-              <h3 id="acces-https1921681145-administrator-sl1pc0nn3ct_soc_2026">Accès : <code>https://192.168.1.145</code>, <code>administrator</code> / <code>Sl1pC0nn3ct_SOC_2026!</code><a class="headerlink"
-   href="#acces-https1921681145-administrator-sl1pc0nn3ct_soc_2026"
-   title="Permanent link">#</a></h3>
-              <div class="admonition note">
-                <p class="admonition-title">Segmentation</p>
-                <p>Volontairement PAS derrière le WAF (outil SOC interne = argument segmentation).</p>
               </div>
               <hr />
               <h2 id="10-integration-wazuh-iris">10. Intégration Wazuh → IRIS<a class="headerlink"
@@ -1177,51 +1138,39 @@
    href="#script-varossecintegrationscustom-irispy-debian-wazuh"
    title="Permanent link">#</a></h3>
               <ul>
-                <li>Filtre : alertes <strong>niveau ≥ 12</strong> → crée une alerte IRIS</li>
+                <li>Filtre : alertes <strong>niveau ≥ 12</strong> créent une alerte IRIS</li>
                 <li>Permissions OBLIGATOIRES :</li>
               </ul>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">750</span><span class="w"> </span>/var/ossec/integrations/custom-iris<span class="w"> </span>/var/ossec/integrations/custom-iris.py
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>sudo<span class="w"> </span>chown<span class="w"> </span>root:wazuh<span class="w"> </span>/var/ossec/integrations/custom-iris<span class="w"> </span>/var/ossec/integrations/custom-iris.py
+                <pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>sudo<span class="w"> </span>chmod<span class="w"> </span><span class="m">750</span><span class="w"> </span>/var/ossec/integrations/custom-iris<span class="w"> </span>/var/ossec/integrations/custom-iris.py
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>sudo<span class="w"> </span>chown<span class="w"> </span>root:wazuh<span class="w"> </span>/var/ossec/integrations/custom-iris<span class="w"> </span>/var/ossec/integrations/custom-iris.py
 </span></code></pre>
               </div>
-              <div class="admonition warning">
-                <p class="admonition-title">Mapping sévérité IRIS (IDs NON intuitifs !)</p>
-                <div class="language-text highlight">
-                  <pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>6=Critical, 5=High, 1=Medium, 4=Low, 3=Informational, 2=Unspecified
-</span></code></pre>
-                </div>
-              </div>
-              <p>Dans le script :</p>
-              <div class="language-python highlight">
-                <pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">if</span> <span class="n">rule_level</span> <span class="o">&gt;=</span> <span class="mi">14</span><span class="p">:</span>   <span class="n">severity</span> <span class="o">=</span> <span class="mi">6</span>   <span class="c1"># Critical</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">elif</span> <span class="n">rule_level</span> <span class="o">&gt;=</span> <span class="mi">12</span><span class="p">:</span> <span class="n">severity</span> <span class="o">=</span> <span class="mi">5</span>   <span class="c1"># High</span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">elif</span> <span class="n">rule_level</span> <span class="o">&gt;=</span> <span class="mi">7</span><span class="p">:</span>  <span class="n">severity</span> <span class="o">=</span> <span class="mi">1</span>   <span class="c1"># Medium</span>
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="k">else</span><span class="p">:</span>                  <span class="n">severity</span> <span class="o">=</span> <span class="mi">4</span>   <span class="c1"># Low</span>
+              <h3 id="mapping-severite-iris">Mapping sévérité IRIS<a class="headerlink"
+   href="#mapping-severite-iris"
+   title="Permanent link">#</a></h3>
+              <div class="language-text highlight">
+                <pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>6=Critical, 5=High, 1=Medium, 4=Low, 3=Informational, 2=Unspecified
 </span></code></pre>
               </div>
-              <h3 id="declaration-varossecetcossecconf">Déclaration, <code>/var/ossec/etc/ossec.conf</code><a class="headerlink"
-   href="#declaration-varossecetcossecconf"
+              <h3 id="declaration-dans-varossecetcossecconf">Déclaration dans <code>/var/ossec/etc/ossec.conf</code><a class="headerlink"
+   href="#declaration-dans-varossecetcossecconf"
    title="Permanent link">#</a></h3>
               <div class="language-xml highlight">
-                <pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nt">&lt;integration&gt;</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="nt">&lt;name&gt;</span>custom-iris<span class="nt">&lt;/name&gt;</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="nt">&lt;hook_url&gt;</span>https://192.168.1.145/alerts/add<span class="nt">&lt;/hook_url&gt;</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nt">&lt;api_key&gt;</span>B8BA5D730210B50F41C06941582D7965D57319D5685440587F98DFDC45A01594<span class="nt">&lt;/api_key&gt;</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="nt">&lt;level&gt;</span>12<span class="nt">&lt;/level&gt;</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="nt">&lt;alert_format&gt;</span>json<span class="nt">&lt;/alert_format&gt;</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="nt">&lt;/integration&gt;</span>
+                <pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nt">&lt;integration&gt;</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">  </span><span class="nt">&lt;name&gt;</span>custom-iris<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">  </span><span class="nt">&lt;hook_url&gt;</span>https://192.168.1.145/alerts/add<span class="nt">&lt;/hook_url&gt;</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">  </span><span class="nt">&lt;api_key&gt;</span>B8BA5D730210B50F41C06941582D7965D57319D5685440587F98DFDC45A01594<span class="nt">&lt;/api_key&gt;</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">  </span><span class="nt">&lt;level&gt;</span>12<span class="nt">&lt;/level&gt;</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">  </span><span class="nt">&lt;alert_format&gt;</span>json<span class="nt">&lt;/alert_format&gt;</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="nt">&lt;/integration&gt;</span>
 </span></code></pre>
-              </div>
-              <div class="admonition info">
-                <p class="admonition-title">Le <code>&lt;level&gt;12&lt;/level&gt;</code> est OBLIGATOIRE</p>
-                <p>Sans critère, le script n'est jamais appelé.</p>
               </div>
               <h3 id="verifier-les-severites-iris-via-api">Vérifier les sévérités IRIS via API<a class="headerlink"
    href="#verifier-les-severites-iris-via-api"
    title="Permanent link">#</a></h3>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>curl<span class="w"> </span>-k<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer &lt;API_KEY&gt;&quot;</span><span class="w"> </span>https://192.168.1.145/manage/severities/list
+                <pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>curl<span class="w"> </span>-k<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;API_KEY&gt;&quot;</span><span class="w"> </span>https://192.168.1.145/manage/severities/list
 </span></code></pre>
               </div>
               <hr />
@@ -1370,10 +1319,10 @@
                 </tbody>
               </table>
               <div class="admonition bug">
-                <p class="admonition-title">PIÈGE boucle de rétroaction (IRIS)</p>
-                <p>Wazuh lit les logs Docker d'IRIS → quand IRIS logge "Created alert sqli", la règle SQLi re-matche → boucle. <strong>Correctif sur les parentes 100400 + 100500 :</strong></p>
+                <p class="admonition-title">Piège : boucle de rétroaction (IRIS)</p>
+                <p>Wazuh lit les logs Docker d'IRIS, quand IRIS logge "Created alert sqli" la règle SQLi re-matche, boucle infinie. <strong>Correctif sur les parentes 100400 + 100500 :</strong></p>
                 <div class="language-xml highlight">
-                  <pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;log&quot;</span><span class="w"> </span><span class="na">negate=</span><span class="s">&quot;yes&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;pcre2&quot;</span><span class="nt">&gt;</span>(?i)(iris|track_activity|Created<span class="w"> </span>alert|tracker)<span class="nt">&lt;/field&gt;</span>
+                  <pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nt">&lt;field</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;log&quot;</span><span class="w"> </span><span class="na">negate=</span><span class="s">&quot;yes&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;pcre2&quot;</span><span class="nt">&gt;</span>(?i)(iris|track_activity|Created<span class="w"> </span>alert|tracker)<span class="nt">&lt;/field&gt;</span>
 </span></code></pre>
                 </div>
               </div>
@@ -1417,190 +1366,32 @@
               </table>
               <p><strong>Types :</strong> fréquence (brute-force), enchaînement (100404 = succès APRÈS brute-force), multi-sources (scan FW → SQLi WAF → accès DB = kill chain).</p>
               <hr />
-              <h2 id="13-tailscale">13. Tailscale<a class="headerlink" href="#13-tailscale" title="Permanent link">#</a></h2>
-              <h3 id="subnet-router-debian-wazuh">Subnet router (debian-wazuh)<a class="headerlink"
-   href="#subnet-router-debian-wazuh"
-   title="Permanent link">#</a></h3>
-              <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;net.ipv4.ip_forward = 1&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>/etc/sysctl.d/99-tailscale.conf
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>sysctl<span class="w"> </span>-p<span class="w"> </span>/etc/sysctl.d/99-tailscale.conf
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span>up<span class="w"> </span>--advertise-routes<span class="o">=</span><span class="m">192</span>.168.1.0/24
-</span></code></pre>
-              </div>
-              <p>Puis APPROUVER la route : <a href="https://login.tailscale.com/admin/machines">https://login.tailscale.com/admin/machines</a></p>
-              <h3 id="poste-perso">Poste perso<a class="headerlink" href="#poste-perso" title="Permanent link">#</a></h3>
-              <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span>up<span class="w"> </span>--accept-routes
-</span></code></pre>
-              </div>
-              <hr />
               <h2 id="14-demo-dattaque-kali-ip_wan-opnsense">14. Démo d'attaque (Kali → IP_WAN OPNsense)<a class="headerlink"
    href="#14-demo-dattaque-kali-ip_wan-opnsense"
    title="Permanent link">#</a></h2>
               <div class="language-bash highlight">
-                <pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># 1. SCAN → règle 87702 (OPNsense, T1110)</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>nmap<span class="w"> </span>-sS<span class="w"> </span>-p<span class="w"> </span><span class="m">1</span>-1000<span class="w"> </span>IP_WAN
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
-</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># 2. ACCÈS WEB → web-accesslog</span>
-</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>curl<span class="w"> </span>-I<span class="w"> </span>http://IP_WAN
-</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
-</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="c1"># 3. SQLI → 403 WAF + règles 31333/31101 (+ custom 100501/2)</span>
-</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>curl<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;http://IP_WAN/?action=login&quot;</span><span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;username=admin&#39; OR &#39;1&#39;=&#39;1&amp;password=x&quot;</span>
-</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
-</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="c1"># 4. BRUTE FORCE GRAFANA → 100403 puis 100404</span>
-</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">8</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">  </span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://IP_WAN:9090/login<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">    </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;user&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;wrong&#39;</span><span class="nv">$i</span><span class="s1">&#39;&quot;}&#39;</span><span class="w"> </span>&gt;/dev/null
-</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="k">done</span>
-</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a>
-</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="c1"># 5. → alertes ≥12 créent un INCIDENT dans IRIS automatiquement</span>
+                <pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1"># 1. SCAN</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>nmap<span class="w"> </span>-sS<span class="w"> </span>-p<span class="w"> </span><span class="m">1</span>-1000<span class="w"> </span>IP_WAN
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="c1"># 2. ACCÈS WEB</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>curl<span class="w"> </span>-I<span class="w"> </span>http://IP_WAN
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="c1"># 3. SQLi (403 WAF)</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>curl<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;http://IP_WAN/?action=login&quot;</span><span class="w"> </span>--data<span class="w"> </span><span class="s2">&quot;username=admin&#39; OR &#39;1&#39;=&#39;1&amp;password=x&quot;</span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="c1"># 4. BRUTE FORCE GRAFANA → 100403 puis 100404</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">8</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="w">  </span>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://IP_WAN:9090/login<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="w">    </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;user&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;wrong&#39;</span><span class="nv">$i</span><span class="s1">&#39;&quot;}&#39;</span><span class="w"> </span>&gt;/dev/null
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="k">done</span>
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a>
+</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a><span class="c1"># 5. → alertes ≥ 12 créent un INCIDENT dans IRIS automatiquement</span>
 </span></code></pre>
               </div>
-              <div class="admonition success">
-                <p class="admonition-title">Détection multi-sources prouvée</p>
-                <p>OPNsense + WAF + Suricata + Docker → Wazuh → IRIS</p>
-              </div>
+              <p>Détection multi-sources prouvée : OPNsense + WAF + Suricata + Docker → Wazuh → IRIS.</p>
               <hr />
-              <h2 id="15-dashboard-wazuh-4145-filtres">15. Dashboard Wazuh (4.14.5) &amp; filtres<a class="headerlink"
-   href="#15-dashboard-wazuh-4145-filtres"
-   title="Permanent link">#</a></h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Menu</th>
-                    <th>Usage</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Threat intelligence → <strong>Threat Hunting</strong></td>
-                    <td>alertes + graphiques</td>
-                  </tr>
-                  <tr>
-                    <td>Threat intelligence → <strong>MITRE ATT&amp;CK</strong></td>
-                    <td>matrice (top démo)</td>
-                  </tr>
-                  <tr>
-                    <td>Security operations → <strong>GDPR / PCI DSS / NIST 800-53</strong></td>
-                    <td>conformité (volet ISO)</td>
-                  </tr>
-                  <tr>
-                    <td>Endpoint security → <strong>File Integrity Monitoring</strong></td>
-                    <td>modifs fichiers</td>
-                  </tr>
-                </tbody>
-              </table>
-              <h3 id="filtres-demo">Filtres démo<a class="headerlink" href="#filtres-demo" title="Permanent link">#</a></h3>
-              <div class="language-text highlight">
-                <pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>rule.level &gt;= 7                               # masque le bruit
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>rule.id:31333 or rule.id:31101                # SQLi
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>rule.level &gt;= 5 and not rule.groups:pfsense   # attaques sans bruit mDNS firewall
-</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>data.alert.signature: *SCAN*                  # scans Suricata
-</span></code></pre>
-              </div>
-              <hr />
-              <h2 id="16-pieges-ce-qui-nous-a-bloques-a-connaitre-pour-le-jury-le-futur">16. PIÈGES, ce qui nous a bloqués (à connaître pour le jury / le futur)<a class="headerlink"
-   href="#16-pieges-ce-qui-nous-a-bloques-a-connaitre-pour-le-jury-le-futur"
-   title="Permanent link">#</a></h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Problème</th>
-                    <th>Cause</th>
-                    <th>Solution</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Agent "Disconnected"</td>
-                    <td>version agent &gt; manager</td>
-                    <td>aligner en 4.14.5, <code>apt-mark hold</code></td>
-                  </tr>
-                  <tr>
-                    <td>Dashboard boucle (503)</td>
-                    <td>certs manquants OU IPv6</td>
-                    <td>régénérer certs / <code>127.0.0.1</code> + <code>verificationMode: none</code></td>
-                  </tr>
-                  <tr>
-                    <td>Dashboard <code>ECONNREFUSED ::1</code></td>
-                    <td>localhost résout en IPv6</td>
-                    <td>mettre <code>127.0.0.1</code> dans <code>opensearch.hosts</code></td>
-                  </tr>
-                  <tr>
-                    <td><code>unable to verify first certificate</code></td>
-                    <td>CA dashboard ≠ CA indexer</td>
-                    <td><code>verificationMode: none</code> (POC)</td>
-                  </tr>
-                  <tr>
-                    <td>WAF compile : Mbed TLS not found</td>
-                    <td>submodules git absents</td>
-                    <td><code>git submodule update --init --recursive</code></td>
-                  </tr>
-                  <tr>
-                    <td>WAF : libmodsecurity not found</td>
-                    <td><code>make install</code> oublié</td>
-                    <td><code>cd /opt/ModSecurity &amp;&amp; make install</code></td>
-                  </tr>
-                  <tr>
-                    <td>nginx : module .so introuvable</td>
-                    <td>mauvais chemin</td>
-                    <td><code>/usr/share/nginx/modules/</code> (pas <code>/etc/nginx/</code>)</td>
-                  </tr>
-                  <tr>
-                    <td>OPNsense : NAT ne passe pas</td>
-                    <td>Block private networks (WAN privé)</td>
-                    <td>décocher dans Interfaces→WAN</td>
-                  </tr>
-                  <tr>
-                    <td>OPNsense agent casse le FW</td>
-                    <td>plugin force un update OPNsense</td>
-                    <td>installer FW sur disque AVANT, ne pas interrompre l'update</td>
-                  </tr>
-                  <tr>
-                    <td>OPNsense reboot = WAN vide</td>
-                    <td>live ISO (non persistant)</td>
-                    <td>installer sur disque (UFS)</td>
-                  </tr>
-                  <tr>
-                    <td>OPNsense reboot = pas d'IP WAN</td>
-                    <td>DHCP CloudStack ne répond pas</td>
-                    <td>IP statique sur le WAN</td>
-                  </tr>
-                  <tr>
-                    <td>IRIS sous <code>/iris/</code> cassé</td>
-                    <td>redirections absolues vers <code>/dashboard</code></td>
-                    <td>accès direct racine (pas de sous-chemin)</td>
-                  </tr>
-                  <tr>
-                    <td>Intégration IRIS jamais appelée</td>
-                    <td><code>&lt;level&gt;</code> manquant + perms</td>
-                    <td>ajouter <code>&lt;level&gt;12&lt;/level&gt;</code> + chmod 750 root:wazuh</td>
-                  </tr>
-                  <tr>
-                    <td>Toutes alertes IRIS en "Low"</td>
-                    <td>mapping <code>severity_id</code> IRIS non intuitif</td>
-                    <td>6=Critical 5=High 1=Medium 4=Low</td>
-                  </tr>
-                  <tr>
-                    <td>Boucle d'alertes SQLi</td>
-                    <td>Wazuh lit les logs d'IRIS</td>
-                    <td>exclure (negate) <code>iris/track_activity/Created alert</code></td>
-                  </tr>
-                  <tr>
-                    <td>Suricata crash en boucle</td>
-                    <td>install instable sur debian-wazuh</td>
-                    <td>désinstaller, mettre sur debian-docker</td>
-                  </tr>
-                  <tr>
-                    <td>Bruit mDNS firewall</td>
-                    <td>5353→224.0.0.251 = multicast normal</td>
-                    <td>filtrer <code>not rule.groups:pfsense</code></td>
-                  </tr>
-                </tbody>
-              </table>
-              <hr />
-              <h2 id="17-ports-de-reference">17. Ports de référence<a class="headerlink"
-   href="#17-ports-de-reference"
+              <h2 id="15-ports-de-reference">15. Ports de référence<a class="headerlink"
+   href="#15-ports-de-reference"
    title="Permanent link">#</a></h2>
               <table>
                 <thead>
@@ -1638,14 +1429,201 @@
                     <td>9090</td>
                     <td>Grafana (exposé)</td>
                   </tr>
-                  <tr>
-                    <td>41641/UDP</td>
-                    <td>Tailscale</td>
-                  </tr>
                 </tbody>
               </table>
               <hr />
-              <p><em>POC SOC SL1PCONNECT, Blue Team. Stack 100 % open source : Wazuh, OPNsense, Nginx+ModSecurity, Suricata, DFIR-IRIS, Tailscale.</em></p>
+              <h2 id="16-configurations">16. Configurations<a class="headerlink" href="#16-configurations" title="Permanent link">#</a></h2>
+              <h3 id="waf-nginx">WAF (Nginx)<a class="headerlink" href="#waf-nginx" title="Permanent link">#</a></h3>
+              <div class="language-nginx highlight">
+                <pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">_</span><span class="p">;</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">    </span><span class="kn">modsecurity</span><span class="w"> </span><span class="no">on</span><span class="p">;</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">    </span><span class="kn">modsecurity_rules_file</span><span class="w"> </span><span class="s">/etc/nginx/modsec/main.conf</span><span class="p">;</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="w">    </span><span class="c1"># BRIEF</span>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8081</span><span class="p">;</span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-33-12"><a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span id="__span-33-13"><a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-33-14"><a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="w">    </span><span class="c1"># BOXER</span>
+</span><span id="__span-33-15"><a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a><span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/api/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-16"><a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a><span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8080</span><span class="p">;</span>
+</span><span id="__span-33-17"><a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-33-18"><a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-33-19"><a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span id="__span-33-20"><a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-33-21"><a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a><span class="w">    </span><span class="c1"># SENSOR</span>
+</span><span id="__span-33-22"><a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a><span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/sensor/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-23"><a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a><span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://192.168.1.145:8082</span><span class="p">;</span>
+</span><span id="__span-33-24"><a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-33-25"><a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-33-26"><a id="__codelineno-33-26" name="__codelineno-33-26" href="#__codelineno-33-26"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span id="__span-33-27"><a id="__codelineno-33-27" name="__codelineno-33-27" href="#__codelineno-33-27"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-33-28"><a id="__codelineno-33-28" name="__codelineno-33-28" href="#__codelineno-33-28"></a><span class="p">}</span>
+</span><span id="__span-33-29"><a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a>
+</span><span id="__span-33-30"><a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a><span class="c1"># IRIS</span>
+</span><span id="__span-33-31"><a id="__codelineno-33-31" name="__codelineno-33-31" href="#__codelineno-33-31"></a><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-32"><a id="__codelineno-33-32" name="__codelineno-33-32" href="#__codelineno-33-32"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">8443</span><span class="w"> </span><span class="s">ssl</span><span class="p">;</span>
+</span><span id="__span-33-33"><a id="__codelineno-33-33" name="__codelineno-33-33" href="#__codelineno-33-33"></a><span class="w">    </span><span class="kn">server_name</span><span class="w"> </span><span class="s">_</span><span class="p">;</span>
+</span><span id="__span-33-34"><a id="__codelineno-33-34" name="__codelineno-33-34" href="#__codelineno-33-34"></a>
+</span><span id="__span-33-35"><a id="__codelineno-33-35" name="__codelineno-33-35" href="#__codelineno-33-35"></a><span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">     </span><span class="s">/etc/nginx/ssl/waf.crt</span><span class="p">;</span>
+</span><span id="__span-33-36"><a id="__codelineno-33-36" name="__codelineno-33-36" href="#__codelineno-33-36"></a><span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w"> </span><span class="s">/etc/nginx/ssl/waf.key</span><span class="p">;</span>
+</span><span id="__span-33-37"><a id="__codelineno-33-37" name="__codelineno-33-37" href="#__codelineno-33-37"></a>
+</span><span id="__span-33-38"><a id="__codelineno-33-38" name="__codelineno-33-38" href="#__codelineno-33-38"></a><span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-39"><a id="__codelineno-33-39" name="__codelineno-33-39" href="#__codelineno-33-39"></a><span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">https://192.168.1.145:443/</span><span class="p">;</span>
+</span><span id="__span-33-40"><a id="__codelineno-33-40" name="__codelineno-33-40" href="#__codelineno-33-40"></a><span class="w">        </span><span class="kn">proxy_ssl_verify</span><span class="w"> </span><span class="no">off</span><span class="p">;</span>
+</span><span id="__span-33-41"><a id="__codelineno-33-41" name="__codelineno-33-41" href="#__codelineno-33-41"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+</span><span id="__span-33-42"><a id="__codelineno-33-42" name="__codelineno-33-42" href="#__codelineno-33-42"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Real-IP</span><span class="w"> </span><span class="nv">$remote_addr</span><span class="p">;</span>
+</span><span id="__span-33-43"><a id="__codelineno-33-43" name="__codelineno-33-43" href="#__codelineno-33-43"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span><span id="__span-33-44"><a id="__codelineno-33-44" name="__codelineno-33-44" href="#__codelineno-33-44"></a><span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+</span><span id="__span-33-45"><a id="__codelineno-33-45" name="__codelineno-33-45" href="#__codelineno-33-45"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-33-46"><a id="__codelineno-33-46" name="__codelineno-33-46" href="#__codelineno-33-46"></a><span class="p">}</span>
+</span></code></pre>
+              </div>
+              <h3 id="agent-wazuh-waf-ossecconf">Agent Wazuh WAF (<code>ossec.conf</code>)<a class="headerlink"
+   href="#agent-wazuh-waf-ossecconf"
+   title="Permanent link">#</a></h3>
+              <div class="language-xml highlight">
+                <pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nt">&lt;ossec_config&gt;</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">  </span><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">    </span><span class="nt">&lt;log_format&gt;</span>journald<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">    </span><span class="nt">&lt;location&gt;</span>journald<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">  </span><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="w">  </span><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="w">    </span><span class="nt">&lt;log_format&gt;</span>apache<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="w">    </span><span class="nt">&lt;location&gt;</span>/var/log/nginx/access.log<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="w">  </span><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>
+</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a><span class="w">  </span><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a><span class="w">    </span><span class="nt">&lt;log_format&gt;</span>apache<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-34-14"><a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a><span class="w">    </span><span class="nt">&lt;location&gt;</span>/var/log/nginx/error.log<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-34-15"><a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a><span class="w">  </span><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-34-16"><a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a>
+</span><span id="__span-34-17"><a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a><span class="w">  </span><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-34-18"><a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a><span class="w">    </span><span class="nt">&lt;log_format&gt;</span>syslog<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-34-19"><a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a><span class="w">    </span><span class="nt">&lt;location&gt;</span>/var/ossec/logs/active-responses.log<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-34-20"><a id="__codelineno-34-20" name="__codelineno-34-20" href="#__codelineno-34-20"></a><span class="w">  </span><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-34-21"><a id="__codelineno-34-21" name="__codelineno-34-21" href="#__codelineno-34-21"></a>
+</span><span id="__span-34-22"><a id="__codelineno-34-22" name="__codelineno-34-22" href="#__codelineno-34-22"></a><span class="w">  </span><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-34-23"><a id="__codelineno-34-23" name="__codelineno-34-23" href="#__codelineno-34-23"></a><span class="w">    </span><span class="nt">&lt;log_format&gt;</span>syslog<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-34-24"><a id="__codelineno-34-24" name="__codelineno-34-24" href="#__codelineno-34-24"></a><span class="w">    </span><span class="nt">&lt;location&gt;</span>/var/log/dpkg.log<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-34-25"><a id="__codelineno-34-25" name="__codelineno-34-25" href="#__codelineno-34-25"></a><span class="w">  </span><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-34-26"><a id="__codelineno-34-26" name="__codelineno-34-26" href="#__codelineno-34-26"></a><span class="nt">&lt;/ossec_config&gt;</span>
+</span></code></pre>
+              </div>
+              <h3 id="integration-wazuh-iris">Intégration Wazuh → IRIS<a class="headerlink"
+   href="#integration-wazuh-iris"
+   title="Permanent link">#</a></h3>
+              <div class="language-xml highlight">
+                <pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="cm">&lt;!-- Iris --&gt;</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="nt">&lt;integration&gt;</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">  </span><span class="nt">&lt;name&gt;</span>custom-iris<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">  </span><span class="nt">&lt;hook_url&gt;</span>https://192.168.1.145/alerts/add<span class="nt">&lt;/hook_url&gt;</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">  </span><span class="nt">&lt;api_key&gt;</span>B8BA5D730210B50F41C06941582D7965D57319D5685440587F98DFDC45A01594<span class="nt">&lt;/api_key&gt;</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">  </span><span class="nt">&lt;level&gt;</span>12<span class="nt">&lt;/level&gt;</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">  </span><span class="nt">&lt;alert_format&gt;</span>json<span class="nt">&lt;/alert_format&gt;</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="nt">&lt;/integration&gt;</span>
+</span></code></pre>
+              </div>
+              <h3 id="docker-cibles">Docker (cibles)<a class="headerlink" href="#docker-cibles" title="Permanent link">#</a></h3>
+              <div class="language-yaml highlight">
+                <pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">  </span><span class="nt">brief</span><span class="p">:</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">php:7.4-apache</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">brief</span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8081:80&quot;</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./brief:/var/www/html</span>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash -c &quot;apt-get update &amp;&amp; apt-get install -y libcurl4-openssl-dev &amp;&amp; docker-php-ext-install curl &amp;&amp; apache2-foreground&quot;</span>
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a><span class="w">  </span><span class="nt">watch</span><span class="p">:</span>
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grafana/grafana:8.5.0</span>
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">watch</span>
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;9090:3000&quot;</span>
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GF_SECURITY_ADMIN_PASSWORD=admin</span>
+</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GF_SECURITY_ADMIN_USER=admin</span>
+</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</span><span id="__span-36-22"><a id="__codelineno-36-22" name="__codelineno-36-22" href="#__codelineno-36-22"></a>
+</span><span id="__span-36-23"><a id="__codelineno-36-23" name="__codelineno-36-23" href="#__codelineno-36-23"></a><span class="w">  </span><span class="nt">boxer</span><span class="p">:</span>
+</span><span id="__span-36-24"><a id="__codelineno-36-24" name="__codelineno-36-24" href="#__codelineno-36-24"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python:3.9-slim</span>
+</span><span id="__span-36-25"><a id="__codelineno-36-25" name="__codelineno-36-25" href="#__codelineno-36-25"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boxer</span>
+</span><span id="__span-36-26"><a id="__codelineno-36-26" name="__codelineno-36-26" href="#__codelineno-36-26"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-36-27"><a id="__codelineno-36-27" name="__codelineno-36-27" href="#__codelineno-36-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:5000&quot;</span>
+</span><span id="__span-36-28"><a id="__codelineno-36-28" name="__codelineno-36-28" href="#__codelineno-36-28"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-36-29"><a id="__codelineno-36-29" name="__codelineno-36-29" href="#__codelineno-36-29"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./boxer:/app</span>
+</span><span id="__span-36-30"><a id="__codelineno-36-30" name="__codelineno-36-30" href="#__codelineno-36-30"></a><span class="w">    </span><span class="nt">working_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app</span>
+</span><span id="__span-36-31"><a id="__codelineno-36-31" name="__codelineno-36-31" href="#__codelineno-36-31"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash -c &quot;pip install flask psycopg2-binary &amp;&amp; python app.py&quot;</span>
+</span><span id="__span-36-32"><a id="__codelineno-36-32" name="__codelineno-36-32" href="#__codelineno-36-32"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</span><span id="__span-36-33"><a id="__codelineno-36-33" name="__codelineno-36-33" href="#__codelineno-36-33"></a>
+</span><span id="__span-36-34"><a id="__codelineno-36-34" name="__codelineno-36-34" href="#__codelineno-36-34"></a><span class="w">  </span><span class="nt">sensor</span><span class="p">:</span>
+</span><span id="__span-36-35"><a id="__codelineno-36-35" name="__codelineno-36-35" href="#__codelineno-36-35"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node:16-slim</span>
+</span><span id="__span-36-36"><a id="__codelineno-36-36" name="__codelineno-36-36" href="#__codelineno-36-36"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sensor</span>
+</span><span id="__span-36-37"><a id="__codelineno-36-37" name="__codelineno-36-37" href="#__codelineno-36-37"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-36-38"><a id="__codelineno-36-38" name="__codelineno-36-38" href="#__codelineno-36-38"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8082:3000&quot;</span>
+</span><span id="__span-36-39"><a id="__codelineno-36-39" name="__codelineno-36-39" href="#__codelineno-36-39"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-36-40"><a id="__codelineno-36-40" name="__codelineno-36-40" href="#__codelineno-36-40"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./sensor:/app</span>
+</span><span id="__span-36-41"><a id="__codelineno-36-41" name="__codelineno-36-41" href="#__codelineno-36-41"></a><span class="w">    </span><span class="nt">working_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/app</span>
+</span><span id="__span-36-42"><a id="__codelineno-36-42" name="__codelineno-36-42" href="#__codelineno-36-42"></a><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node app.js</span>
+</span><span id="__span-36-43"><a id="__codelineno-36-43" name="__codelineno-36-43" href="#__codelineno-36-43"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</span><span id="__span-36-44"><a id="__codelineno-36-44" name="__codelineno-36-44" href="#__codelineno-36-44"></a>
+</span><span id="__span-36-45"><a id="__codelineno-36-45" name="__codelineno-36-45" href="#__codelineno-36-45"></a><span class="w">  </span><span class="nt">pgsql</span><span class="p">:</span>
+</span><span id="__span-36-46"><a id="__codelineno-36-46" name="__codelineno-36-46" href="#__codelineno-36-46"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres:12</span>
+</span><span id="__span-36-47"><a id="__codelineno-36-47" name="__codelineno-36-47" href="#__codelineno-36-47"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pgsql</span>
+</span><span id="__span-36-48"><a id="__codelineno-36-48" name="__codelineno-36-48" href="#__codelineno-36-48"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-36-49"><a id="__codelineno-36-49" name="__codelineno-36-49" href="#__codelineno-36-49"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;5432:5432&quot;</span>
+</span><span id="__span-36-50"><a id="__codelineno-36-50" name="__codelineno-36-50" href="#__codelineno-36-50"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-36-51"><a id="__codelineno-36-51" name="__codelineno-36-51" href="#__codelineno-36-51"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_USER=admin</span>
+</span><span id="__span-36-52"><a id="__codelineno-36-52" name="__codelineno-36-52" href="#__codelineno-36-52"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=Sl1p2024</span>
+</span><span id="__span-36-53"><a id="__codelineno-36-53" name="__codelineno-36-53" href="#__codelineno-36-53"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_DB=slipconnect_health</span>
+</span><span id="__span-36-54"><a id="__codelineno-36-54" name="__codelineno-36-54" href="#__codelineno-36-54"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+</span><span id="__span-36-55"><a id="__codelineno-36-55" name="__codelineno-36-55" href="#__codelineno-36-55"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./pgsql/init.sql:/docker-entrypoint-initdb.d/init.sql</span>
+</span><span id="__span-36-56"><a id="__codelineno-36-56" name="__codelineno-36-56" href="#__codelineno-36-56"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+</span></code></pre>
+              </div>
+              <h3 id="agent-wazuh-docker-ossecconf">Agent Wazuh Docker (<code>ossec.conf</code>)<a class="headerlink"
+   href="#agent-wazuh-docker-ossecconf"
+   title="Permanent link">#</a></h3>
+              <div class="language-xml highlight">
+                <pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span><span class="nt">&lt;log_format&gt;</span>journald<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span><span class="nt">&lt;location&gt;</span>journald<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">  </span><span class="nt">&lt;log_format&gt;</span>syslog<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">  </span><span class="nt">&lt;location&gt;</span>/var/ossec/logs/active-responses.log<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="w">  </span><span class="nt">&lt;log_format&gt;</span>syslog<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="w">  </span><span class="nt">&lt;location&gt;</span>/var/log/dpkg.log<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-37-14"><a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-37-15"><a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a>
+</span><span id="__span-37-16"><a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-37-17"><a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a><span class="w">  </span><span class="nt">&lt;log_format&gt;</span>json<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-37-18"><a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a><span class="w">  </span><span class="nt">&lt;location&gt;</span>/var/lib/docker/containers/*/*-json.log<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-37-19"><a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-37-20"><a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a>
+</span><span id="__span-37-21"><a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-37-22"><a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a><span class="w">  </span><span class="nt">&lt;log_format&gt;</span>syslog<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-37-23"><a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a><span class="w">  </span><span class="nt">&lt;location&gt;</span>/var/log/auth.log<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-37-24"><a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a><span class="nt">&lt;/localfile&gt;</span>
+</span><span id="__span-37-25"><a id="__codelineno-37-25" name="__codelineno-37-25" href="#__codelineno-37-25"></a>
+</span><span id="__span-37-26"><a id="__codelineno-37-26" name="__codelineno-37-26" href="#__codelineno-37-26"></a><span class="nt">&lt;localfile&gt;</span>
+</span><span id="__span-37-27"><a id="__codelineno-37-27" name="__codelineno-37-27" href="#__codelineno-37-27"></a><span class="w">  </span><span class="nt">&lt;log_format&gt;</span>json<span class="nt">&lt;/log_format&gt;</span>
+</span><span id="__span-37-28"><a id="__codelineno-37-28" name="__codelineno-37-28" href="#__codelineno-37-28"></a><span class="w">  </span><span class="nt">&lt;location&gt;</span>/var/log/suricata/eve.json<span class="nt">&lt;/location&gt;</span>
+</span><span id="__span-37-29"><a id="__codelineno-37-29" name="__codelineno-37-29" href="#__codelineno-37-29"></a><span class="nt">&lt;/localfile&gt;</span>
+</span></code></pre>
+              </div>
             </article>
           </div>
           <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

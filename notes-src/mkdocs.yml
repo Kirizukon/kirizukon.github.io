@@ -14,20 +14,19 @@ theme:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: white
-      accent: indigo
+      accent: red
       toggle:
         icon: material/weather-night
         name: Passer en mode sombre
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
-      accent: indigo
+      accent: red
       toggle:
         icon: material/weather-sunny
         name: Passer en mode clair
-  font:
-    text: Inter
-    code: JetBrains Mono
+  # polices auto-hébergées via extra_css (stylesheets/kirizukon.css)
+  font: false
   features:
     - navigation.instant
     - navigation.tracking
@@ -50,6 +49,9 @@ theme:
       danger: octicons/stop-16
       bug: octicons/bug-16
       success: octicons/check-circle-16
+
+extra_css:
+  - stylesheets/kirizukon.css
 
 extra:
   social:
@@ -89,4 +91,4 @@ nav:
   - Accueil: index.md
   - Projets:
     - projets/index.md
-    - SOC SL1PCONNECT: projets/soc-sl1pconnect.md
+    - Projet SOC: projets/soc-sl1pconnect.md

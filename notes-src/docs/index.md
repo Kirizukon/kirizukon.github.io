@@ -14,4 +14,4 @@ Notes techniques cyber, architectures, POC, labs.
 
 ## Projets
 
-- [**SOC SL1PCONNECT**](projets/soc-sl1pconnect.md) : POC SOC Blue Team (Wazuh + OPNsense + WAF + Suricata + DFIR-IRIS) sur CloudStack.
+- [**Projet SOC**](projets/soc-sl1pconnect.md) : POC SOC Blue Team (Wazuh + OPNsense + WAF + Suricata + DFIR-IRIS) sur CloudStack.

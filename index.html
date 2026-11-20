@@ -1,687 +1,449 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bryan Corret · Portfolio Cybersécurité — Analyste SOC / DevSecOps</title>
-  <meta name="description" content="Portfolio de Bryan Corret (Kirizukon), Mastère Expert en Cybersécurité. Projets Blue Team : SOC Wazuh/Suricata, hardening Active Directory, DevSecOps. Recherche CDI Analyste SOC ou DevSecOps — octobre 2027."/>
-  <meta name="author" content="Bryan Corret"/>
-  <link rel="canonical" href="https://kirizukon.xyz/"/>
-
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://kirizukon.xyz/"/>
-  <meta property="og:site_name" content="Bryan Corret · Kirizukon"/>
-  <meta property="og:title" content="Bryan Corret · Portfolio Cybersécurité — Analyste SOC / DevSecOps"/>
-  <meta property="og:description" content="Mastère Expert en Cybersécurité. Projets Blue Team : SOC Wazuh/Suricata, hardening Active Directory, DevSecOps. Recherche CDI — octobre 2027."/>
-  <meta property="og:locale" content="fr_FR"/>
-  <meta name="twitter:card" content="summary"/>
-  <meta name="twitter:title" content="Bryan Corret · Portfolio Cybersécurité — Analyste SOC / DevSecOps"/>
-  <meta name="twitter:description" content="Mastère Expert en Cybersécurité. Projets Blue Team : SOC, hardening AD, DevSecOps. Recherche CDI — octobre 2027."/>
-
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1917'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='500' fill='%23a855f7' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            bg:      '#1c1917',
-            bg2:     '#242220',
-            bg3:     '#2c2927',
-            bg4:     '#343130',
-            line:    '#3a3632',
-            hi:      '#fafaf9',
-            mid:     '#a8a29e',
-            lo:      '#57534e',
-            vio:     '#a855f7',
-            vioDim:  '#7c3aed',
-            vioGlow: '#c084fc',
-            amber:   '#f59e0b',
-            teal:    '#2dd4bf',
-            rose:    '#fb7185',
-          },
-          fontFamily: {
-            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-            mono:  ['"JetBrains Mono"', 'monospace'],
-          },
-        }
-      }
-    }
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bryan Corret / Analyste SOC / DevSecOps</title>
+<meta name="description" content="Bryan Corret, analyste SOC / DevSecOps. Apprenti systèmes &amp; réseaux au SDIS 28, Mastère Expert Cybersécurité. Huit projets : SIEM, durcissement Active Directory, CI DevSecOps.">
+<meta name="theme-color" content="#f4f4f2">
+<link rel="canonical" href="https://kirizukon.xyz/">
+<meta property="og:title" content="Bryan Corret / Analyste SOC / DevSecOps">
+<meta property="og:description" content="Détection, durcissement, DevSecOps. Huit projets livrés. Disponible en CDI en octobre 2027.">
+<meta property="og:url" content="https://kirizukon.xyz/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f4f4f2'/%3E%3Cg fill='%230a0a0a'%3E%3Ccircle cx='8' cy='8' r='2.4'/%3E%3Ccircle cx='16' cy='8' r='2.4'/%3E%3Ccircle cx='8' cy='16' r='2.4'/%3E%3Ccircle cx='8' cy='24' r='2.4'/%3E%3Ccircle cx='16' cy='24' r='2.4'/%3E%3C/g%3E%3Ccircle cx='24' cy='16' r='2.4' fill='%23d71921'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-bg font-mono text-mid antialiased">
+<body>
+<a class="skip" href="#profil">Aller au contenu</a>
 
-<nav class="fixed top-0 inset-x-0 z-50 bg-bg/90 backdrop-blur-md border-b border-line">
-  <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-    <span class="nav-logo">CORRET <span class="nav-logo-name">Bryan</span></span>
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-ne" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 10v5"/><path d="M12 17.6v.4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></symbol>
+  <symbol id="i-git" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.555-1.11-4.555-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 2h1.8v20H4V2Zm3.2 1.4h10.9l-2.3 4.4 2.3 4.4H7.2V3.4Z"/></symbol>
+</svg>
 
-    <!-- hamburger -->
-    <button id="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-
-    <ul id="nav-menu" class="flex gap-7 list-none">
-      <li><a href="#Compétences" class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Compétences</a></li>
-      <li><a href="#EXP PRO"     class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Expériences</a></li>
-      <li><a href="#formations"  class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Formations</a></li>
-      <li><a href="#projects"    class="nav-a text-xs text-lo hover:text-hi transition-colors tracking-wider uppercase">Projets</a></li>
-      <li><a href="/notes/"      class="nav-a text-xs text-vio hover:text-vioGlow transition-colors tracking-wider uppercase">Notes ↗</a></li>
-    </ul>
+<header class="hd">
+  <a class="mark" href="#profil">
+    <span class="mark-n">Kirizukon</span>
+  </a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#projets"><i>01</i>Projets</a>
+    <a href="#xp"><i>02</i>XP pro</a>
+    <a href="#formation"><i>03</i>Formation</a>
+    <a href="#certifications"><i>04</i>Certifications</a>
+    <a href="#competences"><i>05</i>Compétences</a>
+  </nav>
+  <div class="hd-act">
+    <a class="ico" href="https://github.com/Kirizukon" rel="me noopener" target="_blank" aria-label="GitHub"><svg class="i solid"><use href="#i-git"/></svg></a>
+    <a class="ico" href="https://www.root-me.org/Kirizukon" rel="me noopener" target="_blank" aria-label="Root-Me"><svg class="i solid"><use href="#i-flag"/></svg></a>
+    <a class="btn btn-red" href="/notes/">Notes<svg class="i"><use href="#i-ne"/></svg></a>
   </div>
-</nav>
+</header>
 
-<section class="relative min-h-[100svh] flex items-center pt-20 border-b border-line overflow-hidden">
-  <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:1"></canvas>
-  <div class="orb orb-breathe w-[37.5em] h-[37.5em] top-[-9.375em] right-[-9.375em]" style="background:radial-gradient(circle,rgba(var(--vio-rgb),.09),transparent 65%)"></div>
-  <div class="orb w-[21.875em] h-[21.875em] bottom-[-5em] left-0" style="background:radial-gradient(circle,rgba(45,212,191,.055),transparent 65%)"></div>
+<main>
 
-  <div class="relative max-w-5xl mx-auto px-6 w-full py-16 md:py-28" style="z-index:2">
-    <div class="grid md:grid-cols-[2fr_3fr] gap-10 items-center">
+<section class="hero" id="profil">
+  <div>
+    <h1 class="name"><span>Bryan</span><br><span class="last">Corret</span></h1>
+    <p class="role">Analyste SOC / DevSecOps / blue team</p>
+    <p class="lede">Je construis de la détection et je durcis des infrastructures qui tournent pour de vrai, dont celles d&rsquo;un service d&rsquo;incendie et de secours. Huit projets livrés, un writeup complet, un rapport d&rsquo;audit.</p>
+    <div class="cta">
+      <button class="btn btn-copy js-copy" type="button">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="js-mail-text">adresse@a-definir.fr</span>
+        <span class="copy-act" aria-hidden="true">Copier</span>
+      </button>
+      <span class="copy-say" role="status" aria-live="polite"></span>
+    </div>
+  </div>
 
-      <!-- left -->
-      <div>
-        <p class="text-[10px] text-lo tracking-widest uppercase mb-7 flex items-center gap-2">
-          <span class="text-vio glow-v">▶</span> portfolio · kirizukon
-        </p>
+  <aside class="spec" aria-label="Fiche technique">
+    <figure class="portrait">
+      <canvas id="portrait" width="440" height="200" aria-hidden="true"></canvas>
+      <figcaption>Portrait / gabarit provisoire</figcaption>
+    </figure>
+    <dl class="spec-list">
+      <div><dt>Poste visé</dt><dd>Analyste SOC / DevSecOps</dd></div>
+      <div><dt>Disponible</dt><dd>Octobre 2027 / CDI</dd></div>
+      <div><dt>En poste</dt><dd>SDIS 28 / apprenti systèmes &amp; réseaux</dd></div>
+      <div><dt>Formation</dt><dd>Mastère Expert Cybersécurité / M2</dd></div>
+      <div><dt>Mobilité</dt><dd>France / Luxembourg / Suisse romande</dd></div>
+      <div><dt>Langues</dt><dd>Français / Anglais B2</dd></div>
+    </dl>
+  </aside>
+</section>
 
-        <div class="hero-title">
-          <h1 class="font-serif leading-[.88] text-hi mb-7" style="font-size:clamp(3.75em,9vw,6em);text-transform:uppercase">
-            Bryan<br>
-            <em class="glitch text-vio glow-v" style="text-transform:uppercase">Corret</em>
-          </h1>
+<section class="sec" id="projets">
+  <div class="sec-hd">
+    <h2>Projets</h2>
+  </div>
+
+  <ol class="nom">
+    <li>
+      <details id="m01">
+        <summary>
+          <span class="n">( 01 )</span>
+          <span class="t">Projet SOC</span>
+          <span class="s">wazuh / suricata / modsecurity / opnsense / dfir‑iris</span>
+          <span class="k">Blue team</span>
+          <svg class="i x"><use href="#i-plus"/></svg>
+        </summary>
+        <div class="body">
+          <p>POC SOC blue team monté de bout en bout sur hyperviseur CloudStack. Défense en profondeur : OPNsense en frontal, WAF Nginx + ModSecurity, puis cibles Docker vulnérables. Le SIEM Wazuh est alimenté par Suricata, le WAF, le pare-feu et les conteneurs ; les règles de détection sont écrites à la main, corrélées et mappées MITRE ATT&amp;CK (brute-force, SQLi, scan de ports). L&rsquo;intégration Wazuh → DFIR-IRIS ouvre l&rsquo;incident automatiquement.</p>
+          <dl class="meta">
+            <div><dt>Stack</dt><dd>Wazuh / OPNsense / ModSecurity / Suricata / DFIR-IRIS / CloudStack / Docker</dd></div>
+          </dl>
+          <a class="lnk" href="/notes/projets/soc-sl1pconnect/">Notes complètes<svg class="i"><use href="#i-ne"/></svg></a>
         </div>
+      </details>
+    </li>
 
-        <p class="text-sm text-mid leading-relaxed mb-8 max-w-xs">
-          Mastère <span class="text-hi">Expert Cybersécurité</span><br>
-          CDI SOC / DevSecOps · <span class="text-vio">Oct. 2027</span> · France
-        </p>
-
-        <div class="flex flex-wrap gap-2 mb-9">
-          <span class="pill pill-v text-vio  border-vio/30  bg-vio/8">DevSecOps</span>
-          <span class="pill pill-t text-teal border-teal/30 bg-teal/8">Blue Team</span>
+    <li>
+      <details id="m02">
+        <summary>
+          <span class="n">( 02 )</span>
+          <span class="t">AD Hardening Lab</span>
+          <span class="s">windows server / gpo / laps / pingcastle</span>
+          <span class="k">Durcissement</span>
+          <svg class="i x"><use href="#i-plus"/></svg>
+        </summary>
+        <div class="body">
+          <p>Conception d&rsquo;une infrastructure Active Directory sécurisée : structure AGDLP, GPO, LAPS, Credential Guard, protection ransomware via FSRM et File Screening. Chaque attaque est d&rsquo;abord démontrée, puis refermée par sa contre-mesure, et le durcissement est mesuré par un audit PingCastle avant / après.</p>
+          <ul class="atk">
+            <li><b>Empoisonnement LLMNR / NetBIOS</b> (Responder)</li>
+            <li><b>MitM IPv6 et relais NTLM</b></li>
+            <li><b>MitM RDP</b></li>
+            <li><b>Extraction de secrets</b> (Mimikatz)</li>
+            <li><b>Cartographie de chemins d&rsquo;attaque</b> (BloodHound)</li>
+          </ul>
+          <dl class="meta">
+            <div><dt>Stack</dt><dd>Windows Server / Active Directory / PowerShell / GPO / LAPS / FSRM</dd></div>
+          </dl>
+          <p class="warn"><svg class="i"><use href="#i-warn"/></svg><span><b>Usage pédagogique.</b> Lab et techniques fournis à des fins strictement pédagogiques, sur un environnement isolé et de votre propriété. Toute utilisation illégale relève de la seule responsabilité de l&rsquo;utilisateur.</span></p>
+          <p class="result"><span>Résultat mesuré</span><b>Domain Risk Level PingCastle : 55 / 100 avant durcissement, 5 / 100 après.</b></p>
         </div>
+      </details>
+    </li>
 
-        <div class="flex gap-7">
-          <a href="https://github.com/Kirizukon" target="_blank" class="nav-a text-xs text-lo hover:text-vio transition-colors">↗ GitHub</a>
-          <a href="https://www.root-me.org/Kirizukon" target="_blank" class="nav-a text-xs text-lo hover:text-vio transition-colors">↗ Root-Me</a>
+    <li>
+      <details id="m03">
+        <summary>
+          <span class="n">( 03 )</span>
+          <span class="t">Tracr</span>
+          <span class="s">react / typescript / fastapi / postgresql / docker</span>
+          <span class="k">DevSecOps</span>
+          <svg class="i x"><use href="#i-plus"/></svg>
+        </summary>
+        <div class="body">
+          <p>Application full-stack de gestion d&rsquo;enquêtes collaboratives : édition de documents en temps réel (TipTap + Yjs), templates, commentaires, historique de versions, CRUD utilisateur, authentification JWT + bcrypt et système de rôles. La chaîne DevSecOps est intégrée à la CI GitHub Actions : Semgrep (SAST), Trivy (SCA, IaC, images Docker), Gitleaks (secrets), OWASP ZAP (DAST), complétée par des hooks pre-commit.</p>
+          <dl class="meta">
+            <div><dt>Stack</dt><dd>React / TypeScript / FastAPI / PostgreSQL / Yjs / Docker / GitHub Actions</dd></div>
+          </dl>
+          <a class="lnk" href="https://github.com/Tracr-Investigation/Tracr" rel="noopener" target="_blank">GitHub<svg class="i"><use href="#i-ne"/></svg></a>
         </div>
-      </div>
+      </details>
+    </li>
 
-      <!-- terminal -->
-      <div class="reveal">
-        <div class="term-glow border border-line rounded overflow-hidden shadow-2xl" style="background:#141210">
-          <div class="flex items-center gap-2 px-4 py-3 border-b border-line" style="background:#1e1b18">
-            <span class="w-3 h-3 rounded-full bg-rose/70"></span>
-            <span class="w-3 h-3 rounded-full bg-amber/70"></span>
-            <span class="w-3 h-3 rounded-full bg-teal/70"></span>
-            <span class="text-[11px] text-lo ml-3">whoami.sh</span>
+    <li>
+      <details id="m04">
+        <summary>
+          <span class="n">( 04 )</span>
+          <span class="t">ExeGOAT</span>
+          <span class="s">python / docker</span>
+          <span class="k">Red team</span>
+          <svg class="i x"><use href="#i-plus"/></svg>
+        </summary>
+        <div class="body">
+          <p>Projet en binôme. Wrapper d&rsquo;outils offensifs inspiré d&rsquo;Exegol : fuzzer maison et intégration d&rsquo;outils de pentest (Impacket, Caido…) dans un environnement Python/Docker. Architecture modulaire, orientée Red Team.</p>
+          <dl class="meta">
+            <div><dt>Stack</dt><dd>Python / Docker</dd></div>
+          </dl>
+          <p class="warn"><svg class="i"><use href="#i-warn"/></svg><span><b>Usage pédagogique.</b> Outil destiné à un usage pédagogique et à des tests autorisés (labs, CTF). Toute utilisation illégale relève de la seule responsabilité de l&rsquo;utilisateur.</span></p>
+          <a class="lnk" href="https://github.com/Jeremiznoo/Exegoat" rel="noopener" target="_blank">GitHub<svg class="i"><use href="#i-ne"/></svg></a>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details id="m05">
+        <summary>
+          <span class="n">( 05 )</span>
+          <span class="t">FlipperDroid</span>
+          <span class="s">kotlin / android</span>
+          <span class="k">Mobile</span>
+          <svg class="i x"><use href="#i-plus"/></svg>
+        </summary>
+        <div class="body">
+          <p>Application Android en Kotlin pour exploiter des capacités offensives Red Team sans dispositif physique. Inspiré du Flipper Zero.</p>
+          <dl class="meta">
+            <div><dt>Stack</dt><dd>Kotlin</dd></div>
+          </dl>
+          <a class="lnk" href="https://github.com/Jeremiznoo/Flipperdroid" rel="noopener" target="_blank">GitHub<svg class="i"><use href="#i-ne"/></svg></a>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details id="m06">
+        <summary>
+          <span class="n">( 06 )</span>
+          <span class="t">NIDS / Network IDS</span>
+          <span class="s">python</span>
+          <span class="k">Détection</span>
+          <svg class="i x"><use href="#i-plus"/></svg>
+        </summary>
+        <div class="body">
+          <p>Système de détection d&rsquo;intrusion réseau en Python : analyse du trafic en temps réel, détection de motifs suspects et génération d&rsquo;alertes.</p>
+          <dl class="meta">
+            <div><dt>Stack</dt><dd>Python</dd></div>
+          </dl>
+          <a class="lnk" href="https://github.com/Kirizukon/NIDS-python" rel="noopener" target="_blank">GitHub<svg class="i"><use href="#i-ne"/></svg></a>
+        </div>
+      </details>
+    </li>
+    <li>
+      <details id="m07">
+        <summary>
+          <span class="n">( 07 )</span>
+          <span class="t">Sécurisation d&rsquo;infrastructure / CHU Santé+</span>
+          <span class="s">opnsense / windows server / gpo / pki / attack navigator</span>
+          <span class="k">Architecture</span>
+          <svg class="i x"><use href="#i-plus"/></svg>
+        </summary>
+        <div class="body">
+          <p>Sécurisation de bout en bout du système d&rsquo;information d&rsquo;un centre hospitalier, des exigences jusqu&rsquo;à la maquette qui les démontre. Trois volets : un <b>dossier d&rsquo;architecture technique</b> (classification des données, zones de confiance et matrice de flux en refus par défaut, exigences réglementaires, authentification et PKI, plan de durcissement) ; une <b>analyse de risque</b> adossée aux 42 mesures du guide d&rsquo;hygiène ANSSI, avec la posture actuelle et la posture cible cartographiées dans MITRE ATT&amp;CK Navigator ; une <b>preuve de concept</b> sur maquette de cinq machines.</p>
+          <p>Sur la maquette : segmentation et règles de filtrage sur OPNsense, domaine Active Directory en modèle de niveaux (tiering), 18 GPO liées par unité d&rsquo;organisation avec la baseline en dernier rang, Protected Users, stratégies de mot de passe granulaires, suppression de WDigest, protection LSA, abandon de NTLMv1, pare-feu du poste par GPO, procédure de bris de glace tracée et alertée, PKI racine et émettrice sous OpenSSL, durcissement Linux du serveur applicatif. Les durcissements sont portés par des scripts PowerShell idempotents, dont un contrôle d&rsquo;écart rejouable, et chaque mesure est prouvée (HardeningKitty, gpresult, auditpol).</p>
+          <dl class="meta">
+            <div><dt>Stack</dt><dd>OPNsense / Windows Server / Active Directory / GPO / PowerShell / PKI OpenSSL / Debian / Rocky / PostgreSQL / MITRE ATT&amp;CK Navigator</dd></div>
+            <div><dt>Référentiels</dt><dd>Guide d&rsquo;hygiène ANSSI (42 mesures) / CIS Benchmarks / MITRE ATT&amp;CK</dd></div>
+          </dl>
+          <a class="lnk" href="rapport-chu-sante.pdf">Rapport PDF<svg class="i"><use href="#i-ne"/></svg></a>
+        </div>
+      </details>
+    </li>
+
+    <li>
+      <details id="m08">
+        <summary>
+          <span class="n">( 08 )</span>
+          <span class="t">Laboratoire TLS / 11 challenges</span>
+          <span class="s">tls / scapy / docker / ansible / packer</span>
+          <span class="k">Offensif</span>
+          <svg class="i x"><use href="#i-plus"/></svg>
+        </summary>
+        <div class="body">
+          <p>Laboratoire d&rsquo;attaque de la sécurité du transport HTTPS, conçu et construit de bout en bout : onze challenges de type capture-the-flag, deux d&rsquo;échauffement (OpenSSL, Scapy), un d&rsquo;interception en clair qui installe la posture d&rsquo;attaquant réseau, puis huit qui mettent en défaut, de façon contrôlée, une propriété distincte de TLS : confidentialité, intégrité, authentification du pair.</p>
+          <p>Le modèle de menace est l&rsquo;attaquant réseau actif (Dolev-Yao) placé en homme du milieu par empoisonnement ARP. Chaque pile cible est volontairement vulnérable (échange RSA sans confidentialité persistante, DHE export 512 bits, SSL 3.0, TLS 1.0 en CBC, OpenSSL 1.0.1f), et chaque attaque est refermée par sa contre-mesure normative : validation RFC 5280, ECDHE, groupes DH d&rsquo;au moins 2048 bits, HSTS, <code>TLS_FALLBACK_SCSV</code>, découpage 1/n-1. Principe de conception : le portail applicatif n&rsquo;est jamais cassé au niveau applicatif, la faille est toujours dans la couche de transport posée devant lui. J&rsquo;ai écrit l&rsquo;oracle de padding POODLE en Python, et le laboratoire se déploie seul (Docker Compose, Ansible, Packer, Makefile) avec son guide étudiant.</p>
+          <p class="warn"><svg class="i"><use href="#i-warn"/></svg><span><b>Usage pédagogique.</b> Le laboratoire embarque volontairement des piles TLS vulnérables. Il doit tourner exclusivement sur un réseau isolé, jamais routable vers un réseau de production ni vers Internet.</span></p>
+          <div class="lnks">
+            <a class="lnk" href="rapport-labo-tls.pdf">Rapport PDF<svg class="i"><use href="#i-ne"/></svg></a>
+            <a class="lnk" href="https://github.com/TheOneChasingSomething/Mitm_TLS_CTF_Lab" rel="noopener" target="_blank">GitHub<svg class="i"><use href="#i-ne"/></svg></a>
           </div>
-          <div class="p-5 space-y-1.5">
-            <p class="text-sm text-teal glow-t">$ <span class="text-mid">whoami</span></p>
-            <p class="text-sm text-mid pl-3">→ Bryan CORRET · <span class="text-amber glow-a">Kirizukon</span></p>
-            <p class="text-sm text-teal glow-t pt-2">$ <span class="text-mid">cat status.txt</span></p>
-            <p class="text-sm text-mid pl-3">→ Apprenti S&R <span class="text-vio">@</span> SDIS28</p>
-            <p class="text-sm text-teal glow-t pt-2">$ <span class="text-mid">cat target.txt</span></p>
-            <p class="text-sm text-mid pl-3">→ CDI <span class="text-teal glow-t">Analyste SOC</span>, <span class="text-vio glow-v">DevSecOps</span></p>
-            <p class="text-sm text-mid pl-3">→ Dispo : <span class="text-amber glow-a">Octobre 2027</span></p>
-            <p class="text-sm text-teal glow-t pt-2">$ <span class="cursor text-mid"></span></p>
+        </div>
+      </details>
+    </li>
+  </ol>
+</section>
+
+<section class="sec" id="xp">
+  <div class="sec-hd">
+    <h2>XP pro</h2>
+  </div>
+
+  <article class="post">
+    <div class="post-k">
+      <span class="when">09 / 2024 à aujourd&rsquo;hui</span>
+      <span class="live"><span class="dot" aria-hidden="true"></span>Poste actuel</span>
+    </div>
+    <div class="post-c">
+      <h3>Apprenti systèmes &amp; réseaux</h3>
+      <p class="org">SDIS 28 / Chartres, service départemental d&rsquo;incendie et de secours</p>
+      <ul class="pts">
+        <li>Sécurisation des infrastructures administratives et opérationnelles, dont celles qui portent le traitement des appels d’urgence.
+          <ul>
+            <li>Active Directory : migration, refonte des comptes d&rsquo;administration, gestion des droits, audit (ORADAD, scripts PowerShell) et durcissement AD et ADCS.</li>
+            <li>Migration des sites IIS vers Apache2.</li>
+          </ul>
+        </li>
+        <li>Maintien en condition de sécurité du parc.
+          <ul>
+            <li>Application des correctifs et des politiques de durcissement.</li>
+            <li>Contraintes des applications métier : versions validées par l&rsquo;éditeur, services opérationnels qui doivent rester disponibles.</li>
+            <li>Recette sur un périmètre pilote avant généralisation.</li>
+          </ul>
+        </li>
+        <li>Rédaction de la politique de sécurité des systèmes d&rsquo;information (PSSI).</li>
+        <li>Sensibilisation cybersécurité : campagnes de phishing (Gophish), politique de mots de passe.</li>
+        <li>Support technique niveau 2 et 3.</li>
+      </ul>
+    </div>
+  </article>
+
+  <article class="post">
+    <div class="post-k">
+      <span class="when">09 / 2022 à 08 / 2024</span>
+    </div>
+    <div class="post-c">
+      <h3>Apprenti développeur Talend</h3>
+      <p class="org">GFPTECH / Chartres</p>
+      <ul class="pts">
+        <li>Insertion et extraction de données (ETL).</li>
+        <li>Conception et optimisation de jobs Talend.</li>
+        <li>Création d&rsquo;applications décisionnelles (BI).</li>
+      </ul>
+    </div>
+  </article>
+</section>
+
+<section class="sec" id="formation">
+  <div class="sec-hd">
+    <h2>Formation</h2>
+    <p class="sec-m">Programmes détaillés, année par année</p>
+  </div>
+
+  <article class="post">
+    <div class="post-k">
+      <span class="when">2024 à 2027</span>
+      <span class="live"><span class="dot" aria-hidden="true"></span>En cours</span>
+    </div>
+    <div class="post-c">
+      <h3>Mastère Expert en Cybersécurité</h3>
+      <p class="org">Oteria / Gennevilliers / titre RNCP39999</p>
+      <p>Alternance DevSecOps, une semaine d&rsquo;école pour trois semaines en entreprise. B3 validé, M1 validé, M2 blue team en cours.</p>
+      <details class="prog">
+        <summary>Programme<svg class="i x"><use href="#i-plus"/></svg></summary>
+        <div class="body">
+          <div class="yr">
+            <h4>B3 <span>validé / 2024 à 2025</span></h4>
+            <ul class="chips"><li>Python</li><li>Bases de données</li><li>Réseaux</li><li>Architecture réseau</li><li>Virtualisation</li><li>Administration Linux</li><li>Programmation en C</li></ul>
+          </div>
+          <div class="yr">
+            <h4>M1 <span>validé / 2025 à 2026</span></h4>
+            <ul class="chips"><li>Pentest web <i>40 h</i></li><li>Cryptographie <i>40 h</i></li><li>Networks monitoring &amp; SOC <i>40 h</i></li><li>Sécurité Windows <i>40 h</i></li><li>Analyse de risque <i>30 h</i></li><li>RGPD &amp; protection des données <i>20 h</i></li><li>Forensic <i>35 h</i></li><li>Python for ethical hacking <i>35 h</i></li></ul>
+          </div>
+          <div class="yr">
+            <h4>M2 <span>blue team / en cours</span></h4>
+            <ul class="chips"><li>Cybersécurité offensive <i>30 h</i></li><li>SOC avancé &amp; collecte de logs <i>35 h</i></li><li>Threat intelligence &amp; hunting <i>30 h</i></li><li>Analyse forensique <i>30 h</i></li><li>Analyse de malware <i>20 h</i></li><li>Détection avancée <i>30 h</i></li><li>Réponse à incident &amp; gestion de crise <i>35 h</i></li><li>Durcissement &amp; défense proactive <i>30 h</i></li><li>Purple team <i>15 h</i></li><li>Management de crise <i>10 h</i></li><li>IA &amp; cyberdéfense <i>30 h</i></li><li>Masterclass <i>15 h</i></li></ul>
           </div>
         </div>
-      </div>
+      </details>
+    </div>
+  </article>
 
+  <article class="post">
+    <div class="post-k"><span class="when">2021 à 2024</span></div>
+    <div class="post-c">
+      <h3>BUT Informatique</h3>
+      <p class="org">IUT d&rsquo;Orléans / bac +3</p>
+      <p>Développement, réseaux, bases de données, conception logicielle.</p>
+      <details class="prog">
+        <summary>Programme<svg class="i x"><use href="#i-plus"/></svg></summary>
+        <div class="body">
+          <div class="yr">
+            <h4>Année 1 <span>2021 à 2022</span></h4>
+            <ul class="chips"><li>Initiation au développement</li><li>Développement d&rsquo;interfaces web</li><li>Développement orienté objets</li><li>Développement d&rsquo;application avec IHM</li><li>Architecture des ordinateurs</li><li>Systèmes d&rsquo;exploitation</li><li>Introduction aux services réseaux</li><li>Bases de données &amp; SQL</li><li>Mathématiques discrètes &amp; graphes</li><li>Gestion de projet</li><li>Droit du numérique</li><li>Anglais technique</li></ul>
+          </div>
+          <div class="yr">
+            <h4>Année 2 <span>2022 à 2023</span></h4>
+            <ul class="chips"><li>Développement web avancé</li><li>Architecture logicielle</li><li>Développement mobile</li><li>SQL dans un langage de programmation</li><li>Cryptographie &amp; sécurité</li><li>Architecture des réseaux</li><li>Programmation système</li><li>Virtualisation</li><li>Probabilités &amp; méthodes d&rsquo;optimisation</li><li>Automates &amp; langages</li></ul>
+          </div>
+          <div class="yr">
+            <h4>Année 3 <span>2023 à 2024</span></h4>
+            <ul class="chips"><li>Qualité algorithmique</li><li>Programmation avancée</li><li>Automatisation de la chaîne de production</li><li>Qualité de développement</li><li>Virtualisation avancée</li><li>Nouveaux paradigmes de base de données</li><li>Méthodes d&rsquo;optimisation pour l&rsquo;aide à la décision</li><li>Modélisations mathématiques</li><li>Management d&rsquo;une équipe de projet</li><li>Politique de communication</li><li>Économie durable et numérique</li><li>Anglais</li><li>Développement avancé</li><li>Maintenance applicative</li><li>Initiation à l&rsquo;entrepreneuriat</li><li>Droit du numérique &amp; propriété intellectuelle</li><li>Communication : organisation et diffusion de l&rsquo;information</li></ul>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+
+  <article class="post">
+    <div class="post-k"><span class="when">2019 à 2021</span></div>
+    <div class="post-c">
+      <h3>Baccalauréat STI2D / option SIN</h3>
+      <p class="org">Lycée Émile Zola / Châteaudun / mention assez bien</p>
+      <p>Systèmes d&rsquo;information et numérique.</p>
+      <details class="prog">
+        <summary>Programme<svg class="i x"><use href="#i-plus"/></svg></summary>
+        <div class="body">
+          <div class="yr">
+            <h4>Première <span>trois spécialités</span></h4>
+            <ul class="chips"><li>Innovation technologique</li><li>I2D / ingénierie &amp; développement durable</li><li>Physique-chimie &amp; mathématiques</li><li>Français / anglais / histoire-géo / EPS</li></ul>
+          </div>
+          <div class="yr">
+            <h4>Terminale <span>SIN</span></h4>
+            <ul class="chips"><li>2I2D / systèmes d&rsquo;information et numérique</li><li>Programmation &amp; réseaux</li><li>Architecture numérique &amp; électronique</li><li>Physique-chimie &amp; mathématiques</li><li>Philosophie / anglais / histoire-géo / EPS</li></ul>
+          </div>
+        </div>
+      </details>
+    </div>
+  </article>
+</section>
+
+<section class="sec" id="certifications">
+  <div class="sec-hd">
+    <h2>Certifications</h2>
+    <p class="sec-m">En préparation</p>
+  </div>
+  <ul class="certs">
+    <li>
+      <span class="c-n">( C1 )</span>
+      <span class="c-t">HTB CDSA</span>
+      <span class="c-d">Certified Defensive Security Analyst / Hack The Box. SOC, détection, réponse à incident.</span>
+      <span class="c-s"><span class="dot" aria-hidden="true"></span>En cours</span>
+    </li>
+    <li>
+      <span class="c-n">( C2 )</span>
+      <span class="c-t">TOEIC</span>
+      <span class="c-d">Test of English for International Communication / ETS. Niveau visé : B2 confirmé.</span>
+      <span class="c-s"><span class="dot" aria-hidden="true"></span>En cours</span>
+    </li>
+  </ul>
+</section>
+
+<section class="sec" id="competences">
+  <div class="sec-hd">
+    <h2>Compétences</h2>
+  </div>
+  <div class="grid4">
+    <div class="cap">
+      <h3>Développement</h3>
+      <ul><li>Python / Django / Flask</li><li>C</li><li>ReactJS / Svelte</li><li>Java / JavaFX</li><li>Docker</li></ul>
+    </div>
+    <div class="cap">
+      <h3>Administration</h3>
+      <ul><li>Linux / Windows Server</li><li>Active Directory / DNS</li><li>PKI / CFSSL / OpenSSL</li><li>Nginx / Apache2</li><li>Bash / PowerShell</li></ul>
+    </div>
+    <div class="cap">
+      <h3>Bases de données</h3>
+      <ul><li>MySQL</li><li>MariaDB</li><li>Oracle</li><li>PL/SQL</li><li>Talend ETL</li></ul>
+    </div>
+    <div class="cap">
+      <h3>Langues</h3>
+      <ul><li>Français / langue maternelle</li><li>Anglais / B2, lu, écrit, parlé</li></ul>
     </div>
   </div>
 </section>
 
-<section id="Compétences" class="py-16 md:py-24 border-b border-line">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="sec-head reveal">
-      <span class="num">01 / Compétences</span>
-      <div class="bar"></div>
-    </div>
+</main>
 
-    <div class="reveal term-glow border border-line rounded-sm overflow-hidden" style="background:#141210">
-      <div class="flex items-center gap-2 px-4 py-3 border-b border-line" style="background:#1e1b18">
-        <span class="w-2.5 h-2.5 rounded-full bg-rose/65"></span>
-        <span class="w-2.5 h-2.5 rounded-full bg-amber/65"></span>
-        <span class="w-2.5 h-2.5 rounded-full bg-teal/65"></span>
-        <span class="text-[11px] text-lo ml-2">skills.sh</span>
-        <span class="ml-auto text-[10px] text-mid/60">kiri@nixos ~ $</span>
-      </div>
-      <div class="p-6 grid grid-cols-2 md:grid-cols-4 gap-8">
-
-        <!-- Développement -->
-        <div>
-          <p class="text-[10px] text-vio tracking-widest uppercase mb-4 flex items-center gap-2">
-            <span>▸</span> Développement
-          </p>
-          <ul class="space-y-2">
-            <li class="text-xs text-hi">Python · Django · Flask</li>
-            <li class="text-xs text-mid">Crypto · C</li>
-            <li class="text-xs text-mid">ReactJS · Svelte</li>
-            <li class="text-xs text-mid">Java · JavaFX</li>
-            <li class="text-xs text-mid">Docker · Kotlin</li>
-          </ul>
-        </div>
-
-        <!-- Administration -->
-        <div>
-          <p class="text-[10px] text-teal tracking-widest uppercase mb-4 flex items-center gap-2">
-            <span>▸</span> Administration
-          </p>
-          <ul class="space-y-2">
-            <li class="text-xs text-hi">Linux · Windows Server</li>
-            <li class="text-xs text-mid">Active Directory · DNS</li>
-            <li class="text-xs text-mid">PKI · CFSSL / OpenSSL</li>
-            <li class="text-xs text-mid">Web · Nginx · Apache2</li>
-            <li class="text-xs text-mid">Bash · PowerShell</li>
-
-          </ul>
-        </div>
-
-        <!-- Bases de données -->
-        <div>
-          <p class="text-[10px] text-amber tracking-widest uppercase mb-4 flex items-center gap-2">
-            <span>▸</span> Bases de données
-          </p>
-          <ul class="space-y-2">
-            <li class="text-xs text-mid">MySQL</li>
-            <li class="text-xs text-mid">MariaDB</li>
-            <li class="text-xs text-mid">Oracle</li>
-            <li class="text-xs text-mid">PL/SQL</li>
-            <li class="text-xs text-mid">Talend ETL</li>
-          </ul>
-        </div>
-
-        <!-- Langues -->
-        <div>
-          <p class="text-[10px] text-lo tracking-widest uppercase mb-4 flex items-center gap-2">
-            <span>▸</span> Langues
-          </p>
-          <ul class="space-y-2">
-            <li class="text-xs text-hi">Anglais</li>
-            <li class="text-[10px] text-lo">B2 · Lu, écrit, parlé</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
+<footer id="contact">
+  <div>
+    <a class="ft-mail js-mail" href="mailto:adresse@a-definir.fr"><span class="js-mail-text">adresse@a-definir.fr</span><svg class="i"><use href="#i-mail"/></svg></a>
+    <p class="ft-prov">Adresse provisoire, à remplacer avant mise en ligne</p>
+    <p class="ft-note">Un poste, une question, un lab à monter : disponible en CDI à partir d&rsquo;octobre 2027, comme analyste SOC / DevSecOps. France, Luxembourg, Suisse romande.</p>
   </div>
-</section>
-
-<section id="EXP PRO" class="py-16 md:py-24 border-b border-line">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="sec-head reveal">
-      <span class="num">02 / Expériences Pro</span>
-      <div class="bar"></div>
-    </div>
-
-    <div class="space-y-5">
-
-      <div class="card reveal s1 bg-bg2 border border-line rounded-sm overflow-hidden">
-        <div class="h-[0.125em] bg-gradient-to-r from-vio to-transparent line-v"></div>
-        <div class="p-5 md:p-7">
-          <div class="flex justify-between items-start flex-wrap gap-4 mb-5">
-            <div>
-              <h3 class="font-serif text-xl text-hi">Apprenti Systèmes & Réseaux</h3>
-              <p class="text-xs text-vio mt-1" style="text-shadow:0 0 0.5em rgba(var(--vio-rgb),.5)">SDIS 28 · Chartres</p>
-            </div>
-            <span class="pill badge-live pill-v text-vio border-vio/30 bg-vio/8">● Actuel · 09/2024</span>
-          </div>
-          <ul class="space-y-2">
-            <li class="text-xs text-mid flex gap-3"><span class="text-vio flex-shrink-0">▸</span>Sensibilisation cybersécurité · Phishing (Gophish), politique mots de passe</li>
-            <li class="text-xs text-mid flex gap-3"><span class="text-vio flex-shrink-0">▸</span>Sécurisation d'infrastructures administratives & opérationnelles (le 18)</li>
-            <li class="text-xs text-lo   flex gap-3 pl-5"><span class="flex-shrink-0">⚬</span>Active Directory · migration, refonte comptes admins, gestion des droits</li>
-            <li class="text-xs text-lo   flex gap-3 pl-5"><span class="flex-shrink-0">⚬</span>Migration sites IIS → Apache2</li>
-            <li class="text-xs text-mid flex gap-3"><span class="text-vio flex-shrink-0">▸</span>Analyse d'incidents EDR</li>
-            <li class="text-xs text-mid flex gap-3"><span class="text-vio flex-shrink-0">▸</span>Support technique Niveau 2 & 3</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="card reveal s2 bg-bg2 border border-line rounded-sm overflow-hidden">
-        <div class="h-[0.125em] bg-gradient-to-r from-line to-transparent"></div>
-        <div class="p-5 md:p-7">
-          <div class="flex justify-between items-start flex-wrap gap-4 mb-5">
-            <div>
-              <h3 class="font-serif text-xl text-hi">Apprenti Développeur Talend</h3>
-              <p class="text-xs text-lo mt-1">GFPTECH · Chartres</p>
-            </div>
-            <span class="pill text-lo border-line bg-bg3">09/2022 — 08/2024</span>
-          </div>
-          <ul class="space-y-2">
-            <li class="text-xs text-mid flex gap-3"><span class="text-lo flex-shrink-0">▸</span>Insertion / Extraction de données (ETL)</li>
-            <li class="text-xs text-mid flex gap-3"><span class="text-lo flex-shrink-0">▸</span>Conception et optimisation de jobs Talend</li>
-            <li class="text-xs text-mid flex gap-3"><span class="text-lo flex-shrink-0">▸</span>Création d'applications décisionnelles (BI)</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
+  <div class="ft-r">
+    <a href="https://github.com/Kirizukon" rel="me noopener" target="_blank">GitHub<svg class="i"><use href="#i-ne"/></svg></a>
+    <a href="https://www.root-me.org/Kirizukon" rel="me noopener" target="_blank">Root-Me<svg class="i"><use href="#i-ne"/></svg></a>
+    <a href="/notes/">Notes techniques<svg class="i"><use href="#i-ne"/></svg></a>
   </div>
-</section>
-
-<section id="formations" class="py-16 md:py-24 border-b border-line">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="sec-head reveal">
-      <span class="num">03 / Formations</span>
-      <div class="bar"></div>
-    </div>
-
-    <div class="relative pl-8 border-l border-line space-y-5">
-
-      <div class="tl-dot relative reveal s1">
-        <div class="card bg-bg2 border border-line p-5 md:p-6 rounded-sm">
-          <div class="flex justify-between items-start flex-wrap gap-3 mb-3">
-            <div>
-              <p class="text-[10px] text-vio tracking-widest uppercase mb-1">2024 — 2027</p>
-              <h3 class="font-serif text-xl text-hi">Mastère Expert en Cybersécurité</h3>
-              <p class="text-xs text-lo mt-0.5">Oteria · Gennevilliers</p>
-            </div>
-            <span class="pill badge-live pill-v text-vio border-vio/30 bg-vio/8">En cours</span>
-          </div>
-          <p class="text-xs text-lo leading-relaxed mb-2">RNCP39999 · B3 ✓ · M1 ✓ · M2 en cours</p><p class="text-xs text-lo leading-relaxed mb-4">Alternance DevSecOps · 1 semaine école / 3 semaines entreprise</p>
-          <button onclick="openProgram('mastere')" class="text-[10px] text-vio hover:text-vioGlow transition-colors flex items-center gap-1.5">
-            <span>▸</span> Voir programme
-          </button>
-        </div>
-      </div>
-
-      <div class="tl-dot relative reveal s2">
-        <div class="card bg-bg2 border border-line p-5 md:p-6 rounded-sm">
-          <div class="flex justify-between items-start flex-wrap gap-3 mb-3">
-            <div>
-              <p class="text-[10px] text-lo tracking-widest uppercase mb-1">2021 — 2024</p>
-              <h3 class="font-serif text-xl text-hi">BUT Informatique</h3>
-              <p class="text-xs text-lo mt-0.5">IUT d'Orléans</p>
-            </div>
-            <span class="pill text-mid border-line bg-bg3">Bac +3</span>
-          </div>
-          <p class="text-xs text-lo leading-relaxed mb-4">Développement, réseaux, bases de données, conception logicielle.</p>
-          <button onclick="openProgram('but')" class="text-[10px] text-vio hover:text-vioGlow transition-colors flex items-center gap-1.5">
-            <span>▸</span> Voir programme
-          </button>
-        </div>
-      </div>
-
-      <div class="tl-dot relative reveal s3">
-        <div class="card bg-bg2 border border-line p-5 md:p-6 rounded-sm">
-          <div class="flex justify-between items-start flex-wrap gap-3 mb-3">
-            <div>
-              <p class="text-[10px] text-lo tracking-widest uppercase mb-1">2019 — 2021</p>
-              <h3 class="font-serif text-xl text-hi">Bac STI2D · Option SIN</h3>
-              <p class="text-xs text-lo mt-0.5">Lycée Émile Zola · Châteaudun</p>
-            </div>
-            <span class="pill pill-t text-teal border-teal/25 bg-teal/8">Mention AB</span>
-          </div>
-          <p class="text-xs text-lo leading-relaxed mb-4">Systèmes d'Information et Numérique · Mention Assez Bien.</p>
-          <button onclick="openProgram('bac')" class="text-[10px] text-vio hover:text-vioGlow transition-colors flex items-center gap-1.5">
-            <span>▸</span> Voir programme
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="py-16 md:py-24 border-b border-line">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="sec-head reveal">
-      <span class="num">04 / Projets</span>
-      <div class="bar"></div>
-    </div>
-
-    <div class="reveal border border-line rounded-sm overflow-hidden shadow-xl" style="background:#141210">
-      <div class="flex items-center gap-2 px-5 py-3 border-b border-line" style="background:#1e1b18">
-        <span class="w-3 h-3 rounded-full bg-rose/60"></span>
-        <span class="w-3 h-3 rounded-full bg-amber/60"></span>
-        <span class="w-3 h-3 rounded-full bg-teal/60"></span>
-        <span class="text-xs text-lo ml-2">~/projects/<span class="text-hi">kirizukon</span></span>
-      </div>
-      <div class="flex flex-col md:flex-row">
-        <div class="md:w-44 flex md:flex-col border-b md:border-b-0 md:border-r border-line overflow-x-auto">
-          <button onclick="sp('tracr')"    data-p="tracr"    class="proj-tab active text-vio text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 Tracr</button>
-          <button onclick="sp('soc')"      data-p="soc"      class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 Projet SOC</button>
-          <button onclick="sp('exegoat')"  data-p="exegoat"  class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 ExeGOAT</button>
-          <button onclick="sp('adlab')"    data-p="adlab"    class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 AD Hardening Lab</button>
-          <button onclick="sp('flipper')"  data-p="flipper"  class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 FlipperDroid</button>
-          <button onclick="sp('nids')"     data-p="nids"     class="proj-tab text-lo text-xs px-4 py-3.5 text-left flex items-center gap-2 hover:bg-bg3 transition-colors whitespace-nowrap w-full">📁 NIDS</button>
-        </div>
-        <div class="flex-1 p-6 md:p-8 bg-bg2">
-
-          <div id="proj-tracr" class="proj-content">
-            <div class="flex items-center gap-4 mb-5">
-              <div>
-                <h3 class="font-serif text-xl text-hi">Tracr</h3>
-                <p class="text-xs text-lo">React · TypeScript · FastAPI · PostgreSQL · Yjs · Docker</p>
-              </div>
-            </div>
-            <p class="text-xs text-mid leading-relaxed border-l-2 border-teal/50 pl-4 mb-5">
-              Application full-stack de gestion d'enquêtes collaboratives. Édition de documents en temps réel (TipTap + Yjs), gestion de templates, commentaires et historique de versions. CRUD utilisateur, auth JWT + bcrypt et système de rôles. Chaîne DevSecOps intégrée à la CI GitHub Actions Semgrep (SAST), Trivy (SCA, IaC, images Docker), Gitleaks (secrets), OWASP ZAP (DAST) et hooks pre-commit.
-            </p>
-            <div class="flex gap-5 flex-wrap">
-              <a href="https://github.com/Tracr-Investigation/Tracr" target="_blank" class="nav-a text-xs text-teal glow-t">↗ GitHub</a>
-            </div>
-          </div>
-
-          <div id="proj-soc" class="proj-content hidden">
-            <div class="flex items-center gap-4 mb-5">
-              <div>
-                <h3 class="font-serif text-xl text-hi">Projet SOC · SL1PCONNECT</h3>
-                <p class="text-xs text-lo">Wazuh · OPNsense · ModSecurity · Suricata · DFIR-IRIS · CloudStack · Docker</p>
-              </div>
-            </div>
-            <p class="text-xs text-mid leading-relaxed border-l-2 border-teal/50 pl-4 mb-5">
-              POC SOC Blue Team sur hyperviseur CloudStack. Défense en profondeur : OPNsense (firewall) → WAF Nginx + ModSecurity → cibles Docker vulnérables. SIEM Wazuh alimenté par Suricata, WAF, firewall et conteneurs. Règles de détection custom corrélées et mappées MITRE ATT&CK (brute-force, SQLi, scan de ports). Intégration Wazuh → DFIR-IRIS pour la création automatique d'incidents.
-            </p>
-            <div class="flex gap-5 flex-wrap">
-              <a href="/notes/projets/soc-sl1pconnect/" class="nav-a text-xs text-teal glow-t">↗ Notes complètes</a>
-            </div>
-          </div>
-
-          <div id="proj-exegoat" class="proj-content hidden">
-            <div class="flex items-center gap-4 mb-5">
-              <div>
-                <h3 class="font-serif text-xl text-hi">ExeGOAT</h3>
-                <p class="text-xs text-lo">Python · Docker</p>
-              </div>
-            </div>
-            <p class="text-xs text-mid leading-relaxed border-l-2 border-vio/50 pl-4 mb-5">
-              Projet en binôme. Wrapper d'outils offensifs inspiré d'Exegol : fuzzer maison + intégration d'outils pentest (Impacket, Caido…) dans un environnement Python/Docker. Architecture modulaire, orientée Red Team.
-            </p>
-            <div class="flex items-start gap-2.5 mb-5 p-3 rounded-sm bg-amber/8 border border-amber/25">
-              <span class="text-amber text-xs flex-shrink-0 mt-px">⚠</span>
-              <p class="text-[11px] text-amber/90 leading-relaxed">
-                <span class="font-medium uppercase tracking-wider">Educational Only</span> | Outil destiné à un usage pédagogique et à des tests autorisés (labs, CTF). Toute utilisation illégale relève de la seule responsabilité de l'utilisateur.
-              </p>
-            </div>
-            <div class="flex gap-5 flex-wrap">
-              <a href="https://github.com/Jeremiznoo/Exegoat" target="_blank" class="nav-a text-xs text-vio" style="text-shadow:0 0 0.5em rgba(var(--vio-rgb),.5)">↗ GitHub</a>
-            </div>
-          </div>
-
-          <div id="proj-adlab" class="proj-content hidden">
-            <div class="flex items-center gap-4 mb-5">
-              <div>
-                <h3 class="font-serif text-xl text-hi">AD Hardening Lab</h3>
-                <p class="text-xs text-lo">Windows Server · Active Directory · PowerShell · GPO · LAPS</p>
-              </div>
-            </div>
-            <p class="text-xs text-mid leading-relaxed border-l-2 border-amber/50 pl-4 mb-5">
-              Conception d'une infrastructure Active Directory sécurisée (structure AGDLP, GPO, LAPS, Credential Guard, protection ransomware via FSRM & File Screening). Démonstration d'attaques (LLMNR/NetBIOS poisoning avec Responder, MitM IPv6 + relais NTLM, MitM RDP, extraction de secrets via Mimikatz, cartographie BloodHound) puis remédiation et durcissement, audit PingCastle à l'appui.
-            </p>
-            <div class="flex items-start gap-2.5 mb-5 p-3 rounded-sm bg-amber/8 border border-amber/25">
-              <span class="text-amber text-xs flex-shrink-0 mt-px">⚠</span>
-              <p class="text-[11px] text-amber/90 leading-relaxed">
-                <span class="font-medium uppercase tracking-wider">Educational Only</span> | Lab et techniques fournis à des fins strictement pédagogiques, sur un environnement isolé et de votre propriété. Toute utilisation illégale relève de la seule responsabilité de l'utilisateur.
-              </p>
-            </div>
-            <div class="flex gap-5 flex-wrap">
-              <a href="Rapport.pdf" target="_blank" class="nav-a text-xs text-amber glow-a">↗ Rapport PDF</a>
-            </div>
-          </div>
-
-          <div id="proj-flipper" class="proj-content hidden">
-            <div class="flex items-center gap-4 mb-5">
-              <div>
-                <h3 class="font-serif text-xl text-hi">FlipperDroid</h3>
-                <p class="text-xs text-lo">Kotlin</p>
-              </div>
-            </div>
-            <p class="text-xs text-mid leading-relaxed border-l-2 border-rose/50 pl-4 mb-5">
-              Application Android en Kotlin pour exploiter les capacités offensives Red Team sans dispositif physique. Inspiré du Flipper Zero.
-            </p>
-            <div class="flex gap-5 flex-wrap">
-              <a href="https://github.com/Jeremiznoo/Flipperdroid" target="_blank" class="nav-a text-xs text-rose">↗ GitHub</a>
-            </div>
-          </div>
-
-          <div id="proj-nids" class="proj-content hidden">
-            <h3 class="font-serif text-xl text-hi mb-1">NIDS · Network IDS</h3>
-            <p class="text-xs text-lo mb-5">Python</p>
-            <p class="text-xs text-mid leading-relaxed border-l-2 border-teal/50 pl-4 mb-5">
-              Système de détection d'intrusion réseau en Python. Analyse du trafic en temps réel, détection de patterns suspects et génération d'alertes.
-            </p>
-            <div class="flex gap-5 flex-wrap">
-              <a href="https://github.com/Kirizukon/NIDS-python" target="_blank" class="nav-a text-xs text-teal glow-t">↗ GitHub</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Section masquée en attendant d'avoir des writeups publiés (réactiver : décommenter + remettre les liens #writeups dans la nav, le hero et le footer)
-<section id="writeups" class="py-16 md:py-24 border-b border-line">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="sec-head reveal">
-      <span class="num">05 / Writeups</span>
-      <div class="bar"></div>
-    </div>
-
-    <div class="reveal flex flex-wrap gap-8 mb-12 p-5 bg-bg2 border border-line rounded-sm">
-      <div class="w-px bg-line"></div>
-      <div class="flex flex-col justify-center">
-        <a href="https://www.root-me.org/Kirizukon" target="_blank" class="nav-a text-xs text-vio glow-v">↗ Profil Root-Me · Kirizukon</a>
-      </div>
-    </div>
-
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <a href="#" class="wu-card block bg-bg2 border border-dashed border-line rounded-sm p-5 opacity-50">
-        <div class="flex justify-between items-start mb-3">
-          <span class="wu-tag text-lo border-line">???</span>
-          <span class="wu-tag text-lo border-line">???</span>
-        </div>
-        <h3 class="font-serif text-base text-lo mb-1 leading-snug italic">Prochain writeup</h3>
-        <p class="text-[11px] text-lo/50 mb-3">En cours de rédaction…</p>
-        <div class="flex flex-wrap gap-1.5 mb-4">
-          <span class="wu-tag text-lo/40 border-line/40">Soon</span>
-        </div>
-        <div class="flex justify-between items-center">
-          <span class="text-[10px] text-lo/40">— · — pts</span>
-          <span class="text-[10px] text-lo/40">Soon →</span>
-        </div>
-      </a>
-    </div>
-
-  </div>
-</section>
--->
-
-<footer class="py-10 border-t border-line">
-  <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-    <p class="text-xs text-lo">© 2026 · <span class="text-hi">Kirizukon</span></p>
-    <div class="flex gap-6">
-      <a href="https://github.com/Kirizukon" target="_blank" class="nav-a text-xs text-lo hover:text-vio transition-colors">GitHub</a>
-      <a href="https://www.root-me.org/Kirizukon" target="_blank" class="nav-a text-xs text-lo hover:text-vio transition-colors">Root-Me</a>
-    </div>
-  </div>
+  <p class="ft-c">© 2026 Bryan Corret</p>
 </footer>
 
-<div id="prog-overlay" class="prog-overlay" onclick="closeProgram()"></div>
-<aside id="prog-panel" class="prog-panel">
-  <div class="flex justify-between items-center mb-7 pb-5 border-b border-line">
-    <p class="text-[10px] text-lo tracking-widest uppercase">Programme</p>
-    <button onclick="closeProgram()" class="text-lo hover:text-hi transition-colors text-base leading-none">✕</button>
-  </div>
-
-  <!-- Mastère -->
-  <div id="prog-mastere" class="prog-panel-content">
-    <div class="mb-6">
-      <h3 class="font-serif text-xl text-hi mb-0.5">Mastère Expert en Cybersécurité</h3>
-      <p class="text-xs text-vio">Oteria · 2024 — 2027</p>
-    </div>
-    <div class="mb-7">
-      <div class="flex items-center gap-3 mb-4">
-        <p class="text-[10px] text-teal tracking-widest uppercase font-mono">B3</p>
-        <div class="flex-1 h-px bg-teal/20"></div>
-        <span class="text-[10px] text-teal font-mono border border-teal/30 bg-teal/8 px-2 py-0.5 rounded-sm">Validé · 2024 — 2025</span>
-      </div>
-      <div class="space-y-2">
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Python</p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Bases de données</p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Réseaux</p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Architecture réseau</p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Virtualisation</p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Administration Linux</p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Programmation en C</p>
-      </div>
-    </div>
-    <div class="mb-7">
-      <div class="flex items-center gap-3 mb-4">
-        <p class="text-[10px] text-teal tracking-widest uppercase font-mono">M1</p>
-        <div class="flex-1 h-px bg-teal/20"></div>
-        <span class="text-[10px] text-teal font-mono border border-teal/30 bg-teal/8 px-2 py-0.5 rounded-sm">Validé · 2025 — 2026</span>
-      </div>
-      <div class="space-y-2">
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Pentest Web <span class="text-lo font-mono">40h</span></p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Cryptographie <span class="text-lo font-mono">40h</span></p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Networks monitoring & SOC <span class="text-lo font-mono">40h</span></p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Sécurité Windows <span class="text-lo font-mono">40h</span></p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Analyse de risque <span class="text-lo font-mono">30h</span></p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">RGPD & protection des données <span class="text-lo font-mono">20h</span></p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Forensic <span class="text-lo font-mono">35h</span></p>
-        <p class="text-xs text-hi border-l-2 border-teal/30 pl-3">Python for Ethical Hacking <span class="text-lo font-mono">35h</span></p>
-      </div>
-    </div>
-    <div>
-      <div class="flex items-center gap-3 mb-4">
-        <p class="text-[10px] text-vio tracking-widest uppercase font-mono">M2</p>
-        <div class="flex-1 h-px bg-vio/20"></div>
-        <span class="text-[10px] text-vio font-mono border border-vio/30 bg-vio/8 px-2 py-0.5 rounded-sm">Blue Team · En cours</span>
-      </div>
-      <div class="space-y-2">
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Cybersécurité offensive <span class="text-lo font-mono">30h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">SOC avancé & collecte de logs <span class="text-lo font-mono">35h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Threat Intelligence & Hunting <span class="text-lo font-mono">30h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Analyse forensique <span class="text-lo font-mono">30h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Analyse de malware <span class="text-lo font-mono">20h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Détection avancée <span class="text-lo font-mono">30h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Réponse à incident & gestion de crise <span class="text-lo font-mono">35h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Durcissement & défense proactive <span class="text-lo font-mono">30h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Purple Team <span class="text-lo font-mono">15h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Management de crise <span class="text-lo font-mono">10h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">IA & cyberdéfense <span class="text-lo font-mono">30h</span></p>
-        <p class="text-xs text-hi border-l-2 border-vio/40 pl-3">Masterclass <span class="text-lo font-mono">15h</span></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- BUT -->
-  <div id="prog-but" class="prog-panel-content hidden">
-    <div class="mb-6">
-      <h3 class="font-serif text-xl text-hi mb-0.5">BUT Informatique</h3>
-      <p class="text-xs text-lo">IUT d'Orléans · 2021 — 2024</p>
-    </div>
-    <div class="mb-6">
-      <div class="flex items-center gap-3 mb-3">
-        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Année 1</p>
-        <div class="flex-1 h-px bg-line"></div>
-        
-      </div>
-      <div class="space-y-2">
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Initiation au développement</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement interfaces web</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement orienté objets</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement d'application avec IHM</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Architecture des ordinateurs</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Systèmes d'exploitation</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Introduction aux services réseaux</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Bases de données & SQL</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Mathématiques discrètes & graphes</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Gestion de projet</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Droit du numérique</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Anglais technique</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="flex items-center gap-3 mb-3">
-        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Année 2</p>
-        <div class="flex-1 h-px bg-line"></div>
-        
-      </div>
-      <div class="space-y-2">
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement web avancé</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Architecture logicielle</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement mobile</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">SQL dans un langage de programmation</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Cryptographie & sécurité</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Architecture des réseaux</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Programmation système</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Virtualisation</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Probabilités & méthodes d'optimisation</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Automates & langages</p>
-      </div>
-    </div>
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Année 3</p>
-        <div class="flex-1 h-px bg-line"></div>
-      </div>
-      <div class="space-y-2">
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Qualité algorithmique</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Programmation avancée</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Automatisation de la chaîne de production</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Qualité de développement</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Virtualisation avancée</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Nouveaux paradigmes de base de données</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Méthodes d'optimisation pour l'aide à la décision</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Modélisations mathématiques</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Initiation au management d'une équipe de projet</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Politique de communication</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Économie durable et numérique</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Anglais</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Développement avancé</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Maintenance applicative</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Initiation à l'entrepreneuriat</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Droit du numérique & de la propriété intellectuelle</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Communication : organisation et diffusion de l'information</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bac -->
-  <div id="prog-bac" class="prog-panel-content hidden">
-    <div class="mb-6">
-      <h3 class="font-serif text-xl text-hi mb-0.5">Bac STI2D · Option SIN</h3>
-      <p class="text-xs text-lo">Lycée Émile Zola · Châteaudun · 2019 — 2021</p>
-    </div>
-    <div class="mb-6">
-      <div class="flex items-center gap-3 mb-3">
-        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Première</p>
-        <div class="flex-1 h-px bg-line"></div>
-        <span class="text-[10px] text-lo font-mono border border-line bg-bg3 px-2 py-0.5 rounded-sm">3 spécialités</span>
-      </div>
-      <div class="space-y-2">
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Innovation technologique</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">I2D · Ingénierie & Développement Durable</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Physique-chimie & Mathématiques</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Français · Anglais · Histoire-géo · EPS</p>
-      </div>
-    </div>
-    <div>
-      <div class="flex items-center gap-3 mb-3">
-        <p class="text-[10px] text-lo tracking-widest uppercase font-mono">Terminale</p>
-        <div class="flex-1 h-px bg-line"></div>
-        <span class="text-[10px] text-teal font-mono border border-teal/30 bg-teal/8 px-2 py-0.5 rounded-sm">SIN</span>
-      </div>
-      <div class="space-y-2">
-        <p class="text-xs text-hi border-l-2 border-teal/40 pl-3">2I2D · Systèmes d'Information et Numérique</p>
-        <p class="text-xs text-hi border-l-2 border-teal/40 pl-3">Programmation & réseaux</p>
-        <p class="text-xs text-hi border-l-2 border-teal/40 pl-3">Architecture numérique & électronique</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Physique-chimie & Mathématiques</p>
-        <p class="text-xs text-hi border-l-2 border-line pl-3">Philosophie · Anglais · Histoire-géo · EPS</p>
-      </div>
-    </div>
-  </div>
-</aside>
-
-<script src="main.js" defer></script>
+<script src="main.js"></script>
 </body>
 </html>

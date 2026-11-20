@@ -1,9 +1,9 @@
 ---
-title: SOC SL1PCONNECT, POC Blue Team
+title: Projet SOC, POC Blue Team
 description: Architecture SOC (Wazuh + OPNsense + WAF + Suricata + DFIR-IRIS) sur CloudStack
 ---
 
-# CHEATSHEET POC SOC SL1PCONNECT
+# CHEATSHEET POC SOC
 
 !!! abstract "Architecture complète"
     `EXT (Kali) → OPNsense (FW) → WAF (ModSecurity) → Docker (cibles)`

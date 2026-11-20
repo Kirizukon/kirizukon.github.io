@@ -1,0 +1,167 @@
+/* Identité kirizukon.xyz appliquée aux notes (MkDocs Material). */
+
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-display:swap;
+  src:url('../../assets/fonts/archivo-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Archivo';font-style:normal;font-weight:400 800;font-display:swap;
+  src:url('../../assets/fonts/archivo-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Big Shoulders';font-style:normal;font-weight:600 900;font-display:swap;
+  src:url('../../assets/fonts/big-shoulders-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Big Shoulders';font-style:normal;font-weight:600 900;font-display:swap;
+  src:url('../../assets/fonts/big-shoulders-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url('../../assets/fonts/jetbrains-mono-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url('../../assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url('../../assets/fonts/martian-mono-latin-ext.woff2') format('woff2');
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400 700;font-display:swap;
+  src:url('../../assets/fonts/martian-mono-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --md-text-font:"Archivo",system-ui,sans-serif;
+  --md-code-font:"JetBrains Mono",ui-monospace,monospace;
+  --kz-paper:#f4f4f2;
+  --kz-ink:#0a0a0a;
+  --kz-red:#d71921;
+  --kz-rule:#cfcfc9;
+  --kz-display:'Big Shoulders','Arial Narrow',sans-serif;
+}
+
+[data-md-color-scheme="default"]{
+  --md-default-bg-color:var(--kz-paper);
+  --md-default-fg-color:var(--kz-ink);
+  --md-default-fg-color--light:#3a3a37;
+  --md-default-fg-color--lighter:#5c5c57;
+  --md-primary-fg-color:var(--kz-paper);
+  --md-primary-bg-color:var(--kz-ink);
+  --md-primary-bg-color--light:#3a3a37;
+  --md-accent-fg-color:var(--kz-red);
+  --md-typeset-a-color:var(--kz-red);
+  --md-code-bg-color:#e9e9e6;
+  --md-footer-bg-color:var(--kz-paper);
+  --md-footer-bg-color--dark:var(--kz-paper);
+  --md-footer-fg-color:var(--kz-ink);
+  --md-footer-fg-color--light:#3a3a37;
+  --md-footer-fg-color--lighter:#5c5c57;
+}
+[data-md-color-scheme="slate"]{
+  --md-default-bg-color:#0d0d0e;
+  --md-primary-fg-color:#0d0d0e;
+  --md-primary-bg-color:#f4f4f2;
+  --md-accent-fg-color:#ff3f33;
+  --md-typeset-a-color:#ff6a60;
+  --md-footer-bg-color:#0d0d0e;
+  --md-footer-bg-color--dark:#000;
+  --md-footer-fg-color:#f4f4f2;
+  --md-footer-fg-color--light:#c9c9c4;
+  --md-footer-fg-color--lighter:#8b8b86;
+}
+
+.md-header{
+  border-bottom:1px solid var(--kz-ink);
+  box-shadow:none;
+  position:sticky;
+}
+[data-md-color-scheme="slate"] .md-header{border-bottom-color:#2a2a2c}
+
+.md-header__title{font-family:var(--kz-display);font-weight:800;font-size:1.25rem;letter-spacing:.02em;text-transform:uppercase}
+.md-tabs{border-bottom:1px solid var(--kz-rule)}
+
+.md-typeset h1,.md-typeset h2{
+  font-family:var(--kz-display);font-weight:800;letter-spacing:.01em;line-height:.92;
+  color:var(--md-default-fg-color);text-transform:uppercase}
+.md-typeset h1{font-size:2.8rem}
+.md-typeset h2{font-size:2rem;border-bottom:2px solid var(--kz-red);padding-bottom:.18em;margin-top:2.2em}
+.md-typeset h3{font-weight:700;letter-spacing:-.01em}
+.md-typeset .md-content__button{color:var(--md-default-fg-color--lighter)}
+.md-typeset code{border:1px solid var(--kz-rule);border-radius:0}
+.md-typeset pre>code{border-radius:0}
+.md-typeset table:not([class]){border:1px solid var(--kz-rule);border-top:2px solid var(--kz-red);border-radius:0}
+.md-typeset table:not([class]) th{background:#e9e9e6;text-transform:uppercase;
+  font:700 11px/1.5 "Martian Mono",monospace;letter-spacing:.12em}
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th{background:#191919}
+.md-typeset .admonition,.md-typeset details{border-radius:0;border-left-width:1px;
+  border:1px solid var(--kz-rule);box-shadow:none}
+.md-typeset .admonition-title,.md-typeset summary{border-radius:0}
+.md-nav__link--active,.md-nav__link:focus,.md-nav__link:hover{color:var(--md-accent-fg-color)}
+.md-search__form{border-radius:0}
+.md-footer-meta{font-family:"Martian Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+::selection{background:var(--kz-red);color:#fff}
+
+/* admonitions neutralisées : dans un encadré, le rouge ne sert qu'à l'alerte.
+   Sélecteurs alignés sur ceux de Material, sinon ses couleurs de type l'emportent. */
+.md-typeset .admonition[class],.md-typeset details[class]{border:1px solid var(--kz-rule)}
+.md-typeset .admonition>.admonition-title,.md-typeset details>summary{
+  background:#e9e9e6;color:var(--kz-ink);border-bottom:1px solid var(--kz-rule);
+  font:700 12px/1.6 "Martian Mono",monospace;letter-spacing:.12em;text-transform:uppercase}
+.md-typeset .admonition>.admonition-title::before,.md-typeset details>summary::before{background-color:var(--kz-ink)}
+.md-typeset .admonition.warning>.admonition-title::before,
+.md-typeset .admonition.danger>.admonition-title::before,
+.md-typeset details.warning>summary::before,
+.md-typeset details.danger>summary::before{background-color:var(--kz-red)}
+.md-typeset .admonition.warning[class],.md-typeset .admonition.danger[class],
+.md-typeset details.warning[class],.md-typeset details.danger[class]{border-color:var(--kz-red)}
+[data-md-color-scheme="slate"] .md-typeset .admonition>.admonition-title,
+[data-md-color-scheme="slate"] .md-typeset details>summary{background:#191919;color:#f4f4f2;border-bottom-color:#2a2a2c}
+[data-md-color-scheme="slate"] .md-typeset .admonition>.admonition-title::before,
+[data-md-color-scheme="slate"] .md-typeset details>summary::before{background-color:#f4f4f2}
+[data-md-color-scheme="slate"] .md-typeset .admonition[class],
+[data-md-color-scheme="slate"] .md-typeset details[class]{border-color:#2a2a2c}
+
+/* mêmes filets et même pied de page que la page d'accueil */
+.md-typeset hr{border-bottom:2px solid var(--kz-red);margin:2.6em 0}
+.md-footer{border-top:2px solid var(--kz-red)}
+.md-footer-meta{border-top:1px solid var(--kz-rule)}
+.md-social__link:hover{color:var(--kz-red)}
+[data-md-color-scheme="slate"] .md-footer-meta{border-top-color:#2a2a2c}
+
+/* ------------------------------------------------------------------ *
+ * La coquille Material prend les codes de la page d'accueil :
+ * en-tête à wordmark, recherche carrée, boutons et étiquettes du site.
+ * ------------------------------------------------------------------ */
+
+/* en-tête : pas de logo, un wordmark et sa baseline, comme sur l'accueil */
+.md-header__button.md-logo{display:none}
+.md-header__title{margin-left:0;padding-left:0}
+.md-header__topic{display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.md-header__topic:first-child>.md-ellipsis{font-family:var(--kz-display);font-weight:800;font-size:1.35rem;
+  letter-spacing:.02em;text-transform:uppercase;line-height:1}
+.md-header__topic:first-child>.md-ellipsis::after{
+  content:"Notes techniques / kirizukon.xyz";display:block;margin-top:.45rem;
+  font:400 .55rem/1 "Martian Mono",monospace;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--md-default-fg-color--lighter)}
+.md-header__inner{padding-top:.5rem;padding-bottom:.5rem}
+
+/* recherche : carrée, filet d'encre, placeholder en mono */
+.md-search__form,.md-search__output,.md-search__scrollwrap{border-radius:0}
+.md-search__form{background:var(--kz-paper);border:1px solid var(--kz-ink);box-shadow:none}
+.md-search__form:hover{background:var(--kz-paper)}
+.md-search__input{color:var(--md-default-fg-color)}
+.md-search__input::placeholder{font:400 .62rem/1 "Martian Mono",monospace;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--md-default-fg-color--lighter)}
+.md-search__icon,.md-header__button{color:var(--md-default-fg-color)}
+[data-md-color-scheme="slate"] .md-search__form{background:#121214;border-color:#2a2a2c}
+
+/* même largeur de colonne et mêmes boutons que l'accueil */
+.md-grid{max-width:1360px}
+.md-typeset .md-button{border-radius:0;border:1px solid var(--kz-ink);color:var(--kz-ink);
+  font:600 .68rem/1 "Martian Mono",monospace;letter-spacing:.14em;text-transform:uppercase;padding:1.1em 1.4em}
+.md-typeset .md-button:hover{background:var(--kz-ink);color:var(--kz-paper);border-color:var(--kz-ink)}
+.md-typeset .md-button--primary{background:var(--kz-red);border-color:var(--kz-red);color:#fff}
+.md-typeset .md-button--primary:hover{background:var(--kz-ink);border-color:var(--kz-ink);color:var(--kz-paper)}
+
+/* étiquettes de navigation dans la voix du site */
+.md-nav__title{font:400 .62rem/1.4 "Martian Mono",monospace;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--md-default-fg-color--lighter)}
+.md-nav--secondary .md-nav__title{box-shadow:none;border-bottom:1px solid var(--kz-rule)}
+.md-nav__link{font-size:.76rem}
+.md-sidebar--primary .md-nav__item--section>.md-nav__link{font-weight:700;text-transform:uppercase;
+  letter-spacing:.04em}

@@ -5,7 +5,7 @@
   /* ------------------------------------------------------------------ *
    * 1. Contact : une seule constante à remplacer par la vraie adresse.
    * ------------------------------------------------------------------ */
-  var MAIL = "adresse@a-definir.fr";
+  var MAIL = "bryan.corret@gmail.com";
 
   function wireMail() {
     var href = "mailto:" + MAIL + "?subject=" + encodeURIComponent("Portfolio kirizukon.xyz / prise de contact");
